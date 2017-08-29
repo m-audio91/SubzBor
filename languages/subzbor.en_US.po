@@ -198,7 +198,7 @@ msgstr "Tools folder"
 
 #: tsbprefs.useinternalsplitter.caption
 msgid "استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی"
-msgstr "Use SubzBor internal splitter for text based subtitles"
+msgstr "Use SubzBor's internal splitter for text based subtitles"
 
 #: tsbprefs.useinternalsplitter.hint
 msgid ""
