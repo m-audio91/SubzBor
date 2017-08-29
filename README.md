@@ -4,7 +4,7 @@
 Free subtitle cutting tool, with the help of FFmpeg and MKVToolNix.
 
 #### it supports the following formats:
-**Available out of the box:**
+Available out of the box:
 * Subrip (srt)
 * Advanced Substation Alpha (ass)
 * Substation Alpha (ssa)
@@ -12,7 +12,7 @@ Free subtitle cutting tool, with the help of FFmpeg and MKVToolNix.
 * Synchronized Accessible Media Interchange (smi , sami)
 * Spruce subtitle format (stl)
 
-**Available with MKVToolNix:**
+Available with MKVToolNix:
 * VobSub (idx|sub)
 * Presentation Graphic Stream (sup)
 
