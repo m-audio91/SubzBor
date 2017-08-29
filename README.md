@@ -8,7 +8,7 @@ Available out of the box:
 * Subrip (srt)
 * Advanced Substation Alpha (ass)
 * Substation Alpha (ssa)
-* WebVTT (vtt)
+* Web Video Text Tracks Format (vtt)
 * Synchronized Accessible Media Interchange (smi , sami)
 * Spruce subtitle format (stl)
 
