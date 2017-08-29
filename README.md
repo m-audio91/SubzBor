@@ -1,8 +1,8 @@
 # SubzBor
 ![Image of Yaktocat](https://github.com/m-audio91/SubzBor/raw/master/extra/icon/80.png)
-Free subtitle cutting tool.
-with the help of FFmpeg and MKVToolNix, it supports the following formats:
+Free subtitle cutting tool, with the help of FFmpeg and MKVToolNix.
 
+#####it supports the following formats:
 **Available out of the box:**
 * Subrip (srt)
 * Advanced Substation Alpha (ass)
