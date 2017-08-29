@@ -1,0 +1,467 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: m.audio91@gmail.com\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Language: fa_IR\n"
+
+#: tsbabout.caption
+msgid "درباره سابزبُر"
+msgstr ""
+
+#: tsbabout.description.caption
+msgid ""
+"سابزبرُ - نسخه 1.0.3\n"
+"\n"
+"سابزبُر یک ظاهر گرافیکی می باشد که با استفاده از نرم افزارهای FFmpeg\n"
+"و MKVmerge و MKVextract اقدام به برش زیرنویس می کند.\n"
+"هدف اصلی سابزبُر برش زیرنویس و هماهنگ نگاه داشتن آن با فیلم\n"
+"سانسور شده (به وسیله ادیتور های دقیق که با دقت \"فریم\" برش می زنند)\n"
+"است تا هنگام سانسور (یا حتی جدا کردن بازه ای بعنوان نمونه از) فیلم در\n"
+"نرم افزاری که از زیرنویس پشتیبانی نمی کند، به هاردساب\n"
+"کردن یا روش های پیچیده و دستی نیازی نباشد.\n"
+"نسخه حاضر از زیرنویس های متنی ass srt ssa vtt smi stl و\n"
+"زیرنویس های عکسی idx|sub و sup پشتیبانی می کند. \n"
+"لطفا جهت بهبود هرچه بیشتر، مشکلات خود را گزارش دهید.\n"
+"\n"
+"کپی رایت 2017 میلادی 1395-1396 هجری خورشیدی محمدرضا بهرامی\n"
+msgstr ""
+
+#: tsbcharenc.caption
+msgid "انتخاب کدبندی حروف"
+msgstr "انتخاب کدبندی حروف"
+
+#: tsbcharenc.encodingnamel.caption
+msgid ""
+"کدبندی حروف فایل زیرنویس خود را انتخاب کنید.\n"
+"در صورت انتخاب اشتباه یا هیچ خروجی تحویل نمی گیرید یا حروف پرت خواهد بود.\n"
+"\n"
+"راهنمایی: در اینجا تبدیل توسط FFmpeg انجام می گیرد. برای زیرنویس های\n"
+"فارسی خود تنها یکی از دو گزینه CP1256 که با WINDOWS-1256 یکی هست\n"
+"و UTF-8 را امتحان کنید.\n"
+msgstr ""
+"کدبندی حروف فایل زیرنویس خود را انتخاب کنید.\n"
+"در صورت انتخاب اشتباه یا هیچ خروجی تحویل نمی گیرید یا حروف پرت خواهد بود.\n"
+"\n"
+"راهنمایی: در اینجا تبدیل توسط FFmpeg انجام می گیرد. برای زیرنویس های\n"
+"فارسی خود تنها یکی از دو گزینه CP1256 که با WINDOWS-1256 یکی هست\n"
+"و UTF-8 را امتحان کنید.\n"
+
+#: tsbcharenc.fasubripadl.caption
+msgid ""
+"از فاسابریپ - نرم افزار حل مشکل حروف زیرنویس های srt فارسی و سانسور\n"
+"عبارات نامناسب دیدن نمایید:\n"
+msgstr ""
+"از فاسابریپ - نرم افزار حل مشکل حروف زیرنویس های srt فارسی و سانسور\n"
+"عبارات نامناسب دیدن نمایید:\n"
+
+#: tsbi18nguide.caption
+msgid "آموزش ترجمه به زبان محلی"
+msgstr "آموزش ترجمه به زبان محلی"
+
+#: tsbi18nguide.i18ninstructionl.caption
+#| msgid ""
+#| "مراحل ترجمه نرم افزار به ترتیب تصاویر زیر انجام می گیرد. بعنوان مثال می خواهیم به زبان en-GB ترجمه کنیم.\n"
+#| "بعد از انجام کامل کار می توانید فایل مشخص در عکس نهایی را به ایمیل انتهای صفحه ارسال نمایید.\n"
+#| "یا حتی اگر اکانت github دارید می توانید مستقیما pull request بدهید.\n"
+msgid ""
+"مراحل ترجمه نرم افزار به ترتیب تصاویر زیر انجام می گیرد. بعنوان مثال می خواهیم به زبان en-GB ترجمه کنیم.\n"
+"بعد از انجام کامل کار می توانید فایل مشخص در عکس نهایی را به ایمیل انتهای صفحه ارسال نمایید.\n"
+"یا حتی اگر اکانت GitHub دارید می توانید مستقیما pull request بدهید.\n"
+msgstr ""
+"مراحل ترجمه نرم افزار به ترتیب تصاویر زیر انجام می گیرد. بعنوان مثال می خواهیم به زبان en-GB ترجمه کنیم.\n"
+"بعد از انجام کامل کار می توانید فایل مشخص در عکس نهایی را به ایمیل انتهای صفحه ارسال نمایید.\n"
+"یا حتی اگر اکانت GitHub دارید می توانید مستقیما pull request بدهید.\n"
+
+#: tsbi18nguide.i18ntranslatealllinesl.caption
+msgid "همه ی خطوط را به زبان موردنظر ترجمه کنید"
+msgstr "همه ی خطوط را به زبان موردنظر ترجمه کنید"
+
+#: tsbi18nguide.updateexistingpol.caption
+#| msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه موجود از قبل را دارید مراحل یکی است و فقط کافیست فایل ترجمه زبان موردنظر را باز و ویرایش و ارسال کنید."
+msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
+msgstr "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
+
+#: tsbmain.addtimeslice.caption
+msgctxt "tsbmain.addtimeslice.caption"
+msgid "اضافه"
+msgstr "اضافه"
+
+#: tsbmain.addtimeslice.hint
+msgctxt "tsbmain.addtimeslice.hint"
+msgid "اضافه"
+msgstr "اضافه"
+
+#: tsbmain.cleartimeslices.caption
+msgctxt "tsbmain.cleartimeslices.caption"
+msgid "از نو"
+msgstr "از نو"
+
+#: tsbmain.cleartimeslices.hint
+msgctxt "tsbmain.cleartimeslices.hint"
+msgid "از نو"
+msgstr "از نو"
+
+#: tsbmain.deletetimeslice.caption
+msgctxt "tsbmain.deletetimeslice.caption"
+msgid "حذف"
+msgstr "حذف"
+
+#: tsbmain.deletetimeslice.hint
+msgctxt "tsbmain.deletetimeslice.hint"
+msgid "حذف"
+msgstr "حذف"
+
+#: tsbmain.description.caption
+msgid "نرم افزار رایگان برش و سانسور زیرنویس"
+msgstr "نرم افزار رایگان برش و سانسور زیرنویس"
+
+#: tsbmain.dosplit.caption
+msgid "ببُر"
+msgstr "ببُر"
+
+#: tsbmain.edittimeslice.caption
+msgctxt "tsbmain.edittimeslice.caption"
+msgid "ویرایش"
+msgstr "ویرایش"
+
+#: tsbmain.edittimeslice.hint
+msgctxt "tsbmain.edittimeslice.hint"
+msgid "ویرایش"
+msgstr "ویرایش"
+
+#: tsbmain.loadtimeslices.caption
+msgctxt "tsbmain.loadtimeslices.caption"
+msgid "فراخوانی"
+msgstr "فراخوانی"
+
+#: tsbmain.loadtimeslices.hint
+msgctxt "tsbmain.loadtimeslices.hint"
+msgid "فراخوانی"
+msgstr "فراخوانی"
+
+#: tsbmain.menusbabout.caption
+msgid "درباره"
+msgstr "درباره"
+
+#: tsbmain.menusblangdownloadmore.caption
+msgid "دانلود ترجمه های بیشتر"
+msgstr "دانلود ترجمه های بیشتر"
+
+#: tsbmain.menusblangtranslateit.caption
+msgid "به زبان خود ترجمه کنید"
+msgstr "به زبان خود ترجمه کنید"
+
+#: tsbmain.menusbprefs.caption
+msgctxt "tsbmain.menusbprefs.caption"
+msgid "تنظیمات"
+msgstr "تنظیمات"
+
+#: tsbmain.savetimeslices.caption
+msgctxt "tsbmain.savetimeslices.caption"
+msgid "ذخیره"
+msgstr "ذخیره"
+
+#: tsbmain.savetimeslices.hint
+msgctxt "tsbmain.savetimeslices.hint"
+msgid "ذخیره"
+msgstr "ذخیره"
+
+#: tsbmain.statusmsg.caption
+msgid "اشاره ها"
+msgstr "اشاره ها"
+
+#: tsbmain.subtitlefilel.caption
+msgid "زیرنویس:"
+msgstr "زیرنویس:"
+
+#: tsbmain.timesliceslistl.caption
+msgid "لیست بازه های زمانی که قرار است \"نگه داشته\" بشوند:"
+msgstr "لیست بازه های زمانی که قرار است \"نگه داشته\" بشوند:"
+
+#: tsbprefs.autosavetslist.caption
+msgid "ذخیره خودکار لیست قسمت ها هنگام ذخیره زیرنویس"
+msgstr "ذخیره خودکار لیست قسمت ها هنگام ذخیره زیرنویس"
+
+#: tsbprefs.caption
+msgctxt "tsbprefs.caption"
+msgid "تنظیمات"
+msgstr "تنظیمات"
+
+#: tsbprefs.ffmpegaddressl.caption
+msgid "FFmpeg"
+msgstr "FFmpeg"
+
+#: tsbprefs.mkvextractaddressl.caption
+msgid "MkvExtract"
+msgstr "MkvExtract"
+
+#: tsbprefs.mkvmergeaddressl.caption
+msgid "MkvMerge"
+msgstr "MkvMerge"
+
+#: tsbprefs.savetoolslogs.caption
+msgid "ذخیره گزارش های ابزارها (صرفا برای اشکال یابی)"
+msgstr "ذخیره گزارش های ابزارها (صرفا برای اشکال یابی)"
+
+#: tsbprefs.tooladdresses.caption
+msgid "آدرس ابزارها"
+msgstr "آدرس ابزارها"
+
+#: tsbprefs.toolsfolderaddressl.caption
+msgid "پوشه Tools"
+msgstr "پوشه Tools"
+
+#: tsbprefs.useinternalsplitter.caption
+#| msgid "استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی (آزمایشی)"
+msgid "استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی"
+msgstr "استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی"
+
+#: tsbprefs.useinternalsplitter.hint
+msgid ""
+"در نسخه 1.0.3 سیستم بُرنده داخلی برای زیرنویس های متنی در\n"
+"سابزبُر پیاده سازی شد.\n"
+"در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده\n"
+"و سپس به SRT تبدیل می گردد. بعد از آن\n"
+"بُرش توسط سابزبُر انجام می گیرد.\n"
+msgstr ""
+"در نسخه 1.0.3 سیستم بُرنده داخلی برای زیرنویس های متنی در\n"
+"سابزبُر پیاده سازی شد.\n"
+"در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده\n"
+"و سپس به SRT تبدیل می گردد. بعد از آن\n"
+"بُرش توسط سابزبُر انجام می گیرد.\n"
+
+#: udatas.rschoosecorrecttimingsfileformatwarn
+msgid "ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود."
+msgstr "ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود."
+
+#: udatas.rssbdallfiles
+msgctxt "udatas.rssbdallfiles"
+msgid "همه فایل ها"
+msgstr "همه فایل ها"
+
+#: udatas.rssbdcancel
+msgctxt "udatas.rssbdcancel"
+msgid "صرف نظر"
+msgstr "صرف نظر"
+
+#: udatas.rssbdok
+msgctxt "udatas.rssbdok"
+msgid "تایید"
+msgstr "تایید"
+
+#: udatas.rssbversion12lowerformat
+msgid "نسخه 1.0.2 و پایین تر"
+msgstr "نسخه 1.0.2 و پایین تر"
+
+#: udatas.rssbversion13upformat
+msgid "نسخه 1.0.3 و بالا تر"
+msgstr "نسخه 1.0.3 و بالا تر"
+
+#: udatas.rstextfiles
+msgid "فایل متنی"
+msgstr "فایل متنی"
+
+#: udatas.rstimingsfileformat
+msgid "ساختار فایل زمان بندی ها"
+msgstr "ساختار فایل زمان بندی ها"
+
+#: uresourcestrings.rsallfiles
+msgctxt "uresourcestrings.rsallfiles"
+msgid "همه فایل ها"
+msgstr "همه فایل ها"
+
+#: uresourcestrings.rscancel
+msgctxt "uresourcestrings.rscancel"
+msgid "صرف نظر"
+msgstr "صرف نظر"
+
+#: uresourcestrings.rscanceled
+msgid "عملیات لغو گردید"
+msgstr "عملیات لغو گردید"
+
+#: uresourcestrings.rschoosingcharacterencoding
+msgid "در انتظار انتخاب کدبندی حروف زیرنویس"
+msgstr "در انتظار انتخاب کدبندی حروف زیرنویس"
+
+#: uresourcestrings.rsclosewhileprocwarn
+msgid ""
+"عملیاتی در حال اجراست. اگر سابزبُر را اجبارا ببنید نشتی حافظه خواهد داشت و برخی داده ها تا زمان لاگ اوت بعدی در حافظه می مانند\n"
+"هنوز هم می خواهید اجبارا خارج شوید؟\n"
+msgstr ""
+"عملیاتی در حال اجراست. اگر سابزبُر را اجبارا ببنید نشتی حافظه خواهد داشت و برخی داده ها تا زمان لاگ اوت بعدی در حافظه می مانند\n"
+"هنوز هم می خواهید اجبارا خارج شوید؟\n"
+
+#: uresourcestrings.rscommonformats
+msgid "فرمت های رایج"
+msgstr "فرمت های رایج"
+
+#: uresourcestrings.rsexporting
+msgid "در حال خروجی گرفتن از زیرنویس، صبور باشید"
+msgstr "در حال خروجی گرفتن از زیرنویس، صبور باشید"
+
+#: uresourcestrings.rsexportingdone
+msgid "زیرنویس با موفقیت ذخیره شد"
+msgstr "زیرنویس با موفقیت ذخیره شد"
+
+#: uresourcestrings.rsexportingfailed
+msgid "عملیات خروجی گرفتن با خطا مواجه شد"
+msgstr "عملیات خروجی گرفتن با خطا مواجه شد"
+
+#: uresourcestrings.rsexportingimgbased
+msgid "در حال خروجی گرفتن، خونسرد باشید. زیرنویس های PGS و VobSub زمان به مراتب بیشتری می خواهد"
+msgstr "در حال خروجی گرفتن، خونسرد باشید. زیرنویس های PGS و VobSub زمان به مراتب بیشتری می خواهد"
+
+#: uresourcestrings.rsfatal
+msgid "خطا"
+msgstr "خطا"
+
+#: uresourcestrings.rshint
+msgid "اشاره"
+msgstr "اشاره"
+
+#: uresourcestrings.rsinvalidtimeslice
+msgid "زمان بندی معتبر نیست. زمان شروع بیشتر یا مساوی زمان پایان نباشد"
+msgstr "زمان بندی معتبر نیست. زمان شروع بیشتر یا مساوی زمان پایان نباشد"
+
+#: uresourcestrings.rsinvalidtimeslices
+msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
+msgstr "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
+
+#: uresourcestrings.rsmakingreporstdirfiled
+msgid "موفق به ساختن پوشه گزارش ها نشد"
+msgstr "موفق به ساختن پوشه گزارش ها نشد"
+
+#: uresourcestrings.rsnoffmpeg
+msgid "اف اف ام پگ یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید"
+msgstr "اف اف ام پگ یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید"
+
+#: uresourcestrings.rsnomkvextract
+msgid ""
+"ام کا وی اکسترکت یافت نشد. اگر\n"
+"MKVToolNix\n"
+"را نصب ندارید نصب کنید سپس آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"لینک دانلود آن در قسمت درباره آمده است\n"
+msgstr ""
+"ام کا وی اکسترکت یافت نشد. اگر\n"
+"MKVToolNix\n"
+"را نصب ندارید نصب کنید سپس آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"لینک دانلود آن در قسمت درباره آمده است\n"
+
+#: uresourcestrings.rsnomkvmerge
+msgid ""
+"ام کا وی مرج یافت نشد. اگر\n"
+"MKVToolNix\n"
+"را نصب ندارید نصب کنید سپس آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"لینک دانلود آن در قسمت درباره آمده است\n"
+msgstr ""
+"ام کا وی مرج یافت نشد. اگر\n"
+"MKVToolNix\n"
+"را نصب ندارید نصب کنید سپس آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"لینک دانلود آن در قسمت درباره آمده است\n"
+
+#: uresourcestrings.rsnoreportsdir
+msgid "ساخت پوشه گزارش ها با خطا مواجه شد"
+msgstr "ساخت پوشه گزارش ها با خطا مواجه شد"
+
+#: uresourcestrings.rsnotempsdir
+msgid "ساخت پوشه فایل های موقتی با خطا مواجه شد"
+msgstr "ساخت پوشه فایل های موقتی با خطا مواجه شد"
+
+#: uresourcestrings.rsnottoolsfolder
+msgid ""
+"پوشه تولز یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"همچنین ممکن است سابزبُر را در محلی بدون دسترسی نوشتن در دیسک قرار داده باشید\n"
+msgstr ""
+"پوشه تولز یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید\n"
+"همچنین ممکن است سابزبُر را در محلی بدون دسترسی نوشتن در دیسک قرار داده باشید\n"
+
+#: uresourcestrings.rsnovalidsub
+msgid ""
+"زیرنویس معتبر تشخیص داده نشد\n"
+"اگر اطمینان دارید که جزو فرمت های پشتیبانی شده است چک کنید در یک مسیر طول و دراز قرار نگرفته باشد\n"
+msgstr ""
+"زیرنویس معتبر تشخیص داده نشد\n"
+"اگر اطمینان دارید که جزو فرمت های پشتیبانی شده است چک کنید در یک مسیر طول و دراز قرار نگرفته باشد\n"
+
+#: uresourcestrings.rsok
+msgctxt "uresourcestrings.rsok"
+msgid "تایید"
+msgstr "تایید"
+
+#: uresourcestrings.rsoperationstarted
+msgid "عملیات آغاز گردید"
+msgstr "عملیات آغاز گردید"
+
+#: uresourcestrings.rsprobing
+msgid "در حال بررسی ابزارها، زمان بندی ها و زیرنویس"
+msgstr "در حال بررسی ابزارها، زمان بندی ها و زیرنویس"
+
+#: uresourcestrings.rsready
+msgid "به سابزبُر خوشامدید!"
+msgstr "به سابزبُر خوشامدید!"
+
+#: uresourcestrings.rsseemsnofilesaved
+msgid "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
+msgstr "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
+
+#: uresourcestrings.rstimeslicefilenotread
+msgid "فایل زمان بندی ها معتبر تشخیص داده نشد"
+msgstr "فایل زمان بندی ها معتبر تشخیص داده نشد"
+
+#: uresourcestrings.rstimeslicefilenotsaved
+msgid "فایل زمان بندی ذخیره نشد"
+msgstr "فایل زمان بندی ذخیره نشد"
+
+#: uresourcestrings.rswarn
+msgid "هشدار"
+msgstr "هشدار"
+
+#: utimesliceeditex.rstimesliceeditorex
+msgid "ویرایشگر زمانبندی"
+msgstr "ویرایشگر زمانبندی"
+
+#: utimesliceeditex.rstsexcancel
+msgctxt "utimesliceeditex.rstsexcancel"
+msgid "صرف نظر"
+msgstr "صرف نظر"
+
+#: utimesliceeditex.rstsexdelay
+msgid "+تاخیر -تعجیل"
+msgstr "+تاخیر -تعجیل"
+
+#: utimesliceeditex.rstsexend
+msgid "پایان"
+msgstr "پایان"
+
+#: utimesliceeditex.rstsexhour
+msgid "ساعت"
+msgstr "ساعت"
+
+#: utimesliceeditex.rstsexmillisecond
+msgid "هزارم ثانیه"
+msgstr "هزارم ثانیه"
+
+#: utimesliceeditex.rstsexminute
+msgid "دقیقه"
+msgstr "دقیقه"
+
+#: utimesliceeditex.rstsexok
+msgctxt "utimesliceeditex.rstsexok"
+msgid "تایید"
+msgstr "تایید"
+
+#: utimesliceeditex.rstsexsecond
+msgid "ثانیه"
+msgstr "ثانیه"
+
+#: utimesliceeditex.rstsexstart
+msgid "شروع"
+msgstr "شروع"
+
