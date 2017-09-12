@@ -19,4 +19,4 @@ Available with MKVToolNix:
 
 The output of all text based subtitles is SRT. and for image based ones is the same as their input.  
 
-Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com  
+Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
