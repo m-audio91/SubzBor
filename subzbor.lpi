@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="10"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="SubzBor"/>
+      <Scaled Value="True"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True/PM"/>
+      </XPManifest>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="languages"/>
+      <ExcludedIdentifiers Count="6">
+        <Item1 Value="tsbmain.caption"/>
+        <Item2 Value="tsbmain.menusblang.caption"/>
+        <Item3 Value="tsbcharenc.encodingname.text"/>
+        <Item4 Value="tsbabout.description.caption"/>
+        <Item5 Value="tsbabout.caption"/>
+        <Item6 Value="tsbabout.sbversionl.caption"/>
+      </ExcludedIdentifiers>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <RevisionNr Value="3"/>
+      <BuildNr Value="163"/>
+      <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.0.2.0"/>
+    </VersionInfo>
+    <BuildModes Count="3">
+      <Item1 Name="Default" Default="True"/>
+      <Item2 Name="Debug">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="subzbor"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="..\commonutils;..\codecutils"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <TrashVariables Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="Release">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="subzbor"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="..\commonutils;..\codecutils"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="$(ProjPath)\published\releases\1.0.3"/>
+      <UseExcludeFileFilter Value="True"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="15">
+      <Unit0>
+        <Filename Value="subzbor.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="umain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMain"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="udatas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBDatas"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="uDatas"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="uprefs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBPrefs"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uPrefs"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="uproc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uProc"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="uprobe.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uProbe"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="ucharenc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBCharEnc"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uCharEnc"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="uresourcestrings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uResourcestrings"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="uabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAbout"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\commonutils\uurllabel.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uUrlLabel"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="usbconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uSBConst"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\commonutils\utimesliceeditex.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uTimeSliceEditEx"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="ui18nguide.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SBi18nGuide"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ui18nGuide"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\commonutils\uinputrestrictions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uInputRestrictions"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\codecutils\usubripfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uSubripFile"/>
+      </Unit14>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="subzbor"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\commonutils;..\codecutils"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+</CONFIG>
