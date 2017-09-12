@@ -1,5 +1,6 @@
-# SubzBor
-![Image of Yaktocat](https://github.com/m-audio91/SubzBor/raw/master/extra/icon/80.png)
+# SubzBor  
+![Image of Yaktocat](https://github.com/m-audio91/SubzBor/raw/master/extra/icon/80.png)  
+v1.0.3
 
 Free subtitle cutting tool, with the help of FFmpeg and MKVToolNix.
 
