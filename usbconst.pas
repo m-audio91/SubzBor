@@ -46,7 +46,7 @@ const
   urlSBLanguages = 'https://github.com/m-audio91/SubzBor/tree/master/languages';
   SB13TimingsFormat = 'Start=00:00:00.000 End=00:00:00.000 Delay=0';
   SB12TimingsFormat = '00:00:00.00-00:00:00.00,0';
-  SMMVideoSplitterTimingsFormat = '00:00:00;00-00:00:00;00';
+  SMMVideoSplitterTimingsFormat = '00:00:00,000-00:00:00,000';
 
 implementation
 

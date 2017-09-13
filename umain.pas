@@ -282,7 +282,7 @@ begin
                   ts.Delay := sl[i].Split(',')[1].Replace(',','.').ToDouble;
                   end;
                 2:begin
-                  ts.Initialize(2, ':', ';', '-');
+                  ts.Initialize(3, ':', ',', '-');
                   ts.ValueAsString := sl[i];
                   end;
                 end;
