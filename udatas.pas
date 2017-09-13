@@ -85,7 +85,7 @@ begin
   case DPI of
   120..143: Imgs := GlyphImages120;
   144..191: Imgs := GlyphImages144;
-  192..216: Imgs := GlyphImages192;
+  192..1000: Imgs := GlyphImages192;
   end;
   GlyphImages.Clear;
   GlyphImages.Width := Imgs.Width;
