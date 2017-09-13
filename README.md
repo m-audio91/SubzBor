@@ -20,3 +20,12 @@ Available with MKVToolNix:
 The output of all text based subtitles is SRT. and for image based ones is the same as their input.  
 
 Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
+  
+#### compilation guide:  
+1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) and [CodecUtils](https://github.com/m-audio91/CodecUtils) repositories.
+2. update your Free Pascal and Lazarus to at least the version mentioned in [latest SubzBor release](https://github.com/m-audio91/SubzBor/releases) description. use [fpcupdeluxe](https://github.com/newpascal/fpcupdeluxe) if you have problem updating.
+3. open the project (subzbor.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* and *CodecUtils* folders to your unit search paths.
+4. compile and run.
+5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)
+never compiled nor tested on MacOS.
+
