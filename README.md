@@ -26,6 +26,6 @@ Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com
 2. update your Free Pascal and Lazarus to at least the version mentioned in [latest SubzBor release](https://github.com/m-audio91/SubzBor/releases) description. use [fpcupdeluxe](https://github.com/newpascal/fpcupdeluxe) if you have problem updating.
 3. open the project (subzbor.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* and *CodecUtils* folders to your unit search paths.
 4. compile and run.
-5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)
-never compiled nor tested on MacOS.
+5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)  
+note: never compiled nor tested on MacOS. but you can help development for this platform too.
 
