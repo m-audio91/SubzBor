@@ -23,17 +23,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Buttons, EditBtn,
-  Dialogs, ExtCtrls, uSBConst;
+  Dialogs, ExtCtrls, uSBConst, CommonGUIUtils;
 
 type
 
   { TSBDatas }
 
   TSBDatas = class(TDataModule)
-    GlyphImages144: TImageList;
-    GlyphImages96: TImageList;
     GlyphImages192: TImageList;
-    GlyphImages120: TImageList;
     GlyphImages: TImageList;
     OpenDlg: TOpenDialog;
     SaveDlg: TSaveDialog;
@@ -78,19 +75,8 @@ begin
 end;
 
 procedure TSBDatas.PrepareGlyphs(DPI: Word);
-var
-  Imgs: TImageList;
 begin
-  Imgs := GlyphImages96;
-  case DPI of
-  120..143: Imgs := GlyphImages120;
-  144..191: Imgs := GlyphImages144;
-  192..1000: Imgs := GlyphImages192;
-  end;
-  GlyphImages.Clear;
-  GlyphImages.Width := Imgs.Width;
-  GlyphImages.Height := Imgs.Height;
-  GlyphImages.Assign(Imgs);
+  CopyImageList(GlyphImages, GlyphImages192, DPI, 192, clBtnFace);
 end;
 
 procedure TSBDatas.ChangeGlyph(SBtn: TSpeedButton);
