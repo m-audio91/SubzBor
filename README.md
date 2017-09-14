@@ -29,3 +29,7 @@ Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com
 5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)  
 note: never compiled nor tested on MacOS. but you can help development for this platform too.
 
+
+
+[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)
+
