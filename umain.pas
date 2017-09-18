@@ -61,6 +61,8 @@ type
     MenuSBLangDownloadMore: TMenuItem;
     MenuSBLangSep: TMenuItem;
     procedure IniPropsRestoringProperties(Sender: TObject);
+    procedure IniPropsRestoreProperties(Sender: TObject);
+    procedure MenuSBLangDownloadMoreClick(Sender: TObject);
     procedure DoSplitClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
@@ -76,8 +78,6 @@ type
     procedure SubtitleFileAcceptFileName(Sender: TObject; var Value: String);
     procedure TimeSlicesListDblClick(Sender: TObject);
     procedure AddTimeSliceClick(Sender: TObject);
-    procedure MenuSBLangDownloadMoreClick(Sender: TObject);
-    procedure IniPropsRestoreProperties(Sender: TObject);
   private
     FLangID: String;
     FLangsDir: String;
@@ -172,6 +172,21 @@ begin
     CanClose := True;
 end;
 
+procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
+begin
+  SessionProperties := SessionProperties+';LangID;';
+end;
+
+procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);
+begin
+  SetDefaultLangID;
+end; 
+
+procedure TSBMain.MenuSBLangDownloadMoreClick(Sender: TObject);
+begin
+  OpenUrl(urlSBLanguages);
+end;
+
 procedure TSBMain.FormDropFiles(Sender: TObject;
   const FileNames: array of String);
 begin
@@ -197,7 +212,7 @@ procedure TSBMain.AddTimeSliceClick(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
 begin
-  tse := TTimeSliceEditEx.CreateNew(Self);
+  tse := TTimeSliceEditEx.Create(Self);
   try
     tse.ShowModal;
     if tse.ModalResult = mrOk then
@@ -207,21 +222,11 @@ begin
   end;
 end;
 
-procedure TSBMain.MenuSBLangDownloadMoreClick(Sender: TObject);
-begin
-  OpenUrl(urlSBLanguages);
-end;
-
-procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);
-begin
-  SetDefaultLangID;
-end;
-
 procedure TSBMain.EditTimeSliceClick(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
 begin
-  tse := TTimeSliceEditEx.CreateNew(Self);
+  tse := TTimeSliceEditEx.Create(Self);
   try
     if TimeSlicesList.ItemIndex >= 0 then
     begin
@@ -322,11 +327,6 @@ begin
         ShowError(E.Message + LineEnding + rsTimeSliceFileNotSaved, rsFatal);
     end;
   end;
-end;
-
-procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
-begin
-  SessionProperties := SessionProperties+';LangID;';
 end;
 
 procedure TSBMain.DoSplitClick(Sender: TObject);
