@@ -33,6 +33,8 @@ const
   extSrt = '.srt';
   extMkv = '.mkv';
   extLog = '.log';
+  extSub = '.sub';
+  extIdx = '.idx';
   urlFasubRip = 'http://mohammadrezab.blogsky.com/1395/09/27/post-21';
   urlHome = 'http://mohammadrezab.blogsky.com';
   urlFFmpeg = 'https://www.ffmpeg.org';

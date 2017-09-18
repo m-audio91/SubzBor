@@ -344,6 +344,8 @@ begin
     MkvMerge := SBPrefs.MkvMergeAddress.Text;
     MkvExtract := SBPrefs.MkvExtractAddress.Text;
     InputFile := SubtitleFile.Text;
+    if LowerCase(ExtractFileExt(InputFile)).Equals(extSub) then
+      InputFile := GenFileName(InputFile, '', extIdx);
     TimeSlices := TimeSlicesList.Items.Text;
   end;
   FProbeThread := TSubzBorProbeThread.Create(FProbeInfo);
