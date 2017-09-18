@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, uMain, uDatas, uPrefs, ucharenc, uResourcestrings, uAbout,
+  Forms, SysUtils, uMain, uDatas, uPrefs, ucharenc, uResourcestrings, uAbout,
   uTimeSliceEditEx, ui18nGuide;
 
 {$R *.res}
@@ -23,6 +23,7 @@ begin
   Application.CreateForm(TSBCharEnc, SBCharEnc);
   Application.CreateForm(TSBAbout, SBAbout);
   Application.CreateForm(TSBi18nGuide, SBi18nGuide);
+  DefaultFormatSettings.DecimalSeparator:='.';
   Application.Run;
 end.
 
