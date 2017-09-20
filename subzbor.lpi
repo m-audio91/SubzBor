@@ -31,9 +31,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <RevisionNr Value="3"/>
-      <BuildNr Value="177"/>
-      <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.0.2.0"/>
+      <MinorVersionNr Value="1"/>
+      <BuildNr Value="18"/>
+      <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.1.0.0"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
@@ -112,7 +112,7 @@
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <DestinationDirectory Value="$(ProjPath)\published\releases\1.0.4"/>
+      <DestinationDirectory Value="$(ProjPath)\published\releases\1.1.0"/>
       <UseExcludeFileFilter Value="True"/>
     </PublishOptions>
     <RunParams>
@@ -125,7 +125,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="16">
       <Unit0>
         <Filename Value="subzbor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -218,6 +218,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSubripFile"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="..\commonutils\utimecodeformatdialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uTimeCodeFormatDialog"/>
+      </Unit15>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
