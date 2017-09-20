@@ -25,8 +25,9 @@ uses
   Classes, SysUtils, FileUtil, LazFileUtils, Forms, Controls, Graphics, Dialogs,
   LclIntf, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
-  CommonFileUtils, CommonGUIUtils, uCharEnc, uResourcestrings, uSBConst,
-  uTimeSliceEditEx, uListBoxUtils, LCLTranslator;
+  CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
+  uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialog,
+  LCLTranslator;
 
 type
 
@@ -60,6 +61,7 @@ type
     MenuSBLangTranslateIt: TMenuItem;
     MenuSBLangDownloadMore: TMenuItem;
     MenuSBLangSep: TMenuItem;
+    MenuSBGuide: TMenuItem;
     procedure IniPropsRestoringProperties(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
     procedure MenuSBLangDownloadMoreClick(Sender: TObject);
@@ -72,15 +74,19 @@ type
     procedure ClearTimeSlicesClick(Sender: TObject);
     procedure LoadTimeSlicesClick(Sender: TObject);
     procedure MenuSBAboutClick(Sender: TObject);
+    procedure MenuSBGuideClick(Sender: TObject);
     procedure MenuSBLangTranslateItClick(Sender: TObject);
     procedure SaveTimeSlicesClick(Sender: TObject);
     procedure MenuSBPrefsClick(Sender: TObject);
     procedure SubtitleFileAcceptFileName(Sender: TObject; var Value: String);
     procedure TimeSlicesListDblClick(Sender: TObject);
     procedure AddTimeSliceClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     FLangID: String;
     FLangsDir: String;
+    FFormatSettings: TTimeCodeFormatSettings;
+    FInputsFormatDefined: Boolean;
     FProbeInfo: TSubzBorProbeInfo;
     FProbeResult: TSubzBorProbeResult;
     FProbeThread: TSubzBorProbeThread;
@@ -91,6 +97,7 @@ type
     procedure Status(const MsgType, Msg: String; Bar: boolean = False;
       BarPos: Word = 0; HideBarAfter: Word = 0);
     procedure SetGlyphs;
+    procedure DefineUserInputsFormat;
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
     procedure StartProbe;
@@ -119,6 +126,12 @@ implementation
 
 { TSBMain }
 
+procedure TSBMain.FormCreate(Sender: TObject);
+begin
+  FInputsFormatDefined := False;
+  FFormatSettings := DefaultTimeCodeFormatSettings;
+end;
+
 procedure TSBMain.SetGlyphs;
 begin
   SBDatas.ChangeGlyph(AddTimeSlice);
@@ -128,6 +141,23 @@ begin
   SBDatas.ChangeGlyph(SaveTimeSlices);
   SBDatas.ChangeGlyph(LoadTimeSlices);
   SBDatas.ChangeGlyph(SubtitleFile);
+end;
+
+procedure TSBMain.DefineUserInputsFormat;
+var
+  fd: TTimeCodeFormatDialog;
+begin
+  SBDatas.TaskDlg.Execute(Self.Handle);
+  fd := TTimeCodeFormatDialog.Create(Self);
+  try
+    fd.Value.TimeCodeFormat := FFormatSettings;
+    fd.ShowModal;
+    if fd.ModalResult = mrOK then
+      FFormatSettings := fd.Value.TimeCodeFormat;
+  finally
+    fd.Free;
+  end;
+  FInputsFormatDefined := True;
 end;
 
 procedure TSBMain.SaveDummyVidResToFile(const Dir: String);
@@ -159,7 +189,6 @@ procedure TSBMain.FormShow(Sender: TObject);
 begin
   SetGlyphs;
   CurrectFormSize;
-  Status(rsHint, rsReady);
   ListTranslations;
   HandleTranslation(LangID);
 end;
@@ -174,7 +203,7 @@ end;
 
 procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
 begin
-  SessionProperties := SessionProperties+';LangID;';
+  SessionProperties := SessionProperties+';LangID';
 end;
 
 procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);
@@ -212,8 +241,11 @@ procedure TSBMain.AddTimeSliceClick(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
 begin
+  if not FInputsFormatDefined then
+    DefineUserInputsFormat;
   tse := TTimeSliceEditEx.Create(Self);
   try
+    tse.PasteFormat := FFormatSettings;
     tse.ShowModal;
     if tse.ModalResult = mrOk then
       TimeSlicesList.Items.Add(tse.Value);
@@ -264,50 +296,36 @@ var
   tsl: TTimeSliceList;
   ts: TTimeSlice;
   sl: TStringList;
-  i,ri: Integer;
+  i: Integer;
 begin
-  if SBDatas.TaskDlg.Execute(Self.Handle) then
-    if SBDatas.TaskDlg.ModalResult = mrOk then
-    begin
-      try
-        ri := SBDatas.TaskDlg.RadioButton.Index;
-        case ri of
-        0:tsl.LoadFromFileEx(F);
-        1..2:
-          begin
-            sl := TStringList.Create;
-            try
-              sl.LoadFromFile(F);
-              for i := 0 to sl.Count-1 do
-              begin
-                case ri of
-                1:begin
-                  ts.Initialize(2, ':', '.', '-');
-                  ts.ValueAsString := sl[i].Split(',')[0];
-                  ts.Delay := sl[i].Split(',')[1].Replace(',','.').ToDouble;
-                  end;
-                2:begin
-                  ts.Initialize(3, ':', ',', '-');
-                  ts.ValueAsString := sl[i];
-                  end;
-                end;
-                ts.Initialize(3, ':', '.', '-');
-                sl[i] := ts.ValueAsStringEx;
-              end;
-              tsl.ExtendedValue := sl.Text;
-            finally
-              sl.Free;
-            end;
-          end;
-        end;
-        if tsl.Incremental then
-          TimeSlicesList.Items.Text := tsl.ExtendedValue
-        else
-          raise Exception.Create(rsFatal);
-      except
-        ShowError(rsTimeSliceFileNotRead, rsFatal);
+  if not FInputsFormatDefined then
+    DefineUserInputsFormat;
+
+  sl := TStringList.Create;
+  try
+    try
+      tsl.LoadFromFileEx(F);
+      if tsl.Incremental then Exit;
+
+      sl.LoadFromFile(F);
+      for i := 0 to sl.Count-1 do
+      begin
+        ts.Initialize(FFormatSettings.MillisecondPrecision, FFormatSettings.MajorSep,
+          FFormatSettings.MinorSep, DefaultTimeSliceSep);
+        ts.ValueAsString := sl[i];
+        ts.Initialize;
+        sl[i] := ts.ValueAsStringEx;
       end;
+      tsl.ExtendedValue := sl.Text;
+      if not tsl.Incremental then
+        raise Exception.Create(rsFatal);
+    finally
+      TimeSlicesList.Items.Text := tsl.ExtendedValue;
+      sl.Free;
     end;
+  except
+    ShowError(rsTimeSliceFileNotRead, rsFatal);
+  end;
 end;
 
 procedure TSBMain.SaveTimeSlicesClick(Sender: TObject);
@@ -437,6 +455,11 @@ end;
 procedure TSBMain.MenuSBAboutClick(Sender: TObject);
 begin
   SBAbout.ShowModal;
+end; 
+
+procedure TSBMain.MenuSBGuideClick(Sender: TObject);
+begin
+  OpenURL(urlGuide);
 end;
 
 procedure TSBMain.MenuSBLangTranslateItClick(Sender: TObject);
@@ -524,6 +547,8 @@ begin
     mi.Checked := True;
   SBAbout.UsedTools.BiDiMode := bd;
   SBAbout.ContactMe.BiDiMode := bd;
+
+  Status(rsHint, rsReady);
 end;
 
 procedure TSBMain.Status(const MsgType, Msg: String; Bar: boolean; BarPos: Word;

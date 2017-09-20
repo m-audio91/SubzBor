@@ -4,7 +4,7 @@ object SBMain: TSBMain
   Top = 216
   Width = 500
   AllowDropFiles = True
-  Caption = 'SubzBor - سابزبُر'
+  Caption = 'SubzBor v1.1.0'
   ClientHeight = 330
   ClientWidth = 500
   Constraints.MinHeight = 350
@@ -12,6 +12,7 @@ object SBMain: TSBMain
   DefaultMonitor = dmPrimary
   Menu = TopMenu
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnDropFiles = FormDropFiles
   OnShow = FormShow
   SessionProperties = 'Left;SubtitleFile.InitialDir;Top'
@@ -643,6 +644,10 @@ object SBMain: TSBMain
     object MenuSBAbout: TMenuItem
       Caption = 'درباره'
       OnClick = MenuSBAboutClick
+    end
+    object MenuSBGuide: TMenuItem
+      Caption = 'آموزش'
+      OnClick = MenuSBGuideClick
     end
     object MenuSBLang: TMenuItem
       Caption = 'زبان/Lang'
