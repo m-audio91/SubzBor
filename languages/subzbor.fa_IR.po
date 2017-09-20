@@ -136,6 +136,11 @@ msgstr "فراخوانی"
 msgid "درباره"
 msgstr "درباره"
 
+#: tsbmain.menusbguide.caption
+#| msgid "راهنما"
+msgid "آموزش"
+msgstr "آموزش"
+
 #: tsbmain.menusblangdownloadmore.caption
 msgid "دانلود ترجمه های بیشتر"
 msgstr "دانلود ترجمه های بیشتر"
@@ -455,4 +460,3 @@ msgstr "ثانیه"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "شروع"
-
