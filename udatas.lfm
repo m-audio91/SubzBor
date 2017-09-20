@@ -8,8 +8,8 @@ object SBDatas: TSBDatas
   object GlyphImages192: TImageList
     Height = 32
     Width = 32
-    Left = 40
-    Top = 72
+    left = 40
+    top = 72
     Bitmap = {
       4C69080000002000000020000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1039,8 +1039,8 @@ object SBDatas: TSBDatas
     }
   end
   object GlyphImages: TImageList
-    Left = 40
-    Top = 8
+    left = 40
+    top = 8
     Bitmap = {
       4C69080000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1304,27 +1304,27 @@ object SBDatas: TSBDatas
   object SaveDlg: TSaveDialog
     DefaultExt = '.txt'
     Filter = 'فایل متنی|*.txt'
-    Left = 128
-    Top = 8
+    left = 128
+    top = 8
   end
   object OpenDlg: TOpenDialog
     DefaultExt = '.txt'
     Filter = 'فایل متنی|*.txt'
-    Left = 224
-    Top = 8
+    left = 224
+    top = 8
   end
   object TheTimer: TTimer
     Enabled = False
-    Left = 128
-    Top = 72
+    left = 128
+    top = 72
   end
   object TaskDlg: TTaskDialog
     Buttons = <>
     CommonButtons = []
-    Flags = [tfAllowDialogCancellation, tfPositionRelativeToWindow, tfRtlLayout]
-    MainIcon = tdiQuestion
+    Flags = [tfPositionRelativeToWindow, tfRtlLayout]
+    FooterIcon = tdiWarning
     RadioButtons = <>
-    Left = 224
-    Top = 72
+    left = 224
+    top = 72
   end
 end

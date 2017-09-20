@@ -23,7 +23,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Buttons, EditBtn,
-  Dialogs, ExtCtrls, uSBConst, CommonGUIUtils;
+  Dialogs, ExtCtrls, CommonGUIUtils;
 
 type
 
@@ -49,10 +49,9 @@ resourcestring
   rsSBDAllFiles = 'همه فایل ها';
   rsSBDOK = 'تایید';
   rsSBDCancel = 'صرف نظر';
-  rsTimingsFileFormat = 'ساختار فایل زمان بندی ها';
-  rsChooseCorrectTimingsFileFormatWarn = 'ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود.';
-  rsSBVersion13UpFormat = 'نسخه 1.0.3 و بالا تر';
-  rsSBVersion12LowerFormat = 'نسخه 1.0.2 و پایین تر';
+  rsInputTimingsFormat = 'ساختار کدزمان های ورودی';
+  rsChooseCorrectInputTimingsFormatWarn = 'ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید.';
+  rsThisSettingsWillRemainUntilProgramClose = 'این تنظیمات تا زمان بستن نرم افزار باقی می ماند';
 
 var
   SBDatas: TSBDatas;
@@ -66,11 +65,8 @@ implementation
 procedure TSBDatas.DataModuleCreate(Sender: TObject);
 begin
   PrepareGlyphs(Screen.PixelsPerInch);
-  TaskDlg.RadioButtons.Add;
-  TaskDlg.RadioButtons.Add;
-  TaskDlg.RadioButtons.Add;
-  TaskDlg.Buttons.Add;
-  TaskDlg.Buttons.Add;
+  with TaskDlg.Buttons.Add do
+    ModalResult := mrOK;
   HandleTranslation;
 end;
 
@@ -93,16 +89,10 @@ end;
 
 procedure TSBDatas.HandleTranslation;
 begin
-  TaskDlg.Title := rsTimingsFileFormat;
-  TaskDlg.Text := rsChooseCorrectTimingsFileFormatWarn;
-  TaskDlg.RadioButtons.Items[0].Caption := rsSBVersion13UpFormat+'\n'+SB13TimingsFormat;
-  TaskDlg.RadioButtons.Items[1].Caption := rsSBVersion12LowerFormat+'\n'+SB12TimingsFormat;
-  TaskDlg.RadioButtons.Items[2].Caption := 'SolveigMM Video Splitter\n'+SMMVideoSplitterTimingsFormat;
-  TaskDlg.RadioButtons.Items[0].Default := True;
+  TaskDlg.Title := rsInputTimingsFormat;
+  TaskDlg.Text := rsChooseCorrectInputTimingsFormatWarn;
+  TaskDlg.FooterText := rsThisSettingsWillRemainUntilProgramClose;
   TaskDlg.Buttons.Items[0].Caption := rsSBDOK;
-  TaskDlg.Buttons.Items[0].ModalResult := mrOk;
-  TaskDlg.Buttons.Items[1].Caption := rsSBDCancel;
-  TaskDlg.Buttons.Items[1].ModalResult := mrCancel;
   SaveDlg.Filter := rsTextFiles+'|*.txt';
   OpenDlg.Filter := rsTextFiles+'|*.txt|'+rsSBDAllFiles+'|*';
 end;
