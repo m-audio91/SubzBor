@@ -10,7 +10,7 @@ object SBAbout: TSBAbout
   AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'درباره SubzBor'
+  Caption = 'About SubzBor'
   ClientHeight = 404
   ClientWidth = 400
   Constraints.MinHeight = 350
@@ -243,7 +243,7 @@ object SBAbout: TSBAbout
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
     BorderSpacing.Right = 8
-    Caption = '1.0.3'
+    Caption = '1.1.0'
     ParentColor = False
   end
   object Logo1: TImage
