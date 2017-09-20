@@ -42,7 +42,7 @@ msgid ""
 "عبارات نامناسب دیدن نمایید:\n"
 msgstr ""
 "It is recommended for Persian users to have a look at FaSubrip.\n"
-"for auto detection of encoding plus ability to censorship of inappropriate phrases.\n"
+"for auto detection and conversion of encoding plus ability to censorship of inappropriate phrases.\n"
 
 #: tsbi18nguide.caption
 msgid "آموزش ترجمه به زبان محلی"
@@ -212,9 +212,13 @@ msgstr ""
 "In this case FFmpeg will decode then encode input text based subtitle to SRT.\n"
 "after that SubzBor opens it and splits it based on timings.\n"
 
-#: udatas.rschoosecorrecttimingsfileformatwarn
-msgid "ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود."
-msgstr "Please choose a correct format for imported timings file. otherwise it won't open."
+#: udatas.rschoosecorrectinputtimingsformatwarn
+msgid "ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید."
+msgstr "Please choose a correct format for any timecode input. these format then will be used when pasting a timecode from clipboard or reading a timings file. That is to say, if you want to copy-pase your timecodes from a specific software, set these format to match the format of that software."
+
+#: udatas.rsinputtimingsformat
+msgid "ساختار کدزمان های ورودی"
+msgstr "Input timecodes format"
 
 #: udatas.rssbdallfiles
 msgctxt "udatas.rssbdallfiles"
@@ -231,21 +235,13 @@ msgctxt "udatas.rssbdok"
 msgid "تایید"
 msgstr "OK"
 
-#: udatas.rssbversion12lowerformat
-msgid "نسخه 1.0.2 و پایین تر"
-msgstr "version 1.0.2 and lower"
-
-#: udatas.rssbversion13upformat
-msgid "نسخه 1.0.3 و بالا تر"
-msgstr "version 1.0.3 and upper"
-
 #: udatas.rstextfiles
 msgid "فایل متنی"
 msgstr "Text files"
 
-#: udatas.rstimingsfileformat
-msgid "ساختار فایل زمان بندی ها"
-msgstr "Timings File Structure"
+#: udatas.rsthissettingswillremainuntilprogramclose
+msgid "این تنظیمات تا زمان بستن نرم افزار باقی می ماند"
+msgstr "These settings will remain until program close"
 
 #: uresourcestrings.rsallfiles
 msgctxt "uresourcestrings.rsallfiles"
@@ -308,10 +304,6 @@ msgstr "Timing is not correct. Start time should be lesser than end time"
 #: uresourcestrings.rsinvalidtimeslices
 msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
 msgstr "Timings are invalid. either you didn't entered anything or they are not incremental in sequence"
-
-#: uresourcestrings.rsmakingreporstdirfiled
-msgid "موفق به ساختن پوشه گزارش ها نشد"
-msgstr "Failed to create reports folder"
 
 #: uresourcestrings.rsnoffmpeg
 msgid "اف اف ام پگ یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید"
@@ -381,7 +373,7 @@ msgstr "Validating tools, timings and the subtitle"
 
 #: uresourcestrings.rsready
 msgid "به سابزبُر خوشامدید!"
-msgstr "Wellcome to SubzBor!"
+msgstr "Welcome to SubzBor!"
 
 #: uresourcestrings.rsseemsnofilesaved
 msgid "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
@@ -399,14 +391,29 @@ msgstr "Timings file could not be saved"
 msgid "هشدار"
 msgstr "Warning"
 
+#: utimecodeformatdialog.rsmillisecprecision
+msgid "دقت هزارم ثانیه"
+msgstr "Millisecond precision"
+
+#: utimecodeformatdialog.rsmillisecsep
+msgid "جدا کننده ثانیه و هزارم ثانیه"
+msgstr "Millisecond separator"
+
+#: utimecodeformatdialog.rstimecodeformatdialog
+msgid "انتخابگر ساختار کدزمان ها"
+msgstr "Timecode format chooser"
+
+#: utimecodeformatdialog.rstimesep
+msgid "جدا کننده ساعت، دقیقه و ثانیه"
+msgstr "Time separator"
+
 #: utimesliceeditex.rstimesliceeditorex
 msgid "ویرایشگر زمانبندی"
 msgstr "Timings editor"
 
-#: utimesliceeditex.rstsexcancel
-msgctxt "utimesliceeditex.rstsexcancel"
-msgid "صرف نظر"
-msgstr "Cancel"
+#: utimesliceeditex.rstsepaste
+msgid "چسباندن"
+msgstr "Paste"
 
 #: utimesliceeditex.rstsexdelay
 msgid "+تاخیر -تعجیل"
@@ -428,11 +435,6 @@ msgstr "Millisecond"
 msgid "دقیقه"
 msgstr "Minute"
 
-#: utimesliceeditex.rstsexok
-msgctxt "utimesliceeditex.rstsexok"
-msgid "تایید"
-msgstr "OK"
-
 #: utimesliceeditex.rstsexsecond
 msgid "ثانیه"
 msgstr "Second"
@@ -440,3 +442,4 @@ msgstr "Second"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "Start"
+

@@ -223,9 +223,15 @@ msgstr ""
 "و سپس به SRT تبدیل می گردد. بعد از آن\n"
 "بُرش توسط سابزبُر انجام می گیرد.\n"
 
-#: udatas.rschoosecorrecttimingsfileformatwarn
-msgid "ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود."
-msgstr "ساختار فایل زمان بندی وارد شده را به درستی مشخص نمایید. در غیر اینصورت خوانده نمی شود."
+#: udatas.rschoosecorrectinputtimingsformatwarn
+#| msgid "ساختار زمان بندی های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر زمان بندی های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید."
+msgid "ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید."
+msgstr "ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید."
+
+#: udatas.rsinputtimingsformat
+#| msgid "ساختار زمان بندی های ورودی"
+msgid "ساختار کدزمان های ورودی"
+msgstr "ساختار کدزمان های ورودی"
 
 #: udatas.rssbdallfiles
 msgctxt "udatas.rssbdallfiles"
@@ -242,21 +248,13 @@ msgctxt "udatas.rssbdok"
 msgid "تایید"
 msgstr "تایید"
 
-#: udatas.rssbversion12lowerformat
-msgid "نسخه 1.0.2 و پایین تر"
-msgstr "نسخه 1.0.2 و پایین تر"
-
-#: udatas.rssbversion13upformat
-msgid "نسخه 1.0.3 و بالا تر"
-msgstr "نسخه 1.0.3 و بالا تر"
-
 #: udatas.rstextfiles
 msgid "فایل متنی"
 msgstr "فایل متنی"
 
-#: udatas.rstimingsfileformat
-msgid "ساختار فایل زمان بندی ها"
-msgstr "ساختار فایل زمان بندی ها"
+#: udatas.rsthissettingswillremainuntilprogramclose
+msgid "این تنظیمات تا زمان بستن نرم افزار باقی می ماند"
+msgstr "این تنظیمات تا زمان بستن نرم افزار باقی می ماند"
 
 #: uresourcestrings.rsallfiles
 msgctxt "uresourcestrings.rsallfiles"
@@ -319,10 +317,6 @@ msgstr "زمان بندی معتبر نیست. زمان شروع بیشتر یا
 #: uresourcestrings.rsinvalidtimeslices
 msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
 msgstr "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
-
-#: uresourcestrings.rsmakingreporstdirfiled
-msgid "موفق به ساختن پوشه گزارش ها نشد"
-msgstr "موفق به ساختن پوشه گزارش ها نشد"
 
 #: uresourcestrings.rsnoffmpeg
 msgid "اف اف ام پگ یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید"
@@ -409,14 +403,30 @@ msgstr "فایل زمان بندی ذخیره نشد"
 msgid "هشدار"
 msgstr "هشدار"
 
+#: utimecodeformatdialog.rsmillisecprecision
+msgid "دقت هزارم ثانیه"
+msgstr "دقت هزارم ثانیه"
+
+#: utimecodeformatdialog.rsmillisecsep
+msgid "جدا کننده ثانیه و هزارم ثانیه"
+msgstr "جدا کننده ثانیه و هزارم ثانیه"
+
+#: utimecodeformatdialog.rstimecodeformatdialog
+#| msgid "انتخابگر ساختار زمان بندی"
+msgid "انتخابگر ساختار کدزمان ها"
+msgstr "انتخابگر ساختار کدزمان ها"
+
+#: utimecodeformatdialog.rstimesep
+msgid "جدا کننده ساعت، دقیقه و ثانیه"
+msgstr "جدا کننده ساعت، دقیقه و ثانیه"
+
 #: utimesliceeditex.rstimesliceeditorex
 msgid "ویرایشگر زمانبندی"
 msgstr "ویرایشگر زمانبندی"
 
-#: utimesliceeditex.rstsexcancel
-msgctxt "utimesliceeditex.rstsexcancel"
-msgid "صرف نظر"
-msgstr "صرف نظر"
+#: utimesliceeditex.rstsepaste
+msgid "چسباندن"
+msgstr "چسباندن"
 
 #: utimesliceeditex.rstsexdelay
 msgid "+تاخیر -تعجیل"
@@ -438,11 +448,6 @@ msgstr "هزارم ثانیه"
 msgid "دقیقه"
 msgstr "دقیقه"
 
-#: utimesliceeditex.rstsexok
-msgctxt "utimesliceeditex.rstsexok"
-msgid "تایید"
-msgstr "تایید"
-
 #: utimesliceeditex.rstsexsecond
 msgid "ثانیه"
 msgstr "ثانیه"
@@ -450,3 +455,4 @@ msgstr "ثانیه"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "شروع"
+
