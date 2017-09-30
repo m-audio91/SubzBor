@@ -158,7 +158,7 @@ begin
   Subrip := TSubripFile.Create;
   try
     Subrip.LoadFromFile(FOutputFile);
-    Subrip.Value := Subrip.MakeNewFromRanges(FTimeSlices);
+    Subrip.Dialogs.Value := Subrip.MakeNewFromRanges(FTimeSlices);
     Subrip.SaveToFile(FOutputFile);
   finally
     Subrip.Free;
