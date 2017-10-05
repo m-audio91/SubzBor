@@ -314,6 +314,7 @@ end;
 procedure TSBMain.ClearTimeSlicesClick(Sender: TObject);
 begin
   TimeSlicesList.Items.Clear;
+  FormCreate(Self);
 end;
 
 procedure TSBMain.LoadTimeSlicesClick(Sender: TObject);
