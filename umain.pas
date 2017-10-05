@@ -26,8 +26,8 @@ uses
   LclIntf, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
-  uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialog,
-  LCLTranslator;
+  uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
+  CommonNumeralUtils, LCLTranslator;
 
 type
 
@@ -87,6 +87,8 @@ type
     FLangsDir: String;
     FFormatSettings: TTimeCodeFormatSettings;
     FInputsFormatDefined: Boolean;
+    FTimecodeHasFrameNo: Boolean;
+    FInputFramerate: Integer;
     FProbeInfo: TSubzBorProbeInfo;
     FProbeResult: TSubzBorProbeResult;
     FProbeThread: TSubzBorProbeThread;
@@ -98,6 +100,7 @@ type
       BarPos: Word = 0; HideBarAfter: Word = 0);
     procedure SetGlyphs;
     procedure DefineUserInputsFormat;
+    procedure ConvertFrameNoToMillisec(var TS: TTimeSlice);
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
     procedure StartProbe;
@@ -130,6 +133,7 @@ procedure TSBMain.FormCreate(Sender: TObject);
 begin
   FInputsFormatDefined := False;
   FFormatSettings := DefaultTimeCodeFormatSettings;
+  FTimecodeHasFrameNo := False;
 end;
 
 procedure TSBMain.SetGlyphs;
@@ -145,19 +149,43 @@ end;
 
 procedure TSBMain.DefineUserInputsFormat;
 var
-  fd: TTimeCodeFormatDialog;
+  fd: TTimeCodeFormatDialogEx;
 begin
   SBDatas.TaskDlg.Execute(Self.Handle);
-  fd := TTimeCodeFormatDialog.Create(Self);
+  fd := TTimeCodeFormatDialogEx.Create(Self);
   try
     fd.Value.TimeCodeFormat := FFormatSettings;
     fd.ShowModal;
     if fd.ModalResult = mrOK then
+    begin
       FFormatSettings := fd.Value.TimeCodeFormat;
+      FTimecodeHasFrameNo := fd.IsMillisecondAFrameNo;
+      FInputFramerate := fd.Framerate;
+    end;
   finally
     fd.Free;
   end;
   FInputsFormatDefined := True;
+end;
+
+procedure TSBMain.ConvertFrameNoToMillisec(var TS: TTimeSlice);
+  function ApplyConversion(const fps,val: Integer): Integer;
+  begin
+    Result := val;
+    ForceInRange(Result,0,fps);
+    Result := Round(1000/fps)*Result;
+    ForceInRange(Result,0,999);
+  end;
+
+var
+  a: TBasicTimeCodeArray;
+begin
+  a := TS.Value.StartPos.ValueAsArray;
+  a[3] := ApplyConversion(FInputFramerate,a[3]);
+  TS.Value.StartPos.ValueAsArray := a;
+  a := TS.Value.EndPos.ValueAsArray;
+  a[3] := ApplyConversion(FInputFramerate,a[3]);
+  TS.Value.EndPos.ValueAsArray := a;
 end;
 
 procedure TSBMain.SaveDummyVidResToFile(const Dir: String);
@@ -240,6 +268,7 @@ end;
 procedure TSBMain.AddTimeSliceClick(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
+  ts: TTimeSlice;
 begin
   if not FInputsFormatDefined then
     DefineUserInputsFormat;
@@ -248,7 +277,12 @@ begin
     tse.PasteFormat := FFormatSettings;
     tse.ShowModal;
     if tse.ModalResult = mrOk then
-      TimeSlicesList.Items.Add(tse.Value);
+    begin
+      ts.ValueAsStringEx := tse.Value;
+      if FTimecodeHasFrameNo then
+        ConvertFrameNoToMillisec(ts);
+      TimeSlicesList.Items.Add(ts.ValueAsStringEx);
+    end;
   finally
     tse.Free;
   end;
@@ -314,6 +348,8 @@ begin
           FFormatSettings.MinorSep, DefaultTimeSliceSep);
         ts.ValueAsString := sl[i];
         ts.Initialize;
+        if FTimecodeHasFrameNo then
+          ConvertFrameNoToMillisec(ts);
         sl[i] := ts.ValueAsStringEx;
       end;
       tsl.ExtendedValue := sl.Text;
