@@ -8,7 +8,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, SysUtils, uMain, uDatas, uPrefs, ucharenc, uResourcestrings, uAbout,
-  uTimeSliceEditEx, ui18nGuide;
+  ui18nGuide;
 
 {$R *.res}
 
