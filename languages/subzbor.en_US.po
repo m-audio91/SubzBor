@@ -28,13 +28,17 @@ msgstr "Choose character encoding"
 msgid ""
 "کدبندی حروف فایل زیرنویس خود را انتخاب کنید.\n"
 "در صورت انتخاب اشتباه یا هیچ خروجی تحویل نمی گیرید یا حروف پرت خواهد بود.\n"
+"راهنمایی: برای زیرنویس های فارسی خود تنها یکی از سه گزینه CP1256 که با\n"
+"WINDOWS-1256 یکی هست، UTF-8 و UTF-16 را امتحان کنید.\n"
 "\n"
-"راهنمایی: در اینجا تبدیل توسط FFmpeg انجام می گیرد. برای زیرنویس های\n"
-"فارسی خود تنها یکی از دو گزینه CP1256 که با WINDOWS-1256 یکی هست\n"
-"و UTF-8 را امتحان کنید.\n"
+"توجه: تعداد گزینه ها بستگی به وضعیت گزینه \"استفاده از کدک های داخلی سابزبُر\"\n"
+"که از تنظیمات قابل دسترسی است دارد.\n"
 msgstr ""
 "Please choose a correct character encoding for your file.\n"
 "In case of wrong selection, you may get an empty or incorrect output file.\n"
+"\n"
+"note: the amount of items here depends on whether you activated\n"
+"\"Use SubzBor's internal codecs for supported formats\" in preferences.\n"
 
 #: tsbcharenc.fasubripadl.caption
 msgid ""
@@ -200,21 +204,24 @@ msgstr "Tools addresses"
 msgid "پوشه Tools"
 msgstr "Tools folder"
 
+#: tsbprefs.useinternalcodecs.caption
+msgid "استفاده از کدک های داخلی سابزبُر برای برش مستقیم"
+msgstr "Use SubzBor's internal codecs for direct cut"
+
 #: tsbprefs.useinternalsplitter.caption
 msgid "استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی"
 msgstr "Use SubzBor's internal splitter for text based subtitles"
 
 #: tsbprefs.useinternalsplitter.hint
 msgid ""
-"در نسخه 1.0.3 سیستم بُرنده داخلی برای زیرنویس های متنی در\n"
-"سابزبُر پیاده سازی شد.\n"
 "در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده\n"
 "و سپس به SRT تبدیل می گردد. بعد از آن\n"
-"بُرش توسط سابزبُر انجام می گیرد.\n"
+"بُرش توسط سابزبُر با دقت بیشتر انجام می گیرد.\n"
 msgstr ""
-"As of version 1.0.3 an internal splitter implemented in SubzBor.\n"
 "In this case FFmpeg will decode then encode input text based subtitle to SRT.\n"
 "after that SubzBor opens it and splits it based on timings.\n"
+"SubzBor's internal splitter does not miss dialogs at cut points.\n"
+"\n"
 
 #: udatas.rschoosecorrectinputtimingsformatwarn
 msgid "ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید."
@@ -244,8 +251,8 @@ msgid "فایل متنی"
 msgstr "Text files"
 
 #: udatas.rsthissettingswillremainuntilprogramclose
-msgid "این تنظیمات تا زمان بستن نرم افزار باقی می ماند"
-msgstr "These settings will remain until program close"
+msgid "این تنظیمات تا زمان بستن نرم افزار یا کلیک روی دکمه \"از نو (ریست)\" باقی می ماند"
+msgstr "These settings will remain until program close or clicking the Reset button"
 
 #: uresourcestrings.rsallfiles
 msgctxt "uresourcestrings.rsallfiles"
@@ -297,6 +304,10 @@ msgstr "Exporting subtitle, please be cool. It takes more time for PGS and VobSu
 msgid "خطا"
 msgstr "Error"
 
+#: uresourcestrings.rsframerate
+msgid "نرخ تصویر"
+msgstr "Framerate"
+
 #: uresourcestrings.rshint
 msgid "اشاره"
 msgstr "Hint"
@@ -308,6 +319,31 @@ msgstr "Timing is not correct. Start time should be lesser than end time"
 #: uresourcestrings.rsinvalidtimeslices
 msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
 msgstr "Timings are invalid. either you didn't entered anything or they are not incremental in sequence"
+
+#: uresourcestrings.rsismillisecondaframeno
+msgid "آیا هزارم ثانیه، شماره فریم است؟"
+msgstr "Is Millisecond actually a Frame Number?"
+
+#: uresourcestrings.rsismillisecondaframenodesc
+msgid ""
+"برخی نرم افزارهای ویرایش خطی ویدئو، عدد دقیق هزارم ثانیه را\n"
+"نشان نمی دهند و بجای آن شماره تصویر (شماره فریم) را نشان می دهند مانند:\n"
+"hh:mm:ss:ff\n"
+"که در اینصورت برای گرفتن برش های دقیق باید به سابزبُر اعلام کنید\n"
+"قسمت :ff را به :ms (هزارم ثانیه) تبدیل کند و نرخ تصویر دقیق پروژه\n"
+"خود را که ویرایشگر ویدئوتان نشان می دهد در پایین وارد نمایید.\n"
+"توجه: تبدیل در زمان وارد شدن زمان بندی به لیست بازه های زمانی\n"
+"انجام می شود نه در زمان تایپ کردن یا چسباندن.\n"
+msgstr ""
+"some non linear video editors do not show the millisecond part of their\n"
+"timecodes. instead they show the frame number within a second. like:\n"
+"hh:mm:ss:ff\n"
+"to have accurate and in sync subtitle cuts you need to tell SubzBor to\n"
+"convert the :ff part to :ms by activating this option and\n"
+"changing the below field to match the framerate (fps) of your\n"
+"project inside your video editor.\n"
+"note: conversion occurs when the timing is being added to the\n"
+"main Timings List. not when pasting nor when typing.\n"
 
 #: uresourcestrings.rsnoffmpeg
 msgid "اف اف ام پگ یافت نشد. لطفا آدرس آنرا از تنظیمات سابزبُر اصلاح نمایید"
@@ -390,6 +426,28 @@ msgstr "No valid timings file detected"
 #: uresourcestrings.rstimeslicefilenotsaved
 msgid "فایل زمان بندی ذخیره نشد"
 msgstr "Timings file could not be saved"
+
+#: uresourcestrings.rsuseinternalcodecshint
+msgctxt "uresourcestrings.rsuseinternalcodecshint"
+msgid ""
+"با فعال کردن این گزینه سابزبُر می تواند مستقیما زیرنویس ها را از فرمت هایی\n"
+"که برای آنها کدک داخلی دارد برش بزند. یعنی بدون استفاده از FFmpeg.\n"
+"که در نتیجه آن، فرمت زیرنویس ورودی تغییر نمی کند و به همان فرمتی\n"
+"که بوده خروجی گرفته می شود.\n"
+"\n"
+"اگر با این فرمت ها مشکلی داشتید این گزینه را غیرفعال کنید تا به روند\n"
+"گذشته سابزبُر برگردید. اگرچه بهتر است که مشکلتان را گزارش بدهید.\n"
+"در حال حاضر فرمت های زیر دارای کدک داخلی می باشند:\n"
+msgstr ""
+"by activating this option SubzBor can directly read and split\n"
+"subtitle formats which it has internal codec implemented for. without\n"
+"using FFmpeg inbetween. so the output format will be equal to\n"
+"the input format.\n"
+"\n"
+"if you have issue with these formats you can disable this option and\n"
+"SubzBor will use it's old approach to do the job. though it is\n"
+"recommended to report your issue.\n"
+"currently, these formats have internal codec:\n"
 
 #: uresourcestrings.rswarn
 msgid "هشدار"
