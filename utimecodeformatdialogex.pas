@@ -33,13 +33,13 @@ type
   private
     FIsMillisecondAFrameNo: TCheckBox;
     FFrameNoToMillisecFormula: TLabel;
-    FFramerate: TSpinEdit;
+    FFramerate: TFloatSpinEdit;
     procedure LoadExControls(Sender: TObject);
     function GetFrameNoToMillisecState: Boolean;
-    function GetFramerate: Integer;
+    function GetFramerate: Double;
   public
     property IsMillisecondAFrameNo: Boolean read GetFrameNoToMillisecState;
-    property Framerate: Integer read GetFramerate;
+    property Framerate: Double read GetFramerate;
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
   end;
 
@@ -64,12 +64,13 @@ begin
   end;
 
   //FFramerate
-  FFramerate := TSpinEdit.Create(Self);
+  FFramerate := TFloatSpinEdit.Create(Self);
   with FFramerate do
   begin
     Parent := Self;
     MinValue := 1;
     MaxValue := 1000;
+    DecimalPlaces := 3;
     Alignment := taCenter;
     Increment := 1;
     Hint := rsFramerate;
@@ -94,7 +95,7 @@ begin
   Result := FIsMillisecondAFrameNo.State = cbChecked;
 end;
 
-function TTimeCodeFormatDialogEx.GetFramerate: Integer;
+function TTimeCodeFormatDialogEx.GetFramerate: Double;
 begin
   Result := FFramerate.Value;
 end;
