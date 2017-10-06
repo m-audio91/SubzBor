@@ -1,10 +1,10 @@
 object SBMain: TSBMain
-  Left = 620
+  Left = 542
   Height = 350
-  Top = 216
+  Top = 198
   Width = 500
   AllowDropFiles = True
-  Caption = 'SubzBor v1.1.0'
+  Caption = 'SubzBor v1.4.5'
   ClientHeight = 330
   ClientWidth = 500
   Constraints.MinHeight = 350
@@ -629,14 +629,14 @@ object SBMain: TSBMain
     StoredValues = <>
     OnRestoringProperties = IniPropsRestoringProperties
     OnRestoreProperties = IniPropsRestoreProperties
-    left = 88
-    top = 160
+    Left = 88
+    Top = 160
   end
   object TopMenu: TMainMenu
     BidiMode = bdRightToLeft
     ParentBidiMode = False
-    left = 144
-    top = 160
+    Left = 144
+    Top = 160
     object MenuSBPrefs: TMenuItem
       Caption = 'تنظیمات'
       OnClick = MenuSBPrefsClick

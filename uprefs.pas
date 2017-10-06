@@ -43,6 +43,7 @@ type
     MkvMergeAddressL: TLabel;
     MkvExtractAddressL: TLabel;
     UseInternalSplitter: TCheckBox;
+    UseInternalCodecs: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
   end;

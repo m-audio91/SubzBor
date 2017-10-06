@@ -30,11 +30,17 @@ const
   wCuts = '_Cuts';
   extText = '.txt';
   extAss = '.ass';
+  extSsa = '.ssa';
   extSrt = '.srt';
   extMkv = '.mkv';
   extLog = '.log';
   extSub = '.sub';
   extIdx = '.idx';
+  encUTF8 = 'UTF-8';
+  encUTF16 = 'UTF-16';
+  CommonFilesMask = '|*.srt;*.ass;*.ssa;*.stl;*.vtt;*.smi;*.sami;*.idx;*.sup|';
+  AllFilesMask = '|*';
+  FormatsWithInternalCodecs = extSrt+extAss+extSsa;
   urlFasubRip = 'http://mohammadrezab.blogsky.com/1395/09/27/post-21';
   urlHome = 'http://mohammadrezab.blogsky.com';
   urlFFmpeg = 'https://www.ffmpeg.org';

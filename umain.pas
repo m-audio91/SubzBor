@@ -88,7 +88,7 @@ type
     FFormatSettings: TTimeCodeFormatSettings;
     FInputsFormatDefined: Boolean;
     FTimecodeHasFrameNo: Boolean;
-    FInputFramerate: Integer;
+    FInputFramerate: Double;
     FProbeInfo: TSubzBorProbeInfo;
     FProbeResult: TSubzBorProbeResult;
     FProbeThread: TSubzBorProbeThread;
@@ -101,6 +101,7 @@ type
     procedure SetGlyphs;
     procedure DefineUserInputsFormat;
     procedure ConvertFrameNoToMillisec(var TS: TTimeSlice);
+    function HasInternalCodec(const F: String): Boolean;
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
     procedure StartProbe;
@@ -169,7 +170,7 @@ begin
 end;
 
 procedure TSBMain.ConvertFrameNoToMillisec(var TS: TTimeSlice);
-  function ApplyConversion(const fps,val: Integer): Integer;
+  function ApplyConversion(const fps,val: Double): Double;
   begin
     Result := val;
     ForceInRange(Result,0,fps);
@@ -181,11 +182,22 @@ var
   a: TBasicTimeCodeArray;
 begin
   a := TS.Value.StartPos.ValueAsArray;
-  a[3] := ApplyConversion(FInputFramerate,a[3]);
+  a[3] := Trunc(ApplyConversion(FInputFramerate,a[3]));
   TS.Value.StartPos.ValueAsArray := a;
   a := TS.Value.EndPos.ValueAsArray;
-  a[3] := ApplyConversion(FInputFramerate,a[3]);
+  a[3] := Trunc(ApplyConversion(FInputFramerate,a[3]));
   TS.Value.EndPos.ValueAsArray := a;
+end;
+
+function TSBMain.HasInternalCodec(const F: String): Boolean;
+var
+  inext: String;
+begin
+  Result := False;
+  inext := F.Substring(F.LastIndexOf('.')).ToLower;
+  if inext = EmptyStr then Exit;
+  if FormatsWithInternalCodecs.Contains(inext) then
+      Exit(True);
 end;
 
 procedure TSBMain.SaveDummyVidResToFile(const Dir: String);
@@ -444,12 +456,17 @@ procedure TSBMain.StartProcess;
 begin
   with FProcInfo do
   begin
+    InputFile := FProbeInfo.InputFile;
+    UseInternalCodecs := SBPrefs.UseInternalCodecs.State = cbChecked;
+    if UseInternalCodecs and not HasInternalCodec(InputFile) then
+      UseInternalCodecs := False;
     InputFileIsText := FProbeResult.InputFileIsText;
     if not InputFileIsText then
       Status(rsHint, rsExportingImgBased, True, 40)
     else
     begin
       Status(rsHint, rsChoosingCharacterEncoding, True, 60);
+      SBCharEnc.ShowInternalEncodings := UseInternalCodecs;
       SBCharEnc.ShowModal;
       TextEncoding := SBCharEnc.EncodingName.Text;
       Status(rsHint, rsExporting, True, 70);
@@ -460,7 +477,6 @@ begin
     FFmpeg := FProbeInfo.FFmpeg;
     MkvMerge := FProbeInfo.MkvMerge;
     MkvExtract := FProbeInfo.MkvExtract;
-    InputFile := FProbeInfo.InputFile;
     TimeSlices := FProbeInfo.TimeSlices;
     SaveTimeSlices := SBPrefs.AutoSaveTSList.State = cbChecked;
     NeedReport := SBPrefs.SaveToolsLogs.State = cbChecked;
@@ -560,8 +576,10 @@ begin
   SetDefaultLang(LID, FLangsDir);
   SBDatas.HandleTranslation;
 
-  SubtitleFile.Filter := rsCommonFormats+'|*.srt;*.ass;*.ssa;*.idx;*.sup|'
-    +rsAllFiles+'|*';
+  SubtitleFile.Filter :=
+    rsCommonFormats+CommonFilesMask+rsAllFiles+AllFilesMask;
+  SBPrefs.UseInternalCodecs.Hint :=
+    rsUseInternalCodecsHint+LineEnding+FormatsWithInternalCodecs;
 
   bd := Application.Direction(GetDefaultLang);
   TimeSlicesListL.BiDiMode := bd;
@@ -570,6 +588,7 @@ begin
   SBPrefs.SaveToolsLogs.BiDiMode := bd;
   SBPrefs.AutoSaveTSList.BiDiMode := bd;
   SBPrefs.UseInternalSplitter.BiDiMode := bd;
+  SBPrefs.UseInternalCodecs.BiDiMode := bd;
   if bd = bdRightToLeft then
     SBDatas.TaskDlg.Flags := SBDatas.TaskDlg.Flags+[tfRtlLayout]
   else

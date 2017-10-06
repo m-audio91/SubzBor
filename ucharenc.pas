@@ -22,8 +22,8 @@ unit uCharEnc;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  IniPropStorage, uUrlLabel, uSBConst;
+  Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, uUrlLabel, uSBConst;
 
 type
 
@@ -32,9 +32,13 @@ type
   TSBCharEnc = class(TForm)
     EncodingName: TComboBox;
     FaSubripAdL: TLabel;
-    IniProps: TIniPropStorage;
     EncodingNameL: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    FShowInternalEncodings: Boolean;
+  public
+    property ShowInternalEncodings: Boolean read FShowInternalEncodings write FShowInternalEncodings;
   end;
 
 var
@@ -43,6 +47,12 @@ var
 implementation
 
 {$R *.lfm}
+{$R charencsiconv.rc}
+{$R charencslaz.rc}
+
+const
+  IconvEncsResName = 'charencsiconv';
+  LazEncsResName = 'charencslaz';
 
 { TSBCharEnc }
 
@@ -50,6 +60,8 @@ procedure TSBCharEnc.FormCreate(Sender: TObject);
 var
   AUrl: TUrlLabel;
 begin
+  FShowInternalEncodings := False;
+
   AUrl := TUrlLabel.Create(Self);
   with AUrl do
   begin
@@ -62,6 +74,24 @@ begin
     BorderSpacing.Right := 8;
     Caption := urlFasubRip;
     Top := MaxInt;
+  end;
+end;
+
+procedure TSBCharEnc.FormShow(Sender: TObject);
+var
+  rs: TResourceStream;
+  rname: String;
+begin
+  if FShowInternalEncodings then
+    rname := LazEncsResName
+  else
+    rname := IconvEncsResName;
+  rs := TResourceStream.Create(HInstance, rname, RT_RCDATA);
+  try
+    EncodingName.Items.LoadFromStream(rs);
+    EncodingName.ItemIndex := EncodingName.Items.IndexOf(encUTF8);
+  finally
+    rs.Free;
   end;
 end;
 

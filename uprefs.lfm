@@ -1,7 +1,7 @@
 object SBPrefs: TSBPrefs
-  Left = 490
+  Left = 552
   Height = 240
-  Top = 211
+  Top = 308
   Width = 394
   AutoSize = True
   BorderIcons = [biSystemMenu]
@@ -12,7 +12,7 @@ object SBPrefs: TSBPrefs
   DefaultMonitor = dmMainForm
   OnCreate = FormCreate
   Position = poMainFormCenter
-  SessionProperties = 'AutoSaveTSList.State;FFmpegAddress.Text;MkvExtractAddress.Text;MkvMergeAddress.Text;SaveToolsLogs.State;ToolsFolderAddress.Text;UseInternalSplitter.State'
+  SessionProperties = 'AutoSaveTSList.State;FFmpegAddress.Text;MkvExtractAddress.Text;MkvMergeAddress.Text;SaveToolsLogs.State;ToolsFolderAddress.Text;UseInternalCodecs.State;UseInternalSplitter.State'
   LCLVersion = '1.9.0.0'
   object ToolAddresses: TGroupBox
     Left = 8
@@ -157,7 +157,7 @@ object SBPrefs: TSBPrefs
   object UseInternalSplitter: TCheckBox
     Left = 8
     Height = 19
-    Hint = 'در نسخه 1.0.3 سیستم بُرنده داخلی برای زیرنویس های متنی در'#13#10'سابزبُر پیاده سازی شد.'#13#10'در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده'#13#10'و سپس به SRT تبدیل می گردد. بعد از آن'#13#10'بُرش توسط سابزبُر انجام می گیرد.'
+    Hint = 'در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده'#13#10'و سپس به SRT تبدیل می گردد. بعد از آن'#13#10'بُرش توسط سابزبُر با دقت بیشتر انجام می گیرد.'
     Top = 175
     Width = 378
     Align = alTop
@@ -165,7 +165,6 @@ object SBPrefs: TSBPrefs
     BorderSpacing.Left = 8
     BorderSpacing.Top = 2
     BorderSpacing.Right = 8
-    BorderSpacing.Bottom = 8
     Caption = 'استفاده از بُرنده داخلی برای بُرش دقیق زیرنویس های متنی'
     Checked = True
     ParentShowHint = False
@@ -173,6 +172,26 @@ object SBPrefs: TSBPrefs
     ShowHint = True
     State = cbChecked
     TabOrder = 3
+  end
+  object UseInternalCodecs: TCheckBox
+    Left = 8
+    Height = 19
+    Top = 196
+    Width = 378
+    Align = alTop
+    BidiMode = bdRightToLeft
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Caption = 'استفاده از کدک های داخلی سابزبُر برای برش مستقیم'
+    Checked = True
+    ParentFont = False
+    ParentShowHint = False
+    ParentBidiMode = False
+    ShowHint = True
+    State = cbChecked
+    TabOrder = 4
   end
   object IniProps: TIniPropStorage
     StoredValues = <>

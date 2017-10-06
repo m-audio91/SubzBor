@@ -22,9 +22,9 @@ unit uProc;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Process, UTF8Process, CommonStrUtils,
-  CommonFileUtils, {$IFDEF WINDOWS}windirs,{$ENDIF} uTimeSlice,
-  uResourcestrings, uSBConst, uSubripFile;
+  Classes, SysUtils, FileUtil, Process, UTF8Process, LazUTF8, LConvEncoding,
+  CommonStrUtils, CommonFileUtils, {$IFDEF WINDOWS}windirs,{$ENDIF} uTimeSlice,
+  uResourcestrings, uSBConst, uSubripFile, uSubStationAlphaFile;
 
 type
 
@@ -44,6 +44,7 @@ type
     DummyVidExists: Boolean;
     NeedReport: Boolean;
     UseInternalSplitter: Boolean;
+    UseInternalCodecs: Boolean;
   end;
 
   { TSubzBorProcResult }
@@ -68,6 +69,8 @@ type
     FOnProgress: TThreadMethod;
     procedure StepProgress(Perc: Word);
     procedure RunCmd(const Exec, Cmd: String);
+    procedure SubzBorDirectProcessSub;
+    procedure SubzBorDirectSplitSub(const Sub, Ext: String);
     procedure SubzBorSplitSub;
     procedure FFmpegSplitSub;
     procedure FFmpegExportSub(const Sub: String);
@@ -137,6 +140,72 @@ begin
   finally
     if Assigned(Proc) then
       Proc.Free;
+  end;
+end;
+
+procedure TSubzBorProcThread.SubzBorDirectProcessSub;
+const
+  UTFBOMs: array[0..4] of String = (UTF8BOM,UTF16BEBOM,UTF16LEBOM,UTF32BEBOM,
+    UTF32LEBOM);
+var
+  bs: TBytesStream;
+  sl: TStringList;
+  Enc: TEncoding;
+  inext,s,bom: String;
+begin
+  inext :=
+    FProcInfo.InputFile.Substring(FProcInfo.InputFile.LastIndexOf('.')).ToLower;
+  Enc := Default(TEncoding);
+  bs := TBytesStream.Create;
+  sl := TStringList.Create;
+  try
+    bs.LoadFromFile(FProcInfo.InputFile);
+    bs.Position := 0;
+    case FProcInfo.TextEncoding of
+    encUTF16:
+      s := UTF16ToUTF8(PWideChar(bs.Bytes), bs.Size div SizeOf(WideChar));
+    encUTF8: begin
+      sl.LoadFromStream(bs, Enc.UTF8);
+      s := sl.Text;
+      end;
+    else
+      s := ConvertEncoding(PChar(bs.Bytes), FProcInfo.TextEncoding, EncodingUTF8);
+    end;
+    for bom in UTFBOMs do
+      DeleteAllOccurrences(bom, s);
+  finally
+    bs.Free;
+    sl.Free;
+  end;
+  SubzBorDirectSplitSub(s, inext);
+end;
+
+procedure TSubzBorProcThread.SubzBorDirectSplitSub(const Sub, Ext: String);
+var
+  ssa: TSubStationAlphaFile;
+  Subrip: TSubripFile;
+  Enc: TEncoding;
+begin
+  FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor, Ext, True, FOutputDir);
+  ssa := TSubStationAlphaFile.Create;
+  Subrip := TSubripFile.Create;
+  Enc := Default(TEncoding);
+  try
+    if Ext.Equals(extAss) or Ext.Equals(extSsa) then
+    begin
+      ssa.LoadFromString(Sub);
+      ssa.Events.Value := ssa.MakeNewFromRanges(FTimeSlices);
+      ssa.SaveToFile(FOutputFile, Enc.UTF8);
+    end
+    else if Ext.Equals(extSrt) then
+    begin
+      Subrip.LoadFromString(Sub);
+      Subrip.Events.Value := Subrip.MakeNewFromRanges(FTimeSlices);
+      Subrip.SaveToFile(FOutputFile, Enc.UTF8);
+    end;
+  finally
+    ssa.Free;
+    Subrip.Free;
   end;
 end;
 
@@ -369,10 +438,15 @@ begin
       raise Exception.Create(rsNoReportsDir);
     if FProcInfo.InputFileIsText then
     begin
-      if FProcInfo.UseInternalSplitter then
-        SubzBorSplitSub
+      if FProcInfo.UseInternalCodecs then
+        SubzBorDirectProcessSub
       else
-        FFmpegSplitSub;
+        begin
+          if FProcInfo.UseInternalSplitter then
+            SubzBorSplitSub
+          else
+            FFmpegSplitSub;
+        end;
       StepProgress(90);
     end
     else

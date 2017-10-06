@@ -1,7 +1,7 @@
 object SBAbout: TSBAbout
-  Left = 596
+  Left = 607
   Height = 404
-  Top = 220
+  Top = 219
   Width = 400
   HorzScrollBar.Page = 400
   HorzScrollBar.Range = 400
@@ -243,7 +243,7 @@ object SBAbout: TSBAbout
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
     BorderSpacing.Right = 8
-    Caption = '1.1.0'
+    Caption = '1.4.5'
     ParentColor = False
   end
   object Logo1: TImage
