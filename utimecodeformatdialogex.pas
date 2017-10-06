@@ -32,7 +32,6 @@ type
   TTimeCodeFormatDialogEx = class(TTimeCodeFormatDialog)
   private
     FIsMillisecondAFrameNo: TCheckBox;
-    FIsMillisecondAFrameNoL: TLabel;
     FFrameNoToMillisecFormula: TLabel;
     FFramerate: TSpinEdit;
     procedure LoadExControls(Sender: TObject);
@@ -60,17 +59,8 @@ begin
     Parent := Self;
     BiDiMode := bdRightToLeft;
     Caption := rsIsMillisecondAFrameNo;
-  end;
-
-  //FIsMillisecondAFrameNoL
-  FIsMillisecondAFrameNoL := TLabel.Create(Self);
-  with FIsMillisecondAFrameNoL do
-  begin
-    Parent := Self;
-    Alignment := taRightJustify;
-    Caption := rsIsMillisecondAFrameNoDesc;
-    ParentFont := False;
-    Font.Color := clGrayText;
+    ShowHint := True;
+    Hint := rsIsMillisecondAFrameNoDesc;
   end;
 
   //FFramerate
