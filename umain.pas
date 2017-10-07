@@ -473,6 +473,10 @@ begin
       TextEncoding := SBCharEnc.EncodingName.Text;
       Status(rsHint, rsExporting, True, 70);
     end;
+    if FProcInfo.TextEncoding.Contains(encUTF16)
+    and FProcInfo.InputFileExtension.Equals(extSrt)
+    and not UseInternalCodecs then
+      TextEncoding := encUTF8;
     SubzBorPath := FProbeResult.SubzBorPath;
     DummyVidExists := FProbeResult.DummyVidExists;
     ToolsFolder := FProbeInfo.ToolsFolder;
