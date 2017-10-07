@@ -51,6 +51,7 @@ type
     TimeSlicesValid: Boolean;
     DummyVidExists: Boolean;
     SubzBorPath: String;
+    InputFileFormat: String;
     LastError: String;
   end;
 
@@ -85,7 +86,10 @@ const
   MkvMergeValidationCmd = '-h';
   MkvExtractValidationCmd = '-h';
   FileValidationCmd = '-hide_banner -i %i%';
-  ValidTxtSubs: array[0..6] of String = ('ass', 'srt', 'ssa', 'subrip', 'webvtt', 'sami', 'stl');
+  ValidTxtSubs: array[0..15] of String = ('ass'{.ass}, 'srt'{.srt}, 'ssa'{.ssa},
+    'subrip'{.srt}, 'webvtt'{.vtt}, 'sami'{.sami.smi}, 'stl'{.stl}, 'mov_text'{.ttxt},
+    'mpl2'{.mpl},'pjs'{.pjs},'subviewer'{.sub},'subviewer1'{.sub},'vplayer'{.txt},
+    'realtext'{.rt},'microdvd'{.sub},'jacosub'{.jss});
   ValidImgSubs: array[0..1] of String = ('dvd_subtitle', 'hdmv_pgs_subtitle');
   ValidFFmpegHas: array[0..1] of String = ('ffmpeg version', '--enable-iconv');
   ValidFFmpegHasNot: array[0..3] of String = ('--disable-muxers', '--disable-demuxers', '--disable-encoders', '--disable-decoders');
@@ -192,6 +196,7 @@ begin
       begin
         FProbeResult.InputFileValid := True;
         FProbeResult.InputFileIsText := True;
+        FProbeResult.InputFileFormat := t;
         Break;
       end;
     for t in ValidImgSubs do
@@ -199,6 +204,7 @@ begin
       begin
         FProbeResult.InputFileValid := True;
         FProbeResult.InputFileIsText := False;
+        FProbeResult.InputFileFormat := t;
         Break;
       end;
   end;

@@ -412,8 +412,6 @@ begin
     MkvMerge := SBPrefs.MkvMergeAddress.Text;
     MkvExtract := SBPrefs.MkvExtractAddress.Text;
     InputFile := SubtitleFile.Text;
-    if LowerCase(ExtractFileExt(InputFile)).Equals(extSub) then
-      InputFile := GenFileName(InputFile, EmptyStr, extIdx);
     TimeSlices := TimeSlicesList.Items.Text;
   end;
   FProbeThread := TSubzBorProbeThread.Create(FProbeInfo);
@@ -458,6 +456,8 @@ begin
   with FProcInfo do
   begin
     InputFile := FProbeInfo.InputFile;
+    if FProbeResult.InputFileFormat.Equals(DVDSubtitleFormat) then
+      InputFile := GenFileName(InputFile, EmptyStr, extIdx);
     UseInternalCodecs := SBPrefs.UseInternalCodecs.State = cbChecked;
     if UseInternalCodecs and not HasInternalCodec(InputFile) then
       UseInternalCodecs := False;
@@ -578,7 +578,7 @@ begin
   SBDatas.HandleTranslation;
 
   SubtitleFile.Filter :=
-    rsCommonFormats +CommonFilesMask +rsAllFiles +AllFilesMask;
+    rsCommonFormats +CommonFilesMask +'|' +rsAllFiles +AllFilesMask;
   SBPrefs.UseInternalCodecs.Hint :=
     rsUseInternalCodecsHint +LineEnding +FormatsWithInternalCodecs;
 

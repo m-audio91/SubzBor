@@ -42,9 +42,11 @@ const
   extIdx = '.idx';
   encUTF8 = 'UTF-8';
   encUTF16 = 'UTF-16';
-  CommonFilesMask = '|*.srt;*.ass;*.ssa;*.stl;*.vtt;*.smi;*.sami;*.idx;*.sup|';
+  CommonFilesMask = '|*.srt;*.ass;*.ssa;*.stl;*.vtt;*.smi;*.sami;*.sub;*.sup;*.ttxt'
+    +';*.mpl;*.pjs;*.rt;*.jss;*txt';
   AllFilesMask = '|*';
   FormatsWithInternalCodecs = extSrt+extAss+extSsa;
+  DVDSubtitleFormat = 'dvd_subtitle';
   urlFasubRip = 'http://mohammadrezab.blogsky.com/1395/09/27/post-21';
   urlHome = 'http://mohammadrezab.blogsky.com';
   urlFFmpeg = 'https://www.ffmpeg.org';
