@@ -102,7 +102,7 @@ type
     procedure SetGlyphs;
     procedure DefineUserInputsFormat;
     procedure ConvertFrameNoToMillisec(var TS: TTimeSlice);
-    function HasInternalCodec(const F: String): Boolean;
+    function HasInternalCodec(const Ext: String): Boolean;
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
     procedure StartProbe;
@@ -190,14 +190,11 @@ begin
   TS.Value.EndPos.ValueAsArray := a;
 end;
 
-function TSBMain.HasInternalCodec(const F: String): Boolean;
-var
-  iext: String;
+function TSBMain.HasInternalCodec(const Ext: String): Boolean;
 begin
   Result := False;
-  iext := F.Substring(F.LastIndexOf('.')).ToLower;
-  if iext = EmptyStr then Exit;
-  if FormatsWithInternalCodecs.Contains(iext) then
+  if Ext = EmptyStr then Exit;
+  if FormatsWithInternalCodecs.Contains(Ext) then
       Exit(True);
 end;
 
@@ -456,10 +453,14 @@ begin
   with FProcInfo do
   begin
     InputFile := FProbeInfo.InputFile;
+    InputFileExtension := FProbeResult.InputFileExtension;
     if FProbeResult.InputFileFormat.Equals(DVDSubtitleFormat) then
+    begin
       InputFile := GenFileName(InputFile, EmptyStr, extIdx);
+      InputFileExtension := extIdx;
+    end;
     UseInternalCodecs := SBPrefs.UseInternalCodecs.State = cbChecked;
-    if UseInternalCodecs and not HasInternalCodec(InputFile) then
+    if UseInternalCodecs and not HasInternalCodec(InputFileExtension) then
       UseInternalCodecs := False;
     InputFileIsText := FProbeResult.InputFileIsText;
     if not InputFileIsText then

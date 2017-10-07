@@ -38,6 +38,7 @@ type
     MkvMerge,
     MkvExtract,
     InputFile,
+    InputFileExtension,
     TextEncoding,
     TimeSlices: String;
     InputFileIsText,
@@ -71,7 +72,7 @@ type
     procedure StepProgress(Perc: Word);
     procedure RunCmd(const Exec, Cmd: String);
     procedure SubzBorDirectProcessSub;
-    procedure SubzBorDirectSplitSub(const Sub, Ext: String);
+    procedure SubzBorDirectSplitSub(const Sub: String);
     procedure SubzBorSplitSub;
     procedure FFmpegSplitSub;
     procedure FFmpegExportSub(const Sub: String);
@@ -149,10 +150,8 @@ var
   bs: TBytesStream;
   sl: TStringList;
   Enc: TEncoding;
-  iext,s,bom: String;
+  s,bom: String;
 begin
-  iext :=
-    FProcInfo.InputFile.Substring(FProcInfo.InputFile.LastIndexOf('.')).ToLower;
   Enc := Default(TEncoding);
   bs := TBytesStream.Create;
   sl := TStringList.Create;
@@ -175,27 +174,29 @@ begin
     bs.Free;
     sl.Free;
   end;
-  SubzBorDirectSplitSub(s, iext);
+  SubzBorDirectSplitSub(s);
 end;
 
-procedure TSubzBorProcThread.SubzBorDirectSplitSub(const Sub, Ext: String);
+procedure TSubzBorProcThread.SubzBorDirectSplitSub(const Sub: String);
 var
   ssa: TSubStationAlphaFile;
   Subrip: TSubripFile;
   Enc: TEncoding;
 begin
-  FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor, Ext, True, FOutputDir);
+  FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor,
+    FProcInfo.InputFileExtension, True, FOutputDir);
   ssa := TSubStationAlphaFile.Create;
   Subrip := TSubripFile.Create;
   Enc := Default(TEncoding);
   try
-    if Ext.Equals(extAss) or Ext.Equals(extSsa) then
+    if FProcInfo.InputFileExtension.Equals(extAss)
+    or FProcInfo.InputFileExtension.Equals(extSsa) then
     begin
       ssa.LoadFromString(Sub);
       ssa.Events.Value := ssa.MakeNewFromRanges(FTimeSlices);
       ssa.SaveToFile(FOutputFile, Enc.UTF8);
     end
-    else if Ext.Equals(extSrt) then
+    else if FProcInfo.InputFileExtension.Equals(extSrt) then
     begin
       Subrip.LoadFromString(Sub);
       Subrip.Events.Value := Subrip.MakeNewFromRanges(FTimeSlices);
@@ -377,8 +378,8 @@ begin
   Cmd := Cmd.Replace('%report%', s, []);
   s := GenFileName(FProcInfo.InputFile, wSubzBor, extMkv, True, FTempsDir);
   Cmd := Cmd.Replace('%i%', QuoteAndEscape(s), []);
-  s := ExtractFileExt(FProcInfo.InputFile);
-  FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor, s, True, FOutputDir);
+  FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor,
+    FProcInfo.InputFileExtension, True, FOutputDir);
   Cmd := Cmd.Replace('%o%', QuoteAndEscape('1:' +FOutputFile), []);
   RunCmd(FProcInfo.MkvExtract, Cmd);
 end;

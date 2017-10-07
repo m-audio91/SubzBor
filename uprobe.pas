@@ -52,6 +52,7 @@ type
     DummyVidExists: Boolean;
     SubzBorPath,
     InputFileFormat,
+    InputFileExtension,
     LastError: String;
   end;
 
@@ -187,6 +188,8 @@ begin
   t := QuoteAndEscape(FProbeInfo.InputFile);
   Cmd := FileValidationCmd.Replace('%i%', t, []);
   s := RunCaptureCmd(FProbeInfo.FFmpeg, Cmd);
+  FProbeResult.InputFileExtension :=
+    FProbeInfo.InputFile.Substring(FProbeInfo.InputFile.LastIndexOf('.')).ToLower;
   i := s.IndexOf(ValidFileHas);
   if i >= 0 then
   begin
