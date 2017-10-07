@@ -345,7 +345,7 @@ msgstr "Timings are invalid. either you didn't entered anything or they are not 
 
 #: uresourcestrings.rsismillisecondaframeno
 msgid "آیا هزارم ثانیه، شماره فریم است؟"
-msgstr "Is Millisecond actually a Frame Number؟"
+msgstr "Is Millisecond actually a Frame Number?"
 
 #: uresourcestrings.rsismillisecondaframenodesc
 msgid ""
