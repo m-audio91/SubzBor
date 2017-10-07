@@ -192,12 +192,12 @@ end;
 
 function TSBMain.HasInternalCodec(const F: String): Boolean;
 var
-  inext: String;
+  iext: String;
 begin
   Result := False;
-  inext := F.Substring(F.LastIndexOf('.')).ToLower;
-  if inext = EmptyStr then Exit;
-  if FormatsWithInternalCodecs.Contains(inext) then
+  iext := F.Substring(F.LastIndexOf('.')).ToLower;
+  if iext = EmptyStr then Exit;
+  if FormatsWithInternalCodecs.Contains(iext) then
       Exit(True);
 end;
 
@@ -206,10 +206,10 @@ var
   pic: TPicture;
   f: String;
 begin
-  f := IncludeTrailingPathDelimiter(Dir) + DummyVidResName;
+  f := IncludeTrailingPathDelimiter(Dir) +DummyPicFileName;
   pic := TPicture.Create;
   try
-    pic.LoadFromResourceName(HInstance, 'dummyvidres');
+    pic.LoadFromResourceName(HInstance, DummyPicResName);
     pic.SaveToFile(f);
   finally
     pic.Free;
@@ -220,8 +220,8 @@ procedure TSBMain.CurrectFormSize;
 var
   MinW: Integer;
 begin
-  MinW := Canvas.TextWidth(rsHint + ': ' + rsExportingImgBased);
-  MinW := MinW + StatusMsg.BorderSpacing.Left + StatusMsg.BorderSpacing.Right+4;
+  MinW := Canvas.TextWidth(rsHint +': ' +rsExportingImgBased);
+  MinW := MinW+StatusMsg.BorderSpacing.Left+StatusMsg.BorderSpacing.Right+4;
   Constraints.MinWidth := MinW;
   TimeSlicesList.ScrollWidth := 0;
 end;
@@ -387,12 +387,12 @@ begin
       FileName := GenFileName(SubtitleFile.Text, wCuts, extText, False);
     if not Execute then Exit;
     if CompareFileExt(FileName, extText) <> 0 then
-      FileName := FileName + extText;
+      FileName := FileName +extText;
     try
       TimeSlicesList.Items.SaveToFile(FileName);
     except
       on E: Exception do
-        ShowError(E.Message + LineEnding + rsTimeSliceFileNotSaved, rsFatal);
+        ShowError(E.Message +LineEnding +rsTimeSliceFileNotSaved, rsFatal);
     end;
   end;
 end;
@@ -413,7 +413,7 @@ begin
     MkvExtract := SBPrefs.MkvExtractAddress.Text;
     InputFile := SubtitleFile.Text;
     if LowerCase(ExtractFileExt(InputFile)).Equals(extSub) then
-      InputFile := GenFileName(InputFile, '', extIdx);
+      InputFile := GenFileName(InputFile, EmptyStr, extIdx);
     TimeSlices := TimeSlicesList.Items.Text;
   end;
   FProbeThread := TSubzBorProbeThread.Create(FProbeInfo);
@@ -542,7 +542,7 @@ var
   s: String;
   i: Word;
   begin
-    s := ExcludeTrailingPathDelimiter(ProgramDirectory)+PathDelim+'languages';
+    s := IncludeTrailingPathDelimiter(ProgramDirectory) +'languages';
     FLangsDir := s;
     sl := TStringList.Create;
     try
@@ -578,9 +578,9 @@ begin
   SBDatas.HandleTranslation;
 
   SubtitleFile.Filter :=
-    rsCommonFormats+CommonFilesMask+rsAllFiles+AllFilesMask;
+    rsCommonFormats +CommonFilesMask +rsAllFiles +AllFilesMask;
   SBPrefs.UseInternalCodecs.Hint :=
-    rsUseInternalCodecsHint+LineEnding+FormatsWithInternalCodecs;
+    rsUseInternalCodecsHint +LineEnding +FormatsWithInternalCodecs;
 
   bd := Application.Direction(GetDefaultLang);
   TimeSlicesListL.BiDiMode := bd;
@@ -611,14 +611,14 @@ end;
 procedure TSBMain.Status(const MsgType, Msg: String; Bar: boolean; BarPos: Word;
   HideBarAfter: Word);
 begin
-  StatusMsg.Caption := MsgType + ': ' + Msg;
-  StatusMsg.Hint := MsgType + ': ' + Msg;
+  StatusMsg.Caption := MsgType +': ' +Msg;
+  StatusMsg.Hint := MsgType +': ' +Msg;
   Progress.Visible := Bar;
   DoSplit.Enabled := not Bar;
   Progress.Position := BarPos;
   if Bar and (HideBarAfter > 0) then
   begin
-    SBDatas.TheTimer.Interval := HideBarAfter * 1000;
+    SBDatas.TheTimer.Interval := HideBarAfter*1000;
     SBDatas.TheTimer.OnTimer := @HideProgress;
     SBDatas.TheTimer.Enabled := True;
   end;

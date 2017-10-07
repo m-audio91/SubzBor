@@ -77,26 +77,26 @@ begin
   with ToolsFolderAddress do
   begin
     if Text = EmptyStr then
-      Text := ProgramDirectory + 'tools' + PathDelim;
+      Text := ProgramDirectory +'tools' +PathDelim;
   end;
   {$IFDEF WINDOWS}
   if FFmpegAddress.Text = EmptyStr then
-    FFmpegAddress.Text := ToolsFolderAddress.Text + 'win\ffmpeg.exe';
+    FFmpegAddress.Text := ToolsFolderAddress.Text +'win\ffmpeg.exe';
   if MkvMergeAddress.Text = EmptyStr then
-    MkvMergeAddress.Text := ToolsFolderAddress.Text + 'win\mkvmerge.exe';
+    MkvMergeAddress.Text := ToolsFolderAddress.Text +'win\mkvmerge.exe';
   if MkvExtractAddress.Text = EmptyStr then
-    MkvExtractAddress.Text := ToolsFolderAddress.Text + 'win\mkvextract.exe';
+    MkvExtractAddress.Text := ToolsFolderAddress.Text +'win\mkvextract.exe';
   {$ENDIF}
   {$IFDEF UNIX}
   if FFmpegAddress.Text = EmptyStr then
-    FFmpegAddress.Text := ToolsFolderAddress.Text + 'lin' +
+    FFmpegAddress.Text := ToolsFolderAddress.Text +'lin' +
     {$IFDEF CPU32}
     '32'
     {$ENDIF}
     {$IFDEF CPU64}
     '64'
     {$ENDIF}
-    + PathDelim + 'ffmpeg';
+    +PathDelim +'ffmpeg';
   if MkvMergeAddress.Text = EmptyStr then
     MkvMergeAddress.Text := '/usr/bin/mkvmerge';
   if MkvExtractAddress.Text = EmptyStr then

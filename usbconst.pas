@@ -29,7 +29,9 @@ const
   wTemp = '_SBTemp';
   wSubzBor = '_SubzBor';
   wCuts = '_Cuts';
-  DummyVidResName = 'dummyvidres.png';
+  DummyPicResName = 'dummyvidres';
+  DummyPicFileName = 'dummyvidres.png';
+  DummyVidFileName = 'dummyvid.avi';
   extText = '.txt';
   extAss = '.ass';
   extSsa = '.ssa';

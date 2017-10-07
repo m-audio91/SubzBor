@@ -31,11 +31,11 @@ type
   { TSubzBorProbeInfo }
 
   TSubzBorProbeInfo = record
-    ToolsFolder: String;
-    FFmpeg: String;
-    MkvMerge: String;
-    MkvExtract: String;
-    InputFile: String;
+    ToolsFolder,
+    FFmpeg,
+    MkvMerge,
+    MkvExtract,
+    InputFile,
     TimeSlices: String;
   end;
 
@@ -132,10 +132,8 @@ begin
       Result := String(PChar(Mem.Bytes));
     end;
   finally
-    if Assigned(Proc) then
-      Proc.Free;
-    if Assigned(Mem) then
-      Mem.Free;
+    Proc.Free;
+    Mem.Free;
   end;
 end;
 
@@ -181,7 +179,7 @@ var
   s,t,Cmd: String;
   i: Integer;
 begin
-  if (FProbeInfo.InputFile + wSubzBor + wTemp).Length > 254 then Exit;
+  if (FProbeInfo.InputFile +wSubzBor +wTemp).Length > 254 then Exit;
   t := QuoteAndEscape(FProbeInfo.InputFile);
   Cmd := FileValidationCmd.Replace('%i%', t, []);
   s := RunCaptureCmd(FProbeInfo.FFmpeg, Cmd);
@@ -219,7 +217,7 @@ var
   s,t,Cmd: String;
 begin
   if not FProbeResult.ToolsFolderValid then Exit;
-  t := Escape(FProbeInfo.ToolsFolder + 'dummyvid.avi');
+  t := Escape(FProbeInfo.ToolsFolder +DummyVidFileName);
   Cmd := FileValidationCmd.Replace('%i%', t, []);
   s := RunCaptureCmd(FProbeInfo.FFmpeg, Cmd);
   for t in ValidDummyVidHas do

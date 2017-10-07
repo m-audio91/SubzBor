@@ -32,19 +32,19 @@ type
   { TSubzBorProcInfo }
 
   TSubzBorProcInfo = record
-    SubzBorPath: String;
-    ToolsFolder: String;
-    FFmpeg: String;
-    MkvMerge: String;
-    MkvExtract: String;
-    InputFile: String;
-    InputFileIsText: Boolean;
-    TextEncoding: String;
+    SubzBorPath,
+    ToolsFolder,
+    FFmpeg,
+    MkvMerge,
+    MkvExtract,
+    InputFile,
+    TextEncoding,
     TimeSlices: String;
-    SaveTimeSlices: Boolean;
-    DummyVidExists: Boolean;
-    NeedReport: Boolean;
-    UseInternalSplitter: Boolean;
+    InputFileIsText,
+    SaveTimeSlices,
+    DummyVidExists,
+    NeedReport,
+    UseInternalSplitter,
     UseInternalCodecs: Boolean;
   end;
 
@@ -77,7 +77,7 @@ type
     procedure FFmpegExportSub(const Sub: String);
     procedure FFmpegDummyVid;
     procedure MkvMergeSplitSub;
-    procedure MkvMergeAppendSub(const Files: array of String);
+    procedure MkvMergeAppendSub(const Files: TStringArray);
     procedure MkvExtractSub;
     procedure ExportTimeSlices;
     procedure ClearTemps;
@@ -98,12 +98,11 @@ implementation
 const
   FFmpegSplitCmd = '-hide_banner %report% %delay% -copyts -start_at_zero -sub_charenc %cp% -i %i% -map 0:s:0 -ss %splitstart% -to %splitend% %offset% -y %o%';
   FFmpegExportCmd = '-hide_banner %report% -i %i% -map 0:s:0 -y %o%';
-  FFmpegStrightExportCmd = '-hide_banner %report% -sub_charenc %cp% -i %i% -map 0:s:0 -y %o%';
+  FFmpegStraightExportCmd = '-hide_banner %report% -sub_charenc %cp% -i %i% -map 0:s:0 -y %o%';
   FFmpegDummyVidCmd = '-hide_banner %report% -framerate 60 -loop true -i %i% -t 4:00:00 -pix_fmt bgr24 -c:v zlib -y %o%';
   MkvMergeSplitCmd  = '%report% --output %o% --language 0:und ( %i% ) --language 0:und --sync 0:%delay% ( %i% ) --split parts:%timeslice% --track-order 0:0,1:0';
   MkvMergeAppendCmd = '%report% --output %o% --language 0:und --default-track 0:yes --language 1:und --default-track 1:yes %i% --track-order 0:0,0:1';
   MkvExtractSubCmd = '%report% tracks %i% %o%';
-  DummyVidName = 'dummyvid.avi';
 
 { TSubzBorProcThread }
 
@@ -138,8 +137,7 @@ begin
         Sleep(150);
     end;
   finally
-    if Assigned(Proc) then
-      Proc.Free;
+    Proc.Free;
   end;
 end;
 
@@ -151,9 +149,9 @@ var
   bs: TBytesStream;
   sl: TStringList;
   Enc: TEncoding;
-  inext,s,bom: String;
+  iext,s,bom: String;
 begin
-  inext :=
+  iext :=
     FProcInfo.InputFile.Substring(FProcInfo.InputFile.LastIndexOf('.')).ToLower;
   Enc := Default(TEncoding);
   bs := TBytesStream.Create;
@@ -177,7 +175,7 @@ begin
     bs.Free;
     sl.Free;
   end;
-  SubzBorDirectSplitSub(s, inext);
+  SubzBorDirectSplitSub(s, iext);
 end;
 
 procedure TSubzBorProcThread.SubzBorDirectSplitSub(const Sub, Ext: String);
@@ -214,7 +212,7 @@ var
   Subrip: TSubripFile;
   s,Cmd: String;
 begin
-  Cmd := FFmpegStrightExportCmd;
+  Cmd := FFmpegStraightExportCmd;
   s := EmptyStr;
   if FProcInfo.NeedReport then
     s := '-report';
@@ -254,7 +252,7 @@ begin
       Cmd := Cmd.Replace('%report%', s, []);
       s := EmptyStr;
       if Values[i].Delay <> 0 then
-        s := '-itsoffset ' + Values[i].Delay.ToString.Replace(',','.');
+        s := '-itsoffset ' +Values[i].Delay.ToString.Replace(',','.');
       Cmd := Cmd.Replace('%delay%', s, []);
       Cmd := Cmd.Replace('%cp%', FProcInfo.TextEncoding, []);
       Cmd := Cmd.Replace('%i%', QuoteAndEscape(FProcInfo.InputFile), []);
@@ -262,13 +260,13 @@ begin
       Cmd := Cmd.Replace('%splitend%', Values[i].Value.EndPos.ValueAsString, []);
       s := EmptyStr;
       if i > 0 then
-        s := '-output_ts_offset ' + Offs.ToString.Replace(',','.');
+        s := '-output_ts_offset ' +Offs.ToString.Replace(',','.');
       Cmd := Cmd.Replace('%offset%', s, []);
       s := GenFileName(FProcInfo.InputFile, i.ToString, extSrt, True, FTempsDir);
       Cmd := Cmd.Replace('%o%', QuoteAndEscape(s), []);
       RunCmd(FProcInfo.FFmpeg, Cmd);
       f := f+'|'+s;
-      Offs := Offs + Values[i].Duration.ValueAsDouble;
+      Offs := Offs +Values[i].Duration.ValueAsDouble;
     end;
   end;
   f := f.Substring(1);
@@ -284,7 +282,7 @@ begin
   if FProcInfo.NeedReport then
     s := '-report';
   Cmd := Cmd.Replace('%report%', s, []);
-  Cmd := Cmd.Replace('%i%', QuoteAndEscape('concat:' + Sub), []);
+  Cmd := Cmd.Replace('%i%', QuoteAndEscape('concat:' +Sub), []);
   FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor, extSrt, True, FOutputDir);
   Cmd := Cmd.Replace('%o%', QuoteAndEscape(FOutputFile), []);
   RunCmd(FProcInfo.FFmpeg, Cmd);
@@ -301,16 +299,16 @@ begin
   if FProcInfo.NeedReport then
     s := '-report';
   Cmd := Cmd.Replace('%report%', s, []);
-  s := IncludeTrailingPathDelimiter(FProcInfo.ToolsFolder) + DummyVidResName;
+  s := IncludeTrailingPathDelimiter(FProcInfo.ToolsFolder) +DummyPicFileName;
   Cmd := Cmd.Replace('%i%', QuoteAndEscape(s), []);
-  s := FProcInfo.ToolsFolder + DummyVidName;
+  s := FProcInfo.ToolsFolder +DummyVidFileName;
   Cmd := Cmd.Replace('%o%', QuoteAndEscape(s), []);
   RunCmd(FProcInfo.FFmpeg, Cmd);
 end;
 
 procedure TSubzBorProcThread.MkvMergeSplitSub;
 var
-  f: array of String;
+  f: TStringArray;
   s,Cmd: String;
   i: Integer;
 begin
@@ -323,13 +321,13 @@ begin
       s := EmptyStr;
       if FProcInfo.NeedReport then
       begin
-        s := QuoteAndEscape(FReportsDir + 'mkvmerge-' + NowToString + extLog);
+        s := QuoteAndEscape(FReportsDir +'mkvmerge-' +NowToString +extLog);
         s := '--redirect-output '+s;
       end;
       Cmd := Cmd.Replace('%report%', s, []);
       s := Trunc(Values[i].Delay * 1000).ToString;
       Cmd := Cmd.Replace('%delay%', s, []);
-      s := FProcInfo.ToolsFolder + DummyVidName;
+      s := FProcInfo.ToolsFolder +DummyVidFileName;
       Cmd := Cmd.Replace('%i%', QuoteAndEscape(s), []);
       Cmd := Cmd.Replace('%i%', QuoteAndEscape(FProcInfo.InputFile), []);
       s := GenFileName(FProcInfo.InputFile, i.ToString, extMkv, True, FTempsDir);
@@ -343,7 +341,7 @@ begin
   MkvMergeAppendSub(f);
 end;
 
-procedure TSubzBorProcThread.MkvMergeAppendSub(const Files: array of String);
+procedure TSubzBorProcThread.MkvMergeAppendSub(const Files: TStringArray);
 var
   f,s,Cmd: String;
 begin
@@ -351,7 +349,7 @@ begin
   s := EmptyStr;
   if FProcInfo.NeedReport then
   begin
-    s := QuoteAndEscape(FReportsDir + 'mkvmerge-' + NowToString + extLog);
+    s := QuoteAndEscape(FReportsDir +'mkvmerge-' +NowToString +extLog);
     s := '--redirect-output '+s;
   end;
   Cmd := Cmd.Replace('%report%', s, []);
@@ -359,7 +357,7 @@ begin
   Cmd := Cmd.Replace('%o%', QuoteAndEscape(s), []);
   s := EmptyStr;
   for f in Files do
-    s := s+'( ' + QuoteAndEscape(f) + ' ) + ';
+    s := s+'( ' +QuoteAndEscape(f) +' ) + ';
   s := s.Substring(0, s.Length-(' + ').Length);
   Cmd := Cmd.Replace('%i%', s, []);
   RunCmd(FProcInfo.MkvMerge, Cmd);
@@ -373,7 +371,7 @@ begin
   s := EmptyStr;
   if FProcInfo.NeedReport then
   begin
-    s := QuoteAndEscape(FReportsDir + 'mkvextract-' + NowToString + extLog);
+    s := QuoteAndEscape(FReportsDir +'mkvextract-' +NowToString +extLog);
     s := '--redirect-output '+s;
   end;
   Cmd := Cmd.Replace('%report%', s, []);
@@ -381,7 +379,7 @@ begin
   Cmd := Cmd.Replace('%i%', QuoteAndEscape(s), []);
   s := ExtractFileExt(FProcInfo.InputFile);
   FOutputFile := GenFileName(FProcInfo.InputFile, wSubzBor, s, True, FOutputDir);
-  Cmd := Cmd.Replace('%o%', QuoteAndEscape('1:' + FOutputFile), []);
+  Cmd := Cmd.Replace('%o%', QuoteAndEscape('1:' +FOutputFile), []);
   RunCmd(FProcInfo.MkvExtract, Cmd);
 end;
 
@@ -414,17 +412,17 @@ begin
   if not FProcInfo.NeedReport then Exit;
   sl := TStringList.Create;
   try
-    FindAllFiles(sl, FProcInfo.SubzBorPath, '*' + extLog, False);
+    FindAllFiles(sl, FProcInfo.SubzBorPath, '*' +extLog, False);
     if sl.Count > 0 then
       for i := sl.Count-1 downto 0 do
       begin
-        CopyFile(sl.Strings[i], FReportsDir + ExtractFileName(sl.Strings[i]),
+        CopyFile(sl.Strings[i], FReportsDir +ExtractFileName(sl.Strings[i]),
           [cffOverwriteFile], True);
         DeleteFile(sl.Strings[i]);
       end;
   except
     on E: Exception do
-      FProcResult.LastError := FProcResult.LastError + LineEnding + E.Message;
+      FProcResult.LastError := FProcResult.LastError +LineEnding +E.Message;
   end;
     sl.Free;
 end;
@@ -476,8 +474,8 @@ begin
   inherited Create(True);
   FProcInfo := ProcInfo;
   FTimeSlices.ExtendedValue := FProcInfo.TimeSlices;
-  FTempsDir := FProcInfo.ToolsFolder + 'temps' + PathDelim;
-  FReportsDir := FProcInfo.ToolsFolder + 'reports' + PathDelim;
+  FTempsDir := FProcInfo.ToolsFolder +'temps' +PathDelim;
+  FReportsDir := FProcInfo.ToolsFolder +'reports' +PathDelim;
   FOutputDir := ExtractFilePath(FProcInfo.InputFile);
   if not TryDirectoryIsWritable(FOutputDir) then
   begin
