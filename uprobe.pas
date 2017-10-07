@@ -42,16 +42,16 @@ type
   { TSubzBorProbeResult }
 
   TSubzBorProbeResult = record
-    ToolsFolderValid: Boolean;
-    FFmpegValid: Boolean;
-    MkvMergeValid: Boolean;
-    MkvExtractValid: Boolean;
-    InputFileValid: Boolean;
-    InputFileIsText: Boolean;
-    TimeSlicesValid: Boolean;
+    ToolsFolderValid,
+    FFmpegValid,
+    MkvMergeValid,
+    MkvExtractValid,
+    InputFileValid,
+    InputFileIsText,
+    TimeSlicesValid,
     DummyVidExists: Boolean;
-    SubzBorPath: String;
-    InputFileFormat: String;
+    SubzBorPath,
+    InputFileFormat,
     LastError: String;
   end;
 
