@@ -1,23 +1,38 @@
 # SubzBor  
 ![Image of SubzBor](https://github.com/m-audio91/SubzBor/raw/master/extra/icon/80.png)  
-v1.1.0
+v1.4.5
 
-Free subtitle cutting tool, with the help of FFmpeg and MKVToolNix.
+SubzBor is a Graphical User Interface that uses FFmpeg, MKVmerge, MKVextract and it's own internal codecs to cut (split) subtitles.  
+It's main purpose is to cut subtitles and keep them in sync while their movie is being edited in any frame accurate video editor that does not support subtitle processing.  
+so there is no need to HardSub (burn in) nor any other complicated manual editing.  
+
 
 #### it supports the following formats:
-Available out of the box:
+Available with internal codecs (ouput format = input format):
+* Subrip (srt)
+* Advanced Substation Alpha (ass)
+* Substation Alpha (ssa)
+
+Available with FFmpeg (ouput format = srt):
 * Subrip (srt)
 * Advanced Substation Alpha (ass)
 * Substation Alpha (ssa)
 * Web Video Text Tracks Format (vtt)
 * Synchronized Accessible Media Interchange (smi , sami)
 * Spruce subtitle format (stl)
+* JACOsub subtitle (jss)
+* MicroDVD subtitle (sub)
+* 3GPP Timed Text subtitle (ttxt)
+* MPL2 subtitle (mpl)
+* PJS subtitle (pjs)
+* RealText subtitle (rt)
+* SubViewer subtitle (sub)
+* SubViewer1 subtitle (sub)
+* VPlayer subtitle (txt)
 
-Available with MKVToolNix:
+Available with MKVToolNix (ouput format = input format):
 * VobSub (idx|sub)
 * Presentation Graphic Stream (sup)
-
-The output of all text based subtitles is SRT. and for image based ones is the same as their input.  
 
 Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
@@ -28,10 +43,11 @@ Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com
 4. compile and run.
 5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)  
 you also need to copy "Tools" folder from the latest SubzBor release next to your newly compiled executable. otherwise you can't split subtitles.  
-note: never compiled nor tested on MacOS. but you can help development for this platform too.
+note: never compiled nor tested on MacOS. but you can help development for this platform too.  
 
 
 
-[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
-[**Screenshots**](https://github.com/m-audio91/SubzBor/tree/master/extra/screenshots)
+[**Download Latest Version**](releases/latest)  
+[**Screenshots**](tree/master/extra/screenshots)
+[**Tutrial and guides**](wiki)
 
