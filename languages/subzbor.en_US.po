@@ -61,7 +61,7 @@ msgstr ""
 "In case of wrong selection, you may get an empty or incorrect output file.\n"
 "\n"
 "note: the amount of items here depends on whether you activated\n"
-"\"Use SubzBor's internal codecs for supported formats\" in preferences.\n"
+"\"Use SubzBor's internal codecs for direct cut\" in preferences.\n"
 
 #: tsbcharenc.fasubripadl.caption
 msgid ""
