@@ -102,7 +102,7 @@ type
     procedure SetGlyphs;
     procedure DefineUserInputsFormat;
     procedure ConvertFrameNoToMillisec(var TS: TTimeSlice);
-    function HasInternalCodec(const Ext: String): Boolean;
+    function HasInternalCodec(const Fmt: String): Boolean;
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
     procedure StartProbe;
@@ -190,12 +190,12 @@ begin
   TS.Value.EndPos.ValueAsArray := a;
 end;
 
-function TSBMain.HasInternalCodec(const Ext: String): Boolean;
+function TSBMain.HasInternalCodec(const Fmt: String): Boolean;
 begin
-  Result := False;
-  if Ext = EmptyStr then Exit;
-  if FormatsWithInternalCodecs.Contains(Ext) then
-      Exit(True);
+  if FormatsWithInternalCodecs.Contains(Fmt) then
+    Result := True
+  else
+    Result := False;
 end;
 
 procedure TSBMain.SaveDummyVidResToFile(const Dir: String);
@@ -460,7 +460,7 @@ begin
       InputFileExtension := extIdx;
     end;
     UseInternalCodecs := SBPrefs.UseInternalCodecs.State = cbChecked;
-    if UseInternalCodecs and not HasInternalCodec(InputFileExtension) then
+    if UseInternalCodecs and not HasInternalCodec(FProbeResult.InputFileFormat) then
       UseInternalCodecs := False;
     InputFileIsText := FProbeResult.InputFileIsText;
     if not InputFileIsText then

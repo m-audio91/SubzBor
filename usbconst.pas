@@ -45,7 +45,7 @@ const
   CommonFilesMask = '|*.srt;*.ass;*.ssa;*.stl;*.vtt;*.smi;*.sami;*.sub;*.sup;*.ttxt'
     +';*.mpl;*.pjs;*.rt;*.jss;*txt';
   AllFilesMask = '|*';
-  FormatsWithInternalCodecs = extSrt+extAss+extSsa;
+  FormatsWithInternalCodecs = 'ass '+'subrip ';
   DVDSubtitleFormat = 'dvd_subtitle';
   urlFasubRip = 'http://mohammadrezab.blogsky.com/1395/09/27/post-21';
   urlHome = 'http://mohammadrezab.blogsky.com';
