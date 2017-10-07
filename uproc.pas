@@ -92,6 +92,8 @@ type
     destructor Destroy; override;
   end;
 
+implementation
+
 const
   FFmpegSplitCmd = '-hide_banner %report% %delay% -copyts -start_at_zero -sub_charenc %cp% -i %i% -map 0:s:0 -ss %splitstart% -to %splitend% %offset% -y %o%';
   FFmpegExportCmd = '-hide_banner %report% -i %i% -map 0:s:0 -y %o%';
@@ -100,10 +102,7 @@ const
   MkvMergeSplitCmd  = '%report% --output %o% --language 0:und ( %i% ) --language 0:und --sync 0:%delay% ( %i% ) --split parts:%timeslice% --track-order 0:0,1:0';
   MkvMergeAppendCmd = '%report% --output %o% --language 0:und --default-track 0:yes --language 1:und --default-track 1:yes %i% --track-order 0:0,0:1';
   MkvExtractSubCmd = '%report% tracks %i% %o%';
-  DummyVidResName = 'dummyvidres.png';
   DummyVidName = 'dummyvid.avi';
-
-implementation
 
 { TSubzBorProcThread }
 

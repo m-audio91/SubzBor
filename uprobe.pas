@@ -77,6 +77,8 @@ type
     destructor Destroy; override;
   end;
 
+implementation
+
 const
   FFmpegValidationCmd = '-version';
   MkvMergeValidationCmd = '-h';
@@ -90,8 +92,6 @@ const
   ValidMkvExtractHas: array[0..1] of String = ('--ui-language', 'Timecode extraction:');
   ValidFileHas = 'Subtitle:';
   ValidDummyVidHas: array[0..3] of String = ('04:00:00.00', '16x16', '60 fps', 'zlib');
-
-implementation
 
 { TSubzBorProbeThread }
 
