@@ -48,6 +48,6 @@ note: never compiled nor tested on MacOS. but you can help development for this 
 
 
 [**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
-[**Screenshots**](https://github.com/m-audio91/SubzBor/tree/master/extra/screenshots)
+[**Screenshots**](https://github.com/m-audio91/SubzBor/tree/master/extra/screenshots)  
 [**Tutorials and Guides**](https://github.com/m-audio91/SubzBor/wiki)
 
