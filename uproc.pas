@@ -253,7 +253,7 @@ begin
       Cmd := Cmd.Replace('%report%', s, []);
       s := EmptyStr;
       if Values[i].Delay <> 0 then
-        s := '-itsoffset ' +Values[i].Delay.ToString.Replace(',','.');
+        s := '-itsoffset ' +Values[i].Delay.ToString;
       Cmd := Cmd.Replace('%delay%', s, []);
       Cmd := Cmd.Replace('%cp%', FProcInfo.TextEncoding, []);
       Cmd := Cmd.Replace('%i%', QuoteAndEscape(FProcInfo.InputFile), []);
@@ -261,7 +261,7 @@ begin
       Cmd := Cmd.Replace('%splitend%', Values[i].Value.EndPos.ValueAsString, []);
       s := EmptyStr;
       if i > 0 then
-        s := '-output_ts_offset ' +Offs.ToString.Replace(',','.');
+        s := '-output_ts_offset ' +Offs.ToString;
       Cmd := Cmd.Replace('%offset%', s, []);
       s := GenFileName(FProcInfo.InputFile, i.ToString, extSrt, True, FTempsDir);
       Cmd := Cmd.Replace('%o%', QuoteAndEscape(s), []);
