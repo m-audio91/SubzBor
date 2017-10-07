@@ -48,6 +48,6 @@ note: never compiled nor tested on MacOS. but you can help development for this 
 
 
 [**Download Latest Version**](releases/latest)  
-[**Screenshots**](tree/master/extra/screenshots)
+[**Screenshots**](tree/master/extra/screenshots)  
 [**Tutrial and guides**](wiki)
 
