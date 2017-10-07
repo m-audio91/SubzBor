@@ -39,6 +39,7 @@ type
     SBVersionL: TLabel;
     Logo: TImage;
     Logo1: TImage;
+    AppCopyright: TLabel;
     procedure FormCreate(Sender: TObject);
   end;
 
@@ -65,8 +66,8 @@ begin
       Font.Color := clBlue;
       case i of
       0: Caption := urlIssueTracker;
-      1: Caption := urlHome;
-      2: Caption := ContactMail;
+      1: Caption := ContactMail;
+      2: Caption := urlHome;
       end;
     end;
   end;

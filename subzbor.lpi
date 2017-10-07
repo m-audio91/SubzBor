@@ -22,7 +22,7 @@
         <Item1 Value="tsbmain.caption"/>
         <Item2 Value="tsbmain.menusblang.caption"/>
         <Item3 Value="tsbcharenc.encodingname.text"/>
-        <Item4 Value="tsbabout.description.caption"/>
+        <Item4 Value="tsbabout.AppCopyright.caption"/>
         <Item5 Value="tsbabout.caption"/>
         <Item6 Value="tsbabout.sbversionl.caption"/>
       </ExcludedIdentifiers>
@@ -33,7 +33,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="3"/>
+      <BuildNr Value="20"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.4.5.0"/>
     </VersionInfo>
     <BuildModes Count="3">

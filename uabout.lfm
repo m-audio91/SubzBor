@@ -1,6 +1,6 @@
 object SBAbout: TSBAbout
   Left = 607
-  Height = 404
+  Height = 449
   Top = 219
   Width = 400
   HorzScrollBar.Page = 400
@@ -11,7 +11,7 @@ object SBAbout: TSBAbout
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'About SubzBor'
-  ClientHeight = 404
+  ClientHeight = 449
   ClientWidth = 400
   Constraints.MinHeight = 350
   Constraints.MinWidth = 400
@@ -158,7 +158,7 @@ object SBAbout: TSBAbout
   end
   object Description: TLabel
     Left = 8
-    Height = 165
+    Height = 150
     Top = 76
     Width = 384
     Align = alTop
@@ -166,14 +166,14 @@ object SBAbout: TSBAbout
     BorderSpacing.Left = 8
     BorderSpacing.Top = 2
     BorderSpacing.Right = 8
-    Caption = 'سابزبُر یک ظاهر گرافیکی می باشد که با استفاده از نرم افزارهای FFmpeg'#13#10'و MKVmerge و MKVextract اقدام به برش زیرنویس می کند.'#13#10'هدف اصلی سابزبُر برش زیرنویس و هماهنگ نگاه داشتن آن با فیلم'#13#10'سانسور شده (به وسیله ادیتور های دقیق که با دقت "فریم" برش می زنند)'#13#10'است تا هنگام سانسور (یا حتی جدا کردن بازه ای بعنوان نمونه از) فیلم در'#13#10'نرم افزاری که از زیرنویس پشتیبانی نمی کند، به هاردساب'#13#10'کردن یا روش های پیچیده و دستی نیازی نباشد.'#13#10'نسخه حاضر از زیرنویس های متنی ass srt ssa vtt smi stl و'#13#10'زیرنویس های عکسی idx|sub و sup پشتیبانی می کند. '#13#10#13#10'کپی رایت 2017 میلادی 1395-1396 هجری خورشیدی محمدرضا بهرامی'
+    Caption = 'سابزبُر یک ظاهر گرافیکی می باشد که با استفاده از نرم افزارهای FFmpeg'#13#10'و MKVmerge و MKVextract و کدک های داخلی اش اقدام به برش زیرنویس می کند.'#13#10'هدف اصلی سابزبُر برش زیرنویس و هماهنگ نگاه داشتن آن با فیلم'#13#10'سانسور شده (به وسیله ادیتور های دقیق که با دقت "فریم" برش می زنند)'#13#10'است تا هنگام سانسور (یا حتی جدا کردن بازه ای بعنوان نمونه از) فیلم در'#13#10'نرم افزاری که از زیرنویس پشتیبانی نمی کند، به هاردساب'#13#10'کردن یا روش های پیچیده و دستی نیازی نباشد.'#13#10'نسخه حاضر از زیرنویس های متنی'#13#10'srt ass ssa stl vtt smi sami sub sup ttxt mpl pjs rt jss'#13#10'و زیرنویس های عکسی idx|sub و sup پشتیبانی می کند. '
     ParentBidiMode = False
     ParentColor = False
   end
   object LinksBox: TPanel
     Left = 8
     Height = 0
-    Top = 346
+    Top = 354
     Width = 384
     Align = alTop
     AutoSize = True
@@ -189,7 +189,7 @@ object SBAbout: TSBAbout
   object ContactBox: TPanel
     Left = 8
     Height = 0
-    Top = 321
+    Top = 329
     Width = 384
     Align = alTop
     AutoSize = True
@@ -205,7 +205,7 @@ object SBAbout: TSBAbout
   object ContactMe: TLabel
     Left = 8
     Height = 15
-    Top = 304
+    Top = 312
     Width = 384
     Align = alTop
     BidiMode = bdRightToLeft
@@ -219,7 +219,7 @@ object SBAbout: TSBAbout
   object UsedTools: TLabel
     Left = 8
     Height = 15
-    Top = 329
+    Top = 337
     Width = 384
     Align = alTop
     BidiMode = bdRightToLeft
@@ -249,7 +249,7 @@ object SBAbout: TSBAbout
   object Logo1: TImage
     Left = 0
     Height = 51
-    Top = 241
+    Top = 249
     Width = 400
     Align = alTop
     AutoSize = True
@@ -367,5 +367,19 @@ object SBAbout: TSBAbout
       748187B1174DC79742AA6CE6F33F3418606B098F67FA3F87EE5D07D1284E0B00
       00000049454E44AE426082
     }
+  end
+  object AppCopyright: TLabel
+    Left = 8
+    Height = 15
+    Top = 234
+    Width = 384
+    Align = alTop
+    BidiMode = bdRightToLeft
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 8
+    Caption = 'کپی رایت 2017 میلادی 1395-1396 هجری خورشیدی محمدرضا بهرامی'
+    ParentBidiMode = False
+    ParentColor = False
   end
 end

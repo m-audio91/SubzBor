@@ -16,6 +16,29 @@ msgstr ""
 msgid "تماس، گزارش خطا و پیشنهاد:"
 msgstr "Contact, bug report and feature request:"
 
+#: tsbabout.description.caption
+msgid ""
+"سابزبُر یک ظاهر گرافیکی می باشد که با استفاده از نرم افزارهای FFmpeg\n"
+"و MKVmerge و MKVextract و کدک های داخلی اش اقدام به برش زیرنویس می کند.\n"
+"هدف اصلی سابزبُر برش زیرنویس و هماهنگ نگاه داشتن آن با فیلم\n"
+"سانسور شده (به وسیله ادیتور های دقیق که با دقت \"فریم\" برش می زنند)\n"
+"است تا هنگام سانسور (یا حتی جدا کردن بازه ای بعنوان نمونه از) فیلم در\n"
+"نرم افزاری که از زیرنویس پشتیبانی نمی کند، به هاردساب\n"
+"کردن یا روش های پیچیده و دستی نیازی نباشد.\n"
+"نسخه حاضر از زیرنویس های متنی\n"
+"srt ass ssa stl vtt smi sami sub sup ttxt mpl pjs rt jss\n"
+"و زیرنویس های عکسی idx|sub و sup پشتیبانی می کند. \n"
+msgstr ""
+"SubzBor is a Graphical User Interface that uses FFmpeg, MKVmerge,\n"
+"MKVextract and it's own internal codecs to cut (split) subtitles.\n"
+"It's main purpose is to cut subtitles and keep them in sync while\n"
+"their movie is being edited in any frame accurate video editor that does\n"
+"not support subtitle processing. so there is no need to HardSub (burn in)\n"
+"nor any other complicated manual editing.\n"
+"current version supports the following text based input formats:\n"
+"srt ass ssa stl vtt smi sami sub sup ttxt mpl pjs rt jss\n"
+"and these bitmap based formats: idx|sub sup\n"
+
 #: tsbabout.usedtools.caption
 msgid "ابزارهای استفاده شده اما مستقل:"
 msgstr "SubzBor made with or uses these independent open source projects:"
@@ -322,7 +345,7 @@ msgstr "Timings are invalid. either you didn't entered anything or they are not 
 
 #: uresourcestrings.rsismillisecondaframeno
 msgid "آیا هزارم ثانیه، شماره فریم است؟"
-msgstr "Is Millisecond actually a Frame Number?"
+msgstr "Is Millisecond actually a Frame Number؟"
 
 #: uresourcestrings.rsismillisecondaframenodesc
 msgid ""

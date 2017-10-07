@@ -603,6 +603,7 @@ begin
   mi := MenuSBLang.Find(LID);
   if Assigned(mi) then
     mi.Checked := True;
+  SBAbout.Description.BiDiMode := bd;
   SBAbout.UsedTools.BiDiMode := bd;
   SBAbout.ContactMe.BiDiMode := bd;
 
