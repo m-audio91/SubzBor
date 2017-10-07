@@ -47,7 +47,7 @@ note: never compiled nor tested on MacOS. but you can help development for this 
 
 
 
-[**Download Latest Version**](releases/latest)  
-[**Screenshots**](tree/master/extra/screenshots)  
-[**Tutrial and guides**](wiki)
+[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
+[**Screenshots**](https://github.com/m-audio91/SubzBor/tree/master/extra/screenshots)
+[**Tutorials and Guides**](https://github.com/m-audio91/SubzBor/wiki)
 
