@@ -7,6 +7,11 @@ It's main purpose is to cut subtitles and keep them in sync while their movie is
 so there is no need to HardSub (burn in) nor any other complicated manual editing.  
 
 
+[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
+[**Screenshots**](https://github.com/m-audio91/SubzBor/wiki/Screenshots)   
+[**Tutorials and Guides**](https://github.com/m-audio91/SubzBor/wiki)  
+
+
 #### it supports the following formats:
 Available with internal codecs (ouput format = input format):
 * Subrip (srt)
@@ -44,10 +49,4 @@ Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com
 5. issues? please report [here](https://github.com/m-audio91/SubzBor/issues)  
 you also need to copy "Tools" folder from the latest SubzBor release next to your newly compiled executable. otherwise you can't split subtitles.  
 note: never compiled nor tested on MacOS. but you can help development for this platform too.  
-
-
-
-[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
-[**Screenshots**](https://github.com/m-audio91/SubzBor/wiki/Screenshots)   
-[**Tutorials and Guides**](https://github.com/m-audio91/SubzBor/wiki)
 
