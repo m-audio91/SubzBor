@@ -47,7 +47,7 @@ const
   AllFilesMask = '|*';
   FormatsWithInternalCodecs = 'ass '+'subrip ';
   DVDSubtitleFormat = 'dvd_subtitle';
-  urlFasubRip = 'http://mohammadrezab.blogsky.com/1395/09/27/post-21';
+  urlFasubRip = 'https://github.com/m-audio91/FaSubrip';
   urlHome = 'http://mohammadrezab.blogsky.com';
   urlFFmpeg = 'https://www.ffmpeg.org';
   urlMkvToolNix = 'https://mkvtoolnix.download';
