@@ -7,7 +7,7 @@ It's main purpose is to cut subtitles and keep them in sync while their movie is
 so there is no need to HardSub (burn in) nor any other complicated manual editing.  
 
 
-[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases/latest)  
+[**Download Latest Version**](https://github.com/m-audio91/SubzBor/releases)  
 [**Screenshots**](https://github.com/m-audio91/SubzBor/wiki/Screenshots)   
 [**Tutorials and Guides**](https://github.com/m-audio91/SubzBor/wiki)  
 
