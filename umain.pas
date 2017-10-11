@@ -96,7 +96,7 @@ type
     FProcInfo: TSubzBorProcInfo;
     FProcResult: TSubzBorProcResult;
     FProcThread: TSubzBorProcThread;
-    procedure CurrectFormSize;
+    procedure CorrectFormSize;
     procedure Status(const MsgType, Msg: String; Bar: boolean = False;
       BarPos: Word = 0; HideBarAfter: Word = 0);
     procedure SetGlyphs;
@@ -213,7 +213,7 @@ begin
   end;
 end;
 
-procedure TSBMain.CurrectFormSize;
+procedure TSBMain.CorrectFormSize;
 var
   MinW: Integer;
 begin
@@ -226,7 +226,7 @@ end;
 procedure TSBMain.FormShow(Sender: TObject);
 begin
   SetGlyphs;
-  CurrectFormSize;
+  CorrectFormSize;
   ListTranslations;
   HandleTranslation(LangID);
 end;
