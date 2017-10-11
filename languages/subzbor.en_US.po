@@ -93,6 +93,15 @@ msgstr "Now select and translate every line"
 msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
 msgstr "Additionally, if you want to update or fix an already existing translation, feel free to do it. just start with it's PO file."
 
+#: tsbmain.addoffsettoselected.caption
+msgid "تاخیر-تعجیل گروهی"
+msgstr "Grouped Delay-Hurry"
+
+#: tsbmain.addoffsettoselected.hint
+msgctxt "tsbmain.addoffsettoselected.hint"
+msgid "تاخیر-تعجیل گروهی"
+msgstr "Grouped Delay-Hurry"
+
 #: tsbmain.addtimeslice.caption
 msgctxt "tsbmain.addtimeslice.caption"
 msgid "اضافه"
@@ -281,6 +290,14 @@ msgstr "These settings will remain until program close or clicking the Reset but
 msgctxt "uresourcestrings.rsallfiles"
 msgid "همه فایل ها"
 msgstr "All files"
+
+#: uresourcestrings.rsapplyglobaloffset
+msgid ""
+"در اینجا می توانید مقداری +تاخیر یا -تعجیل به زمان بندی های\n"
+"انتخاب شده در فهرست بی افزایید.\n"
+msgstr ""
+"Here you can apply some +Delay-Hurry to all the\n"
+"selected timings in the list.\n"
 
 #: uresourcestrings.rscancel
 msgctxt "uresourcestrings.rscancel"

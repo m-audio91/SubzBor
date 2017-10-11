@@ -110,6 +110,16 @@ msgstr "همه ی خطوط را به زبان موردنظر ترجمه کنید
 msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
 msgstr "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
 
+#: tsbmain.addoffsettoselected.caption
+msgid "تاخیر-تعجیل گروهی"
+msgstr "تاخیر-تعجیل گروهی"
+
+#: tsbmain.addoffsettoselected.hint
+#| msgid "حذف"
+msgctxt "tsbmain.addoffsettoselected.hint"
+msgid "تاخیر-تعجیل گروهی"
+msgstr "تاخیر-تعجیل گروهی"
+
 #: tsbmain.addtimeslice.caption
 msgctxt "tsbmain.addtimeslice.caption"
 msgid "اضافه"
@@ -309,6 +319,14 @@ msgstr "این تنظیمات تا زمان بستن نرم افزار یا کل
 msgctxt "uresourcestrings.rsallfiles"
 msgid "همه فایل ها"
 msgstr "همه فایل ها"
+
+#: uresourcestrings.rsapplyglobaloffset
+msgid ""
+"در اینجا می توانید مقداری +تاخیر یا -تعجیل به زمان بندی های\n"
+"انتخاب شده در فهرست بی افزایید.\n"
+msgstr ""
+"در اینجا می توانید مقداری +تاخیر یا -تعجیل به زمان بندی های\n"
+"انتخاب شده در فهرست بی افزایید.\n"
 
 #: uresourcestrings.rscancel
 msgctxt "uresourcestrings.rscancel"
