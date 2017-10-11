@@ -24,7 +24,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LazFileUtils, Forms, Controls, Graphics, Dialogs,
-  LclIntf, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
+  LclIntf, LCLType, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
   uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
@@ -83,6 +83,8 @@ type
     procedure TimeSlicesListDblClick(Sender: TObject);
     procedure AddTimeSliceClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FLangID: String;
     FLangsDir: String;
@@ -136,6 +138,15 @@ begin
   FInputsFormatDefined := False;
   FFormatSettings := DefaultTimeCodeFormatSettings;
   FTimecodeHasFrameNo := False;
+end;
+
+procedure TSBMain.TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+  VK_DELETE: DeleteTimeSlice.Click;
+  VK_RETURN: EditTimeSlice.Click;
+  end;
 end;
 
 procedure TSBMain.SetGlyphs;
@@ -302,15 +313,13 @@ procedure TSBMain.EditTimeSliceClick(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
 begin
+  if TimeSlicesList.ItemIndex < 0 then Exit;
   tse := TTimeSliceEditEx.Create(Self);
   try
-    if TimeSlicesList.ItemIndex >= 0 then
-    begin
-      tse.Value := TimeSlicesList.Items[TimeSlicesList.ItemIndex];
-      tse.ShowModal;
-      if tse.ModalResult = mrOk then
-        TimeSlicesList.Items[TimeSlicesList.ItemIndex] := tse.Value;
-    end;
+    tse.Value := TimeSlicesList.Items[TimeSlicesList.ItemIndex];
+    tse.ShowModal;
+    if tse.ModalResult = mrOk then
+      TimeSlicesList.Items[TimeSlicesList.ItemIndex] := tse.Value;
   finally
     tse.Free;
   end;

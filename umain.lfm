@@ -5,7 +5,7 @@ object SBMain: TSBMain
   Width = 500
   AllowDropFiles = True
   Caption = 'SubzBor v1.4.5'
-  ClientHeight = 329
+  ClientHeight = 330
   ClientWidth = 500
   Constraints.MinHeight = 350
   Constraints.MinWidth = 500
@@ -37,7 +37,7 @@ object SBMain: TSBMain
       Left = 6
       Height = 20
       Top = 14
-      Width = 212
+      Width = 184
       Align = alLeft
       BorderSpacing.Left = 6
       BorderSpacing.Top = 14
@@ -141,7 +141,7 @@ object SBMain: TSBMain
   end
   object SubtitleFileL: TLabel
     Left = 8
-    Height = 17
+    Height = 15
     Top = 50
     Width = 484
     Align = alTop
@@ -156,8 +156,8 @@ object SBMain: TSBMain
   object SubtitleFile: TFileNameEdit
     Tag = 6
     Left = 8
-    Height = 27
-    Top = 67
+    Height = 23
+    Top = 65
     Width = 484
     OnAcceptFileName = SubtitleFileAcceptFileName
     FilterIndex = 0
@@ -209,8 +209,8 @@ object SBMain: TSBMain
   end
   object TimeSlicesList: TListBox
     Left = 8
-    Height = 155
-    Top = 118
+    Height = 164
+    Top = 112
     Width = 484
     Align = alClient
     BorderSpacing.Left = 8
@@ -219,26 +219,26 @@ object SBMain: TSBMain
     ItemHeight = 0
     MultiSelect = True
     OnDblClick = TimeSlicesListDblClick
+    OnKeyDown = TimeSlicesListKeyDown
     ScrollWidth = 482
     TabOrder = 3
-    TopIndex = -1
   end
   object StatusBar: TPanel
     Left = 0
-    Height = 27
-    Top = 302
+    Height = 25
+    Top = 305
     Width = 500
     Align = alBottom
     AutoSize = True
     BorderSpacing.Top = 2
     BevelOuter = bvLowered
-    ClientHeight = 27
+    ClientHeight = 25
     ClientWidth = 500
     ParentColor = False
     TabOrder = 5
     object StatusMsg: TLabel
       Left = 8
-      Height = 17
+      Height = 15
       Top = 5
       Width = 484
       Align = alTop
@@ -257,7 +257,7 @@ object SBMain: TSBMain
   object DoSplitPanel: TPanel
     Left = 8
     Height = 25
-    Top = 275
+    Top = 278
     Width = 484
     Align = alBottom
     AutoSize = True
@@ -273,10 +273,10 @@ object SBMain: TSBMain
     ParentColor = False
     TabOrder = 4
     object DoSplit: TBitBtn
-      Left = 460
+      Left = 444
       Height = 25
       Top = 0
-      Width = 24
+      Width = 40
       Align = alRight
       AutoSize = True
       Caption = 'ببُر'
@@ -300,7 +300,7 @@ object SBMain: TSBMain
   object TimeSlicesListActions: TPanel
     Left = 8
     Height = 20
-    Top = 96
+    Top = 90
     Width = 484
     Align = alTop
     AutoSize = True
@@ -368,10 +368,10 @@ object SBMain: TSBMain
       ShowCaption = False
     end
     object TimeSlicesListL: TLabel
-      Left = 206
+      Left = 231
       Height = 20
       Top = 0
-      Width = 278
+      Width = 253
       Align = alRight
       BidiMode = bdRightToLeft
       Caption = 'لیست بازه های زمانی که قرار است "نگه داشته" بشوند:'
