@@ -194,12 +194,14 @@ begin
     begin
       ssa.LoadFromString(Sub);
       ssa.Events.Value := ssa.MakeNewFromRanges(FTimeSlices);
+      ssa.FixOverlapsForward;
       ssa.SaveToFile(FOutputFile, Enc.UTF8);
     end
     else if FProcInfo.InputFileExtension.Equals(extSrt) then
     begin
       Subrip.LoadFromString(Sub);
       Subrip.Events.Value := Subrip.MakeNewFromRanges(FTimeSlices);
+      Subrip.FixOverlapsForward;
       Subrip.SaveToFile(FOutputFile, Enc.UTF8);
     end;
   finally
@@ -227,6 +229,7 @@ begin
   try
     Subrip.LoadFromFile(FOutputFile);
     Subrip.Events.Value := Subrip.MakeNewFromRanges(FTimeSlices);
+    Subrip.FixOverlapsForward;
     Subrip.SaveToFile(FOutputFile);
   finally
     Subrip.Free;
