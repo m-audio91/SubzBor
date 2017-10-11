@@ -28,7 +28,7 @@ uses
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
   uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
-  CommonNumeralUtils, LCLTranslator;
+  CommonNumeralUtils, uNumEditFloat, LCLTranslator;
 
 type
 
@@ -63,6 +63,7 @@ type
     MenuSBLangDownloadMore: TMenuItem;
     MenuSBLangSep: TMenuItem;
     MenuSBGuide: TMenuItem;
+    AddOffsetToSelected: TSpeedButton;
     procedure IniPropsRestoringProperties(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
     procedure MenuSBLangDownloadMoreClick(Sender: TObject);
@@ -85,6 +86,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure AddOffsetToSelectedClick(Sender: TObject);
   private
     FLangID: String;
     FLangsDir: String;
@@ -146,6 +148,33 @@ begin
   case Key of
   VK_DELETE: DeleteTimeSlice.Click;
   VK_RETURN: EditTimeSlice.Click;
+  $41,$61: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
+  end;
+end;
+
+procedure TSBMain.AddOffsetToSelectedClick(Sender: TObject);
+var
+  ne: TNumEditFloat;
+  ts: TTimeSlice;
+  i: Integer;
+begin
+  ne := TNumEditFloat.Create(Self);
+  try
+    ne.DecimalPlaces := 3;
+    ne.HeaderText := rsApplyGlobalOffset;
+    ne.ShowModal;
+    if ne.ModalResult = mrOK then
+      for i := 0 to TimeSlicesList.Count-1 do
+      begin
+        if TimeSlicesList.Selected[i] then
+        begin
+          ts.ValueAsStringEx := TimeSlicesList.Items[i];
+          ts.Delay := ts.Delay+ne.Value;
+          TimeSlicesList.Items[i] := ts.ValueAsStringEx;
+        end;
+      end;
+  finally
+    ne.Free;
   end;
 end;
 
@@ -158,6 +187,7 @@ begin
   SBDatas.ChangeGlyph(SaveTimeSlices);
   SBDatas.ChangeGlyph(LoadTimeSlices);
   SBDatas.ChangeGlyph(SubtitleFile);
+  SBDatas.ChangeGlyph(AddOffsetToSelected);
 end;
 
 procedure TSBMain.DefineUserInputsFormat;
