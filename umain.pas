@@ -175,7 +175,7 @@ procedure TSBMain.ConvertFrameNoToMillisec(var TS: TTimeSlice);
   begin
     Result := val;
     ForceInRange(Result,0,fps);
-    Result := Round(1000/fps)*Result;
+    Result := FloatRound((1000/fps)*Result, 3);
     ForceInRange(Result,0,999);
   end;
 
