@@ -297,7 +297,7 @@ msgid ""
 "انتخاب شده در فهرست بی افزایید.\n"
 msgstr ""
 "Here you can apply some +Delay-Hurry to all the\n"
-"selected timings in the list.\n"
+"selected timings in the list at once.\n"
 
 #: uresourcestrings.rscancel
 msgctxt "uresourcestrings.rscancel"
