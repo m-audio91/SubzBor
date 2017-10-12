@@ -39,7 +39,9 @@ Available with MKVToolNix (ouput format = input format):
 * VobSub (idx|sub)
 * Presentation Graphic Stream (sup)
 
-Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
+Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com   
+  
+[![Image of SubzBor](http://s1.softpedia-static.com/_img/sp100free.png?1)](http://www.softpedia.com/get/Multimedia/Video/Other-VIDEO-Tools/SubzBor.shtml#status)  
   
 #### compilation guide:  
 1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) and [CodecUtils](https://github.com/m-audio91/CodecUtils) repositories.
