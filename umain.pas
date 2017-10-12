@@ -84,11 +84,9 @@ type
     procedure TimeSlicesListDblClick(Sender: TObject);
     procedure AddTimeSliceClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
+    procedure GlobalKeyDownHandler(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure AddOffsetToSelectedClick(Sender: TObject);
-    procedure SubtitleFileKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
   private
     FLangID: String;
     FLangsDir: String;
@@ -147,12 +145,13 @@ begin
   FTimecodeHasFrameNo := False;
 end;
 
-procedure TSBMain.TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
+procedure TSBMain.GlobalKeyDownHandler(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   case Key of
-  VK_DELETE: DeleteTimeSlice.Click;
-  VK_RETURN: EditTimeSlice.Click;
+  VK_DELETE: if Shift = [] then DeleteTimeSlice.Click;
+  VK_RETURN: if Shift = [] then EditTimeSlice.Click
+    else if Shift = [ssCtrl] then TFileNameEditHack(SubtitleFile).RunDialog;
   VK_A: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
   VK_N: if Shift = [ssCtrl] then AddTimeSlice.Click;
   VK_O: if Shift = [ssCtrl] then LoadTimeSlices.Click;
@@ -186,13 +185,6 @@ begin
   finally
     ne.Free;
   end;
-end;
-
-procedure TSBMain.SubtitleFileKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  if (Key = VK_RETURN) and (Shift = [ssCtrl]) then
-    TFileNameEditHack(Sender as TFileNameEdit).RunDialog;
 end;
 
 procedure TSBMain.SetGlyphs;

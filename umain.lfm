@@ -206,7 +206,7 @@ object SBMain: TSBMain
     BorderSpacing.Right = 8
     MaxLength = 0
     TabOrder = 1
-    OnKeyDown = SubtitleFileKeyDown
+    OnKeyDown = GlobalKeyDownHandler
   end
   object TimeSlicesList: TListBox
     Left = 8
@@ -220,7 +220,7 @@ object SBMain: TSBMain
     ItemHeight = 0
     MultiSelect = True
     OnDblClick = TimeSlicesListDblClick
-    OnKeyDown = TimeSlicesListKeyDown
+    OnKeyDown = GlobalKeyDownHandler
     ScrollWidth = 482
     TabOrder = 3
   end
@@ -282,6 +282,7 @@ object SBMain: TSBMain
       AutoSize = True
       Caption = 'ببُر'
       OnClick = DoSplitClick
+      OnKeyDown = GlobalKeyDownHandler
       TabOrder = 0
     end
     object Progress: TProgressBar
