@@ -307,10 +307,7 @@ end;
 procedure TSBMain.FormDropFiles(Sender: TObject;
   const FileNames: array of String);
 begin
-  if CompareFileExt(FileNames[0], extText) = 0 then
-    LoadTimeSlicesFromFile(FileNames[0])
-  else
-    SubtitleFile.Text := FileNames[0];
+  SubtitleFile.Text := FileNames[0];
   SetInitialDirs(ExtractFilePath(FileNames[0]));
 end;
 
