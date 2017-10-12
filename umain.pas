@@ -87,6 +87,8 @@ type
     procedure TimeSlicesListKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure AddOffsetToSelectedClick(Sender: TObject);
+    procedure SubtitleFileKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FLangID: String;
     FLangsDir: String;
@@ -125,6 +127,9 @@ type
     property LangID: String read FLangID write FLangID;
   end;
 
+  TFileNameEditHack = class(TFileNameEdit)
+  end;
+
 var
   SBMain: TSBMain;
 
@@ -148,7 +153,12 @@ begin
   case Key of
   VK_DELETE: DeleteTimeSlice.Click;
   VK_RETURN: EditTimeSlice.Click;
-  $41,$61: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
+  VK_A: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
+  VK_N: if Shift = [ssCtrl] then AddTimeSlice.Click;
+  VK_O: if Shift = [ssCtrl] then LoadTimeSlices.Click;
+  VK_S: if Shift = [ssCtrl] then SaveTimeSlices.Click;
+  VK_D: if Shift = [ssCtrl] then AddOffsetToSelected.Click;
+  VK_R: if Shift = [ssCtrl] then ClearTimeSlices.Click;
   end;
 end;
 
@@ -176,6 +186,13 @@ begin
   finally
     ne.Free;
   end;
+end;
+
+procedure TSBMain.SubtitleFileKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssCtrl]) then
+    TFileNameEditHack(Sender as TFileNameEdit).RunDialog;
 end;
 
 procedure TSBMain.SetGlyphs;

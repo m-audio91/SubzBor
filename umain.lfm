@@ -1,7 +1,7 @@
 object SBMain: TSBMain
-  Left = 542
+  Left = 600
   Height = 350
-  Top = 198
+  Top = 201
   Width = 500
   AllowDropFiles = True
   Caption = 'SubzBor v1.4.5'
@@ -206,6 +206,7 @@ object SBMain: TSBMain
     BorderSpacing.Right = 8
     MaxLength = 0
     TabOrder = 1
+    OnKeyDown = SubtitleFileKeyDown
   end
   object TimeSlicesList: TListBox
     Left = 8
@@ -690,6 +691,7 @@ object SBMain: TSBMain
     Top = 160
     object MenuSBPrefs: TMenuItem
       Caption = 'تنظیمات'
+      ShortCut = 113
       OnClick = MenuSBPrefsClick
     end
     object MenuSBAbout: TMenuItem
@@ -698,6 +700,7 @@ object SBMain: TSBMain
     end
     object MenuSBGuide: TMenuItem
       Caption = 'آموزش'
+      ShortCut = 112
       OnClick = MenuSBGuideClick
     end
     object MenuSBLang: TMenuItem
