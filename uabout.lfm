@@ -243,7 +243,7 @@ object SBAbout: TSBAbout
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
     BorderSpacing.Right = 8
-    Caption = '1.4.5'
+    Caption = '1.5.9'
     ParentColor = False
   end
   object Logo1: TImage
