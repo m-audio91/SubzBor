@@ -38,7 +38,6 @@ type
     DoSplit: TBitBtn;
     SubtitleFile: TFileNameEdit;
     SubtitleFileL: TLabel;
-    StatusMsg: TLabel;
     TimeSlicesListL: TLabel;
     TimeSlicesList: TListBox;
     Logo: TImage;
@@ -46,7 +45,6 @@ type
     Description: TLabel;
     MenuSBPrefs: TMenuItem;
     MenuSBAbout: TMenuItem;
-    StatusBar: TPanel;
     DoSplitPanel: TPanel;
     TimeSlicesListActions: TPanel;
     AddTimeSlice: TSpeedButton;
@@ -64,6 +62,7 @@ type
     MenuSBLangSep: TMenuItem;
     MenuSBGuide: TMenuItem;
     AddOffsetToSelected: TSpeedButton;
+    StatsBar: TStatusBar;
     procedure IniPropsRestoringProperties(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
     procedure MenuSBLangDownloadMoreClick(Sender: TObject);
@@ -87,7 +86,11 @@ type
     procedure GlobalKeyDownHandler(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure AddOffsetToSelectedClick(Sender: TObject);
+    procedure StatsBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+      const Rect: TRect);
   private
+    FStatusMsg: String;
+    FStatusTextStyle: TTextStyle;
     FLangID: String;
     FLangsDir: String;
     FFormatSettings: TTimeCodeFormatSettings;
@@ -140,6 +143,10 @@ implementation
 
 procedure TSBMain.FormCreate(Sender: TObject);
 begin
+  FStatusMsg := EmptyStr;
+  FStatusTextStyle := Default(TTextStyle);
+  FStatusTextStyle.Layout := tlCenter;
+  FStatusTextStyle.EndEllipsis := True;
   FInputsFormatDefined := False;
   FFormatSettings := DefaultTimeCodeFormatSettings;
   FTimecodeHasFrameNo := False;
@@ -268,7 +275,7 @@ var
   MinW: Integer;
 begin
   MinW := Canvas.TextWidth(rsHint +': ' +rsExportingImgBased);
-  MinW := MinW+StatusMsg.BorderSpacing.Left+StatusMsg.BorderSpacing.Right+4;
+  StatsBar.Panels[0].Width := MinW;
   Constraints.MinWidth := MinW;
   TimeSlicesList.ScrollWidth := 0;
 end;
@@ -635,7 +642,11 @@ begin
   bd := Application.Direction(GetDefaultLang);
   TimeSlicesListL.BiDiMode := bd;
   SubtitleFileL.BiDiMode := bd;
-  StatusMsg.BiDiMode := bd;
+  FStatusTextStyle.RightToLeft := bd = BdRightToLeft;
+  if FStatusTextStyle.RightToLeft then
+    FStatusTextStyle.Alignment := taRightJustify
+  else
+    FStatusTextStyle.Alignment := taLeftJustify;
   SBPrefs.SaveToolsLogs.BiDiMode := bd;
   SBPrefs.AutoSaveTSList.BiDiMode := bd;
   SBPrefs.UseInternalSplitter.BiDiMode := bd;
@@ -662,8 +673,8 @@ end;
 procedure TSBMain.Status(const MsgType, Msg: String; Bar: boolean; BarPos: Word;
   HideBarAfter: Word);
 begin
-  StatusMsg.Caption := MsgType +': ' +Msg;
-  StatusMsg.Hint := MsgType +': ' +Msg;
+  FStatusMsg := MsgType +': ' +Msg;
+  StatsBar.Repaint;
   Progress.Visible := Bar;
   DoSplit.Enabled := not Bar;
   Progress.Position := BarPos;
@@ -673,6 +684,17 @@ begin
     SBDatas.TheTimer.OnTimer := @HideProgress;
     SBDatas.TheTimer.Enabled := True;
   end;
+end;
+
+procedure TSBMain.StatsBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+  const Rect: TRect);
+var
+  TheRect: TRect;
+begin
+  if Panel.Index <> 0 then Exit;
+  TheRect := Rect;
+  TheRect.Inflate(0,0,-16,0);
+  StatusBar.Canvas.TextRect(TheRect, 6, 0, FStatusMsg, FStatusTextStyle);
 end;
 
 procedure TSBMain.HideProgress(Sender: TObject);

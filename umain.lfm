@@ -210,7 +210,7 @@ object SBMain: TSBMain
   end
   object TimeSlicesList: TListBox
     Left = 8
-    Height = 164
+    Height = 166
     Top = 112
     Width = 484
     Align = alClient
@@ -224,41 +224,10 @@ object SBMain: TSBMain
     ScrollWidth = 482
     TabOrder = 3
   end
-  object StatusBar: TPanel
-    Left = 0
-    Height = 25
-    Top = 305
-    Width = 500
-    Align = alBottom
-    AutoSize = True
-    BorderSpacing.Top = 2
-    BevelOuter = bvLowered
-    ClientHeight = 25
-    ClientWidth = 500
-    ParentColor = False
-    TabOrder = 5
-    object StatusMsg: TLabel
-      Left = 8
-      Height = 15
-      Top = 5
-      Width = 484
-      Align = alTop
-      BidiMode = bdRightToLeft
-      BorderSpacing.Left = 7
-      BorderSpacing.Top = 4
-      BorderSpacing.Right = 7
-      BorderSpacing.Bottom = 4
-      Caption = 'اشاره ها'
-      ParentBidiMode = False
-      ParentColor = False
-      ParentShowHint = False
-      ShowHint = True
-    end
-  end
   object DoSplitPanel: TPanel
     Left = 8
     Height = 25
-    Top = 278
+    Top = 280
     Width = 484
     Align = alBottom
     AutoSize = True
@@ -676,6 +645,20 @@ object SBMain: TSBMain
       OnClick = AddOffsetToSelectedClick
       ShowCaption = False
     end
+  end
+  object StatsBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 307
+    Width = 500
+    BorderSpacing.Top = 2
+    Panels = <    
+      item
+        Style = psOwnerDraw
+        Width = 50
+      end>
+    SimplePanel = False
+    OnDrawPanel = StatsBarDrawPanel
   end
   object IniProps: TIniPropStorage
     StoredValues = <>
