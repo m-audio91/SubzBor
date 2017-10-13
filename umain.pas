@@ -589,6 +589,7 @@ end;
 
 procedure TSBMain.OnLangSelect(Sender: TObject);
 begin
+  if not DoSplit.Enabled then Exit;
   LangID := (Sender as TMenuItem).Caption;
   HandleTranslation(LangID);
 end;
