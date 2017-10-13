@@ -1,6 +1,7 @@
 unit uAbout;
 { this file is part of SubzBor.
-  SubzBor is a Free subtitle cutting tool with the help of FFmpeg and MKVToolNix
+  SubzBor is a Free subtitle cutting tool with the help of FFmpeg, MKVToolNix
+  and it's own set of internal codecs.
 
   Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com
 
