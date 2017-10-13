@@ -94,6 +94,7 @@ msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه 
 msgstr "Additionally, if you want to update or fix an already existing translation, feel free to do it. just start with it's PO file."
 
 #: tsbmain.addoffsettoselected.caption
+msgctxt "tsbmain.addoffsettoselected.caption"
 msgid "تاخیر-تعجیل گروهی"
 msgstr "Grouped Delay-Hurry"
 
@@ -190,10 +191,6 @@ msgstr "Save to file"
 msgctxt "tsbmain.savetimeslices.hint"
 msgid "ذخیره"
 msgstr "Save to file"
-
-#: tsbmain.statusmsg.caption
-msgid "اشاره ها"
-msgstr "Hints"
 
 #: tsbmain.subtitlefilel.caption
 msgid "زیرنویس:"
@@ -352,13 +349,9 @@ msgstr "Framerate"
 msgid "اشاره"
 msgstr "Hint"
 
-#: uresourcestrings.rsinvalidtimeslice
-msgid "زمان بندی معتبر نیست. زمان شروع بیشتر یا مساوی زمان پایان نباشد"
-msgstr "Timing is not correct. Start time should be lesser than end time"
-
 #: uresourcestrings.rsinvalidtimeslices
 msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
-msgstr "Timings are invalid. either you didn't entered anything or they are not incremental in sequence"
+msgstr "Timings are invalid. either you didn't entered anything or they are not incremental in sequence or overlapping each other"
 
 #: uresourcestrings.rsismillisecondaframeno
 msgid "آیا هزارم ثانیه، شماره فریم است؟"
@@ -544,3 +537,4 @@ msgstr "Second"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "Start"
+

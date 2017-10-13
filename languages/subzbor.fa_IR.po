@@ -111,6 +111,7 @@ msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه 
 msgstr "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
 
 #: tsbmain.addoffsettoselected.caption
+msgctxt "tsbmain.addoffsettoselected.caption"
 msgid "تاخیر-تعجیل گروهی"
 msgstr "تاخیر-تعجیل گروهی"
 
@@ -209,10 +210,6 @@ msgstr "ذخیره"
 msgctxt "tsbmain.savetimeslices.hint"
 msgid "ذخیره"
 msgstr "ذخیره"
-
-#: tsbmain.statusmsg.caption
-msgid "اشاره ها"
-msgstr "اشاره ها"
 
 #: tsbmain.subtitlefilel.caption
 msgid "زیرنویس:"
@@ -380,10 +377,6 @@ msgstr "نرخ تصویر"
 #: uresourcestrings.rshint
 msgid "اشاره"
 msgstr "اشاره"
-
-#: uresourcestrings.rsinvalidtimeslice
-msgid "زمان بندی معتبر نیست. زمان شروع بیشتر یا مساوی زمان پایان نباشد"
-msgstr "زمان بندی معتبر نیست. زمان شروع بیشتر یا مساوی زمان پایان نباشد"
 
 #: uresourcestrings.rsinvalidtimeslices
 msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد نکرده اید یا روی بعدی افتاده اند"
@@ -588,3 +581,4 @@ msgstr "ثانیه"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "شروع"
+
