@@ -33,7 +33,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="4"/>
+      <BuildNr Value="8"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.6.3.0"/>
     </VersionInfo>
     <BuildModes Count="3">

@@ -373,6 +373,7 @@ end;
 
 procedure TSBMain.ClearTimeSlicesClick(Sender: TObject);
 begin
+  SubtitleFile.Clear;
   TimeSlicesList.Items.Clear;
   FormCreate(Self);
 end;
