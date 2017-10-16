@@ -129,9 +129,6 @@ type
     property LangID: String read FLangID write FLangID;
   end;
 
-  TFileNameEditHack = class(TFileNameEdit)
-  end;
-
 var
   SBMain: TSBMain;
 
@@ -159,7 +156,7 @@ begin
   case Key of
   VK_DELETE: if Shift = [] then DeleteTimeSlice.Click;
   VK_RETURN: if Shift = [] then EditTimeSlice.Click
-    else if Shift = [ssCtrl] then TFileNameEditHack(SubtitleFile).RunDialog;
+    else if Shift = [ssCtrl] then SubtitleFile.ShowDialog;
   VK_A: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
   VK_N: if Shift = [ssCtrl] then AddTimeSlice.Click;
   VK_O: if Shift = [ssCtrl] then LoadTimeSlices.Click;
