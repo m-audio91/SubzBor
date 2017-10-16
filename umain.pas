@@ -29,7 +29,7 @@ uses
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
   uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
-  CommonNumeralUtils, uNumEditFloat, LCLTranslator;
+  CommonNumeralUtils, uNumEditFloat, LCLTranslator, CommonStrUtils;
 
 type
 
@@ -403,6 +403,9 @@ begin
       if tsl.Incremental then Exit;
 
       sl.LoadFromFile(F);
+      for i := sl.Count-1 downto 0 do
+        if IsEmptyStr(sl[i]) then
+          sl.Delete(i);
       ts.Initialize(FFormatSettings.MillisecondPrecision, FFormatSettings.MajorSep,
         FFormatSettings.MinorSep, DefaultTimeSliceSep);
       tsl.Count := sl.Count;
