@@ -406,17 +406,16 @@ begin
       if tsl.Incremental then Exit;
 
       sl.LoadFromFile(F);
+      ts.Initialize(FFormatSettings.MillisecondPrecision, FFormatSettings.MajorSep,
+        FFormatSettings.MinorSep, DefaultTimeSliceSep);
+      tsl.Count := sl.Count;
       for i := 0 to sl.Count-1 do
       begin
-        ts.Initialize(FFormatSettings.MillisecondPrecision, FFormatSettings.MajorSep,
-          FFormatSettings.MinorSep, DefaultTimeSliceSep);
         ts.ValueAsString := sl[i];
-        ts.Initialize;
         if FTimecodeHasFrameNo then
           ConvertFrameNoToMillisec(ts);
-        sl[i] := ts.ValueAsStringEx;
+        tsl.Values[i] := ts;
       end;
-      tsl.ExtendedValue := sl.Text;
       if not tsl.Incremental then
         raise Exception.Create(rsFatal);
     finally
