@@ -1,6 +1,6 @@
 # SubzBor  
 ![Image of SubzBor](https://github.com/m-audio91/SubzBor/raw/master/extra/icon/128.png)  
-v1.6.0
+v1.6.3
 
 SubzBor is a Graphical User Interface that uses FFmpeg, MKVmerge, MKVextract and it's own internal codecs to cut (split) subtitles.  
 It's main purpose is to cut subtitles and keep them in sync while their movie is being edited in any frame accurate video editor that does not support subtitle processing.  
