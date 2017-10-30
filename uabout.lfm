@@ -1,8 +1,8 @@
 object SBAbout: TSBAbout
   Left = 607
-  Height = 449
+  Height = 390
   Top = 219
-  Width = 400
+  Width = 548
   HorzScrollBar.Page = 400
   HorzScrollBar.Range = 400
   VertScrollBar.Page = 310
@@ -11,19 +11,18 @@ object SBAbout: TSBAbout
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'About SubzBor'
-  ClientHeight = 449
-  ClientWidth = 400
+  ClientHeight = 390
+  ClientWidth = 548
   Constraints.MinHeight = 350
   Constraints.MinWidth = 400
   DefaultMonitor = dmMainForm
   OnCreate = FormCreate
   Position = poMainFormCenter
-  LCLVersion = '1.9.0.0'
   object Logo: TImage
     Left = 0
     Height = 64
     Top = 0
-    Width = 400
+    Width = 548
     Align = alTop
     AutoSize = True
     BorderSpacing.Bottom = 12
@@ -158,9 +157,9 @@ object SBAbout: TSBAbout
   end
   object Description: TLabel
     Left = 8
-    Height = 150
+    Height = 170
     Top = 76
-    Width = 384
+    Width = 532
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -172,9 +171,9 @@ object SBAbout: TSBAbout
   end
   object LinksBox: TPanel
     Left = 8
-    Height = 0
-    Top = 354
-    Width = 384
+    Height = 1
+    Top = 381
+    Width = 532
     Align = alTop
     AutoSize = True
     BorderSpacing.Left = 8
@@ -188,9 +187,9 @@ object SBAbout: TSBAbout
   end
   object ContactBox: TPanel
     Left = 8
-    Height = 0
-    Top = 329
-    Width = 384
+    Height = 1
+    Top = 353
+    Width = 532
     Align = alTop
     AutoSize = True
     BorderSpacing.Left = 8
@@ -204,9 +203,9 @@ object SBAbout: TSBAbout
   end
   object ContactMe: TLabel
     Left = 8
-    Height = 15
-    Top = 312
-    Width = 384
+    Height = 17
+    Top = 334
+    Width = 532
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -218,9 +217,9 @@ object SBAbout: TSBAbout
   end
   object UsedTools: TLabel
     Left = 8
-    Height = 15
-    Top = 337
-    Width = 384
+    Height = 17
+    Top = 362
+    Width = 532
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -235,22 +234,22 @@ object SBAbout: TSBAbout
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 368
-    Height = 15
-    Top = 25
-    Width = 24
+    Left = 508
+    Height = 17
+    Top = 24
+    Width = 32
     Align = alCustom
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
     BorderSpacing.Right = 8
-    Caption = '1.6.3'
+    Caption = '1.6.5'
     ParentColor = False
   end
   object Logo1: TImage
     Left = 0
     Height = 51
-    Top = 249
-    Width = 400
+    Top = 271
+    Width = 548
     Align = alTop
     AutoSize = True
     BorderSpacing.Bottom = 12
@@ -370,9 +369,9 @@ object SBAbout: TSBAbout
   end
   object AppCopyright: TLabel
     Left = 8
-    Height = 15
-    Top = 234
-    Width = 384
+    Height = 17
+    Top = 254
+    Width = 532
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8

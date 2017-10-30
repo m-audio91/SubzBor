@@ -16,7 +16,7 @@ object SBCharEnc: TSBCharEnc
   LCLVersion = '1.9.0.0'
   object EncodingNameL: TLabel
     Left = 8
-    Height = 105
+    Height = 119
     Top = 8
     Width = 388
     Align = alTop
@@ -30,21 +30,21 @@ object SBCharEnc: TSBCharEnc
   end
   object EncodingName: TComboBox
     Left = 8
-    Height = 23
-    Top = 115
+    Height = 31
+    Top = 129
     Width = 388
     Align = alTop
     BorderSpacing.Left = 8
     BorderSpacing.Top = 2
     BorderSpacing.Right = 8
-    ItemHeight = 15
+    ItemHeight = 0
     Style = csDropDownList
     TabOrder = 0
   end
   object FaSubripAdL: TLabel
     Left = 8
-    Height = 30
-    Top = 146
+    Height = 34
+    Top = 168
     Width = 388
     Align = alTop
     BidiMode = bdRightToLeft

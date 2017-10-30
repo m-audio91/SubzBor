@@ -19,16 +19,16 @@ object SBi18nGuide: TSBi18nGuide
   ChildSizing.Layout = cclLeftToRightThenTopToBottom
   ChildSizing.ControlsPerLine = 1
   ClientHeight = 240
-  ClientWidth = 383
+  ClientWidth = 385
   Constraints.MinWidth = 400
   OnCreate = FormCreate
   Position = poMainFormCenter
   LCLVersion = '1.9.0.0'
   object i18nInstructionL: TLabel
     Left = 4
-    Height = 75
+    Height = 102
     Top = 4
-    Width = 375
+    Width = 377
     BidiMode = bdRightToLeft
     Caption = 'مراحل ترجمه نرم افزار به ترتیب تصاویر زیر انجام می گیرد. بعنوان مثال می خواهیم به زبان en-GB ترجمه کنیم.'#13#10'بعد از انجام کامل کار می توانید فایل مشخص در عکس نهایی را به ایمیل انتهای صفحه ارسال نمایید.'#13#10'یا حتی اگر اکانت GitHub دارید می توانید مستقیما pull request بدهید.'
     ParentBidiMode = False
@@ -38,8 +38,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image1: TImage
     Left = 4
     Height = 155
-    Top = 87
-    Width = 375
+    Top = 114
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -543,8 +543,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image2: TImage
     Left = 4
     Height = 335
-    Top = 250
-    Width = 375
+    Top = 277
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -982,8 +982,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image3: TImage
     Left = 4
     Height = 332
-    Top = 593
-    Width = 375
+    Top = 620
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -1347,8 +1347,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image4: TImage
     Left = 4
     Height = 188
-    Top = 933
-    Width = 375
+    Top = 960
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -1492,8 +1492,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image5: TImage
     Left = 4
     Height = 410
-    Top = 1129
-    Width = 375
+    Top = 1156
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -2104,8 +2104,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image6: TImage
     Left = 4
     Height = 361
-    Top = 1547
-    Width = 375
+    Top = 1574
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -3016,8 +3016,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image7: TImage
     Left = 4
     Height = 377
-    Top = 1916
-    Width = 375
+    Top = 1943
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -5097,8 +5097,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image8: TImage
     Left = 4
     Height = 454
-    Top = 2301
-    Width = 375
+    Top = 2328
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -7000,8 +7000,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image9: TImage
     Left = 4
     Height = 278
-    Top = 2763
-    Width = 375
+    Top = 2790
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -7811,8 +7811,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image10: TImage
     Left = 4
     Height = 511
-    Top = 3049
-    Width = 375
+    Top = 3076
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -10773,9 +10773,9 @@ object SBi18nGuide: TSBi18nGuide
   end
   object i18nTranslateAllLinesL: TLabel
     Left = 4
-    Height = 15
-    Top = 3568
-    Width = 375
+    Height = 17
+    Top = 3595
+    Width = 377
     BidiMode = bdRightToLeft
     Caption = 'همه ی خطوط را به زبان موردنظر ترجمه کنید'
     ParentBidiMode = False
@@ -10785,8 +10785,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image11: TImage
     Left = 4
     Height = 444
-    Top = 3591
-    Width = 375
+    Top = 3620
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -11777,8 +11777,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image12: TImage
     Left = 4
     Height = 204
-    Top = 4043
-    Width = 375
+    Top = 4072
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -12489,8 +12489,8 @@ object SBi18nGuide: TSBi18nGuide
   object Image13: TImage
     Left = 4
     Height = 308
-    Top = 4255
-    Width = 375
+    Top = 4284
+    Width = 377
     AutoSize = True
     Center = True
     Picture.Data = {
@@ -13497,9 +13497,9 @@ object SBi18nGuide: TSBi18nGuide
   end
   object UpdateExistingPoL: TLabel
     Left = 4
-    Height = 30
-    Top = 4571
-    Width = 375
+    Height = 51
+    Top = 4600
+    Width = 377
     BidiMode = bdRightToLeft
     Caption = 'همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید.'
     ParentBidiMode = False
