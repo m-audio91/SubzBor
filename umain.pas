@@ -25,18 +25,29 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LazFileUtils, Forms, Controls, Graphics, Dialogs,
-  LclIntf, LCLType, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
+  LclIntf, IniPropStorage, ExtCtrls, StdCtrls, Menus, EditBtn, ComCtrls,
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
   uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
-  CommonNumeralUtils, uNumEditFloat, LCLTranslator, CommonStrUtils;
+  CommonNumeralUtils, uNumEditFloat, LCLTranslator, ActnList, CommonStrUtils;
 
 type
 
   { TSBMain }
 
   TSBMain = class(TForm)
-    DoSplit: TBitBtn;
+    DoSplit: TButton;
+    ResetFormAct: TAction;
+    AddOffsetToTimingsAct: TAction;
+    SelectTimingsAct: TAction;
+    DeleteTimingsAct: TAction;
+    EditTimingAct: TAction;
+    NewTimingAct: TAction;
+    SaveTimingsAct: TAction;
+    OpenTimingsAct: TAction;
+    SaveSubtitleAct: TAction;
+    OpenSubtitleAct: TAction;
+    SBActions: TActionList;
     SubtitleFile: TFileNameEdit;
     SubtitleFileL: TLabel;
     TimeSlicesListL: TLabel;
@@ -48,12 +59,12 @@ type
     MenuSBAbout: TMenuItem;
     DoSplitPanel: TPanel;
     TimeSlicesListActions: TPanel;
-    AddTimeSlice: TSpeedButton;
-    EditTimeSlice: TSpeedButton;
-    DeleteTimeSlice: TSpeedButton;
-    ClearTimeSlices: TSpeedButton;
-    SaveTimeSlices: TSpeedButton;
-    LoadTimeSlices: TSpeedButton;
+    NewTiming: TSpeedButton;
+    EditTiming: TSpeedButton;
+    DeleteTimings: TSpeedButton;
+    ResetForm: TSpeedButton;
+    SaveTimingsFile: TSpeedButton;
+    OpenTimingsFile: TSpeedButton;
     TopMenu: TMainMenu;
     Header: TPanel;
     Progress: TProgressBar;
@@ -62,31 +73,32 @@ type
     MenuSBLangDownloadMore: TMenuItem;
     MenuSBLangSep: TMenuItem;
     MenuSBGuide: TMenuItem;
-    AddOffsetToSelected: TSpeedButton;
+    AddOffsetToTimings: TSpeedButton;
     StatsBar: TStatusBar;
     procedure IniPropsRestoringProperties(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
     procedure MenuSBLangDownloadMoreClick(Sender: TObject);
-    procedure DoSplitClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure FormShow(Sender: TObject);
-    procedure EditTimeSliceClick(Sender: TObject);
-    procedure DeleteTimeSliceClick(Sender: TObject);
-    procedure ClearTimeSlicesClick(Sender: TObject);
-    procedure LoadTimeSlicesClick(Sender: TObject);
     procedure MenuSBAboutClick(Sender: TObject);
     procedure MenuSBGuideClick(Sender: TObject);
     procedure MenuSBLangTranslateItClick(Sender: TObject);
-    procedure SaveTimeSlicesClick(Sender: TObject);
+    procedure OpenSubtitleActExecute(Sender: TObject); 
+    procedure SaveSubtitleActExecute(Sender: TObject); 
+    procedure OpenTimingsActExecute(Sender: TObject);
+    procedure SaveTimingsActExecute(Sender: TObject);
+    procedure NewTimingActExecute(Sender: TObject);
+    procedure EditTimingActExecute(Sender: TObject);
+    procedure SBActionsUpdate(AAction: TBasicAction; var Handled: Boolean);
+    procedure SelectTimingsActExecute(Sender: TObject);
+    procedure DeleteTimingsActExecute(Sender: TObject);
+    procedure AddOffsetToTimingsActExecute(Sender: TObject);
+    procedure ResetFormActExecute(Sender: TObject);
     procedure MenuSBPrefsClick(Sender: TObject);
     procedure SubtitleFileAcceptFileName(Sender: TObject; var Value: String);
     procedure TimeSlicesListDblClick(Sender: TObject);
-    procedure AddTimeSliceClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure GlobalKeyDownHandler(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure AddOffsetToSelectedClick(Sender: TObject);
     procedure StatsBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
   private
@@ -150,58 +162,16 @@ begin
   FTimecodeHasFrameNo := False;
 end;
 
-procedure TSBMain.GlobalKeyDownHandler(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  case Key of
-  VK_DELETE: if Shift = [] then DeleteTimeSlice.Click;
-  VK_RETURN: if Shift = [] then EditTimeSlice.Click
-    else if Shift = [ssCtrl] then SubtitleFile.ShowDialog;
-  VK_A: if Shift = [ssCtrl] then TimeSlicesList.SelectAll;
-  VK_N: if Shift = [ssCtrl] then AddTimeSlice.Click;
-  VK_O: if Shift = [ssCtrl] then LoadTimeSlices.Click;
-  VK_S: if Shift = [ssCtrl] then SaveTimeSlices.Click;
-  VK_D: if Shift = [ssCtrl] then AddOffsetToSelected.Click;
-  VK_R: if Shift = [ssCtrl] then ClearTimeSlices.Click;
-  end;
-end;
-
-procedure TSBMain.AddOffsetToSelectedClick(Sender: TObject);
-var
-  ne: TNumEditFloat;
-  ts: TTimeSlice;
-  i: Integer;
-begin
-  ne := TNumEditFloat.Create(Self);
-  try
-    ne.DecimalPlaces := 3;
-    ne.HeaderText := rsApplyGlobalOffset;
-    ne.ShowModal;
-    if ne.ModalResult = mrOK then
-      for i := 0 to TimeSlicesList.Count-1 do
-      begin
-        if TimeSlicesList.Selected[i] then
-        begin
-          ts.ValueAsStringEx := TimeSlicesList.Items[i];
-          ts.Delay := ts.Delay+ne.Value;
-          TimeSlicesList.Items[i] := ts.ValueAsStringEx;
-        end;
-      end;
-  finally
-    ne.Free;
-  end;
-end;
-
 procedure TSBMain.SetGlyphs;
 begin
-  SBDatas.ChangeGlyph(AddTimeSlice);
-  SBDatas.ChangeGlyph(EditTimeSlice);
-  SBDatas.ChangeGlyph(DeleteTimeSlice);
-  SBDatas.ChangeGlyph(ClearTimeSlices);
-  SBDatas.ChangeGlyph(SaveTimeSlices);
-  SBDatas.ChangeGlyph(LoadTimeSlices);
+  SBDatas.ChangeGlyph(NewTiming);
+  SBDatas.ChangeGlyph(EditTiming);
+  SBDatas.ChangeGlyph(DeleteTimings);
+  SBDatas.ChangeGlyph(ResetForm);
+  SBDatas.ChangeGlyph(SaveTimingsFile);
+  SBDatas.ChangeGlyph(OpenTimingsFile);
   SBDatas.ChangeGlyph(SubtitleFile);
-  SBDatas.ChangeGlyph(AddOffsetToSelected);
+  SBDatas.ChangeGlyph(AddOffsetToTimings);
 end;
 
 procedure TSBMain.DefineUserInputsFormat;
@@ -288,7 +258,7 @@ end;
 
 procedure TSBMain.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
-  if not DoSplit.Enabled then
+  if not SaveSubtitleAct.Enabled then
     CanClose := ShowWarnYN(rsCloseWhileProcWarn, rsWarn)
   else
     CanClose := True;
@@ -324,67 +294,7 @@ end;
 
 procedure TSBMain.TimeSlicesListDblClick(Sender: TObject);
 begin
-  EditTimeSliceClick(EditTimeSlice);
-end;
-
-procedure TSBMain.AddTimeSliceClick(Sender: TObject);
-var
-  tse: TTimeSliceEditEx;
-  ts: TTimeSlice;
-begin
-  if not FInputsFormatDefined then
-    DefineUserInputsFormat;
-  tse := TTimeSliceEditEx.Create(Self);
-  try
-    tse.PasteFormat := FFormatSettings;
-    tse.ShowModal;
-    if tse.ModalResult = mrOk then
-    begin
-      ts.ValueAsStringEx := tse.Value;
-      if FTimecodeHasFrameNo then
-        ConvertFrameNoToMillisec(ts);
-      TimeSlicesList.Items.Add(ts.ValueAsStringEx);
-    end;
-  finally
-    tse.Free;
-  end;
-end;
-
-procedure TSBMain.EditTimeSliceClick(Sender: TObject);
-var
-  tse: TTimeSliceEditEx;
-begin
-  if TimeSlicesList.ItemIndex < 0 then Exit;
-  tse := TTimeSliceEditEx.Create(Self);
-  try
-    tse.Value := TimeSlicesList.Items[TimeSlicesList.ItemIndex];
-    tse.ShowModal;
-    if tse.ModalResult = mrOk then
-      TimeSlicesList.Items[TimeSlicesList.ItemIndex] := tse.Value;
-  finally
-    tse.Free;
-  end;
-end;
-
-procedure TSBMain.DeleteTimeSliceClick(Sender: TObject);
-begin
-  ListBoxUtils.DeleteItems(TimeSlicesList);
-end;
-
-procedure TSBMain.ClearTimeSlicesClick(Sender: TObject);
-begin
-  SubtitleFile.Clear;
-  TimeSlicesList.Items.Clear;
-  FormCreate(Self);
-end;
-
-procedure TSBMain.LoadTimeSlicesClick(Sender: TObject);
-begin
-  with SBDatas.OpenDlg do
-  begin
-    if Not Execute Then Exit;
-    LoadTimeSlicesFromFile(FileName);
-  end;
+  EditTimingActExecute(Sender);
 end;
 
 procedure TSBMain.LoadTimeSlicesFromFile(const F: String);
@@ -426,30 +336,6 @@ begin
   except
     ShowError(rsTimeSliceFileNotRead, rsFatal);
   end;
-end;
-
-procedure TSBMain.SaveTimeSlicesClick(Sender: TObject);
-begin
-  if TimeSlicesList.Items.Count < 1 then Exit;
-  with SBDatas.SaveDlg do
-  begin
-    if SubtitleFile.Text <> EmptyStr then
-      FileName := GenFileName(SubtitleFile.Text, wCuts, extText, False);
-    if not Execute then Exit;
-    if CompareFileExt(FileName, extText) <> 0 then
-      FileName := FileName +extText;
-    try
-      TimeSlicesList.Items.SaveToFile(FileName);
-    except
-      on E: Exception do
-        ShowError(E.Message +LineEnding +rsTimeSliceFileNotSaved, rsFatal);
-    end;
-  end;
-end;
-
-procedure TSBMain.DoSplitClick(Sender: TObject);
-begin
-  StartProbe;
 end;
 
 procedure TSBMain.StartProbe;
@@ -579,6 +465,134 @@ begin
   SBi18nGuide.ShowModal;
 end;
 
+procedure TSBMain.OpenSubtitleActExecute(Sender: TObject);
+begin
+  SubtitleFile.RunDialog;
+end;
+
+procedure TSBMain.SaveSubtitleActExecute(Sender: TObject);
+begin
+  StartProbe;
+end;
+
+procedure TSBMain.OpenTimingsActExecute(Sender: TObject);
+begin
+  with SBDatas.OpenDlg do
+  begin
+    if Not Execute Then Exit;
+    LoadTimeSlicesFromFile(FileName);
+  end;
+end;
+
+procedure TSBMain.SaveTimingsActExecute(Sender: TObject);
+begin
+  if TimeSlicesList.Items.Count < 1 then Exit;
+  with SBDatas.SaveDlg do
+  begin
+    if SubtitleFile.Text <> EmptyStr then
+      FileName := GenFileName(SubtitleFile.Text, wCuts, extText, False);
+    if not Execute then Exit;
+    if CompareFileExt(FileName, extText) <> 0 then
+      FileName := FileName +extText;
+    try
+      TimeSlicesList.Items.SaveToFile(FileName);
+    except
+      on E: Exception do
+        ShowError(E.Message +LineEnding +rsTimeSliceFileNotSaved, rsFatal);
+    end;
+  end;
+end;
+
+procedure TSBMain.NewTimingActExecute(Sender: TObject);
+var
+  tse: TTimeSliceEditEx;
+  ts: TTimeSlice;
+begin
+  if not FInputsFormatDefined then
+    DefineUserInputsFormat;
+  tse := TTimeSliceEditEx.Create(Self);
+  try
+    tse.PasteFormat := FFormatSettings;
+    tse.ShowModal;
+    if tse.ModalResult = mrOk then
+    begin
+      ts.ValueAsStringEx := tse.Value;
+      if FTimecodeHasFrameNo then
+        ConvertFrameNoToMillisec(ts);
+      TimeSlicesList.Items.Add(ts.ValueAsStringEx);
+    end;
+  finally
+    tse.Free;
+  end;
+end;
+
+procedure TSBMain.EditTimingActExecute(Sender: TObject);
+var
+  tse: TTimeSliceEditEx;
+begin
+  if TimeSlicesList.ItemIndex < 0 then Exit;
+  tse := TTimeSliceEditEx.Create(Self);
+  try
+    tse.Value := TimeSlicesList.Items[TimeSlicesList.ItemIndex];
+    tse.ShowModal;
+    if tse.ModalResult = mrOk then
+      TimeSlicesList.Items[TimeSlicesList.ItemIndex] := tse.Value;
+  finally
+    tse.Free;
+  end;
+end;
+
+procedure TSBMain.SBActionsUpdate(AAction: TBasicAction; var Handled: Boolean);
+begin
+  EditTimingAct.Enabled := Self.ActiveControl = TimeSlicesList;
+  SelectTimingsAct.Enabled := Self.ActiveControl = TimeSlicesList;
+  DeleteTimingsAct.Enabled := Self.ActiveControl = TimeSlicesList;
+  AddOffsetToTimings.Enabled := Self.ActiveControl = TimeSlicesList;
+end;
+
+procedure TSBMain.SelectTimingsActExecute(Sender: TObject);
+begin
+  TimeSlicesList.SelectAll;
+end;
+
+procedure TSBMain.DeleteTimingsActExecute(Sender: TObject);
+begin
+  ListBoxUtils.DeleteItems(TimeSlicesList);
+end;
+
+procedure TSBMain.AddOffsetToTimingsActExecute(Sender: TObject);
+var
+  ne: TNumEditFloat;
+  ts: TTimeSlice;
+  i: Integer;
+begin
+  ne := TNumEditFloat.Create(Self);
+  try
+    ne.DecimalPlaces := 3;
+    ne.HeaderText := rsApplyGlobalOffset;
+    ne.ShowModal;
+    if ne.ModalResult = mrOK then
+      for i := 0 to TimeSlicesList.Count-1 do
+      begin
+        if TimeSlicesList.Selected[i] then
+        begin
+          ts.ValueAsStringEx := TimeSlicesList.Items[i];
+          ts.Delay := ts.Delay+ne.Value;
+          TimeSlicesList.Items[i] := ts.ValueAsStringEx;
+        end;
+      end;
+  finally
+    ne.Free;
+  end;
+end;
+
+procedure TSBMain.ResetFormActExecute(Sender: TObject);
+begin
+  SubtitleFile.Clear;
+  TimeSlicesList.Items.Clear;
+  FormCreate(Self);
+end;
+
 procedure TSBMain.SetInitialDirs(const Dir: String);
 begin
   SubtitleFile.InitialDir := Dir;
@@ -590,7 +604,7 @@ end;
 
 procedure TSBMain.OnLangSelect(Sender: TObject);
 begin
-  if not DoSplit.Enabled then Exit;
+  if not SaveSubtitleAct.Enabled then Exit;
   LangID := (Sender as TMenuItem).Caption;
   HandleTranslation(LangID);
 end;
@@ -678,7 +692,7 @@ begin
   FStatusMsg := MsgType +': ' +Msg;
   StatsBar.Repaint;
   Progress.Visible := Bar;
-  DoSplit.Enabled := not Bar;
+  SaveSubtitleAct.Enabled := not Bar;
   Progress.Position := BarPos;
   if Bar and (HideBarAfter > 0) then
   begin
@@ -702,7 +716,7 @@ end;
 procedure TSBMain.HideProgress(Sender: TObject);
 begin
   Progress.Visible := False;
-  DoSplit.Enabled := True;
+  SaveSubtitleAct.Enabled := True;
   SBDatas.TheTimer.Enabled := False;
   SBDatas.TheTimer.OnTimer := nil;
 end;

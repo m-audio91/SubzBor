@@ -5,7 +5,7 @@ object SBMain: TSBMain
   Width = 500
   AllowDropFiles = True
   Caption = 'SubzBor v1.6.3'
-  ClientHeight = 329
+  ClientHeight = 350
   ClientWidth = 500
   Constraints.MinHeight = 350
   Constraints.MinWidth = 500
@@ -16,7 +16,6 @@ object SBMain: TSBMain
   OnDropFiles = FormDropFiles
   OnShow = FormShow
   SessionProperties = 'Left;SubtitleFile.InitialDir;Top'
-  LCLVersion = '1.9.0.0'
   object Header: TPanel
     Left = 0
     Height = 48
@@ -37,7 +36,7 @@ object SBMain: TSBMain
       Left = 6
       Height = 20
       Top = 14
-      Width = 212
+      Width = 258
       Align = alLeft
       BorderSpacing.Left = 6
       BorderSpacing.Top = 14
@@ -206,11 +205,10 @@ object SBMain: TSBMain
     BorderSpacing.Right = 8
     MaxLength = 0
     TabOrder = 1
-    OnKeyDown = GlobalKeyDownHandler
   end
   object TimeSlicesList: TListBox
     Left = 8
-    Height = 161
+    Height = 177
     Top = 118
     Width = 484
     Align = alClient
@@ -220,15 +218,14 @@ object SBMain: TSBMain
     ItemHeight = 0
     MultiSelect = True
     OnDblClick = TimeSlicesListDblClick
-    OnKeyDown = GlobalKeyDownHandler
     ScrollWidth = 482
     TabOrder = 3
     TopIndex = -1
   end
   object DoSplitPanel: TPanel
     Left = 8
-    Height = 25
-    Top = 281
+    Height = 30
+    Top = 297
     Width = 484
     Align = alBottom
     AutoSize = True
@@ -237,27 +234,15 @@ object SBMain: TSBMain
     BorderSpacing.Right = 8
     BevelOuter = bvNone
     BidiMode = bdRightToLeft
-    ClientHeight = 25
+    ClientHeight = 30
     ClientWidth = 484
     Color = clForm
     ParentBidiMode = False
     ParentColor = False
     TabOrder = 4
-    object DoSplit: TBitBtn
-      Left = 460
-      Height = 25
-      Top = 0
-      Width = 24
-      Align = alRight
-      AutoSize = True
-      Caption = 'ببُر'
-      OnClick = DoSplitClick
-      OnKeyDown = GlobalKeyDownHandler
-      TabOrder = 0
-    end
     object Progress: TProgressBar
       Left = 0
-      Height = 20
+      Height = 25
       Top = 2
       Width = 100
       Align = alLeft
@@ -265,8 +250,20 @@ object SBMain: TSBMain
       BorderSpacing.Bottom = 3
       ParentColor = False
       Smooth = True
-      TabOrder = 1
+      TabOrder = 0
       Visible = False
+    end
+    object DoSplit: TButton
+      Left = 456
+      Height = 30
+      Top = 0
+      Width = 28
+      Action = SaveSubtitleAct
+      Align = alRight
+      AutoSize = True
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
     end
   end
   object TimeSlicesListActions: TPanel
@@ -290,14 +287,13 @@ object SBMain: TSBMain
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    object AddTimeSlice: TSpeedButton
+    object NewTiming: TSpeedButton
       Left = 0
       Height = 20
-      Hint = 'اضافه'
       Top = 0
       Width = 20
+      Action = NewTimingAct
       Align = alLeft
-      Caption = 'اضافه'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -335,14 +331,13 @@ object SBMain: TSBMain
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = AddTimeSliceClick
       ShowCaption = False
     end
     object TimeSlicesListL: TLabel
-      Left = 206
+      Left = 145
       Height = 20
       Top = 0
-      Width = 278
+      Width = 339
       Align = alRight
       BidiMode = bdRightToLeft
       Caption = 'لیست بازه های زمانی که قرار است "نگه داشته" بشوند:'
@@ -350,15 +345,14 @@ object SBMain: TSBMain
       ParentBidiMode = False
       ParentColor = False
     end
-    object EditTimeSlice: TSpeedButton
+    object EditTiming: TSpeedButton
       Tag = 1
       Left = 21
       Height = 20
-      Hint = 'ویرایش'
       Top = 0
       Width = 20
+      Action = EditTimingAct
       Align = alLeft
-      Caption = 'ویرایش'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -396,18 +390,16 @@ object SBMain: TSBMain
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = EditTimeSliceClick
       ShowCaption = False
     end
-    object DeleteTimeSlice: TSpeedButton
+    object DeleteTimings: TSpeedButton
       Tag = 2
       Left = 42
       Height = 20
-      Hint = 'حذف'
       Top = 0
       Width = 20
+      Action = DeleteTimingsAct
       Align = alLeft
-      Caption = 'حذف'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -445,20 +437,18 @@ object SBMain: TSBMain
         0000000000000000000000000000000000000000000000000000000000000000
         0002000000000000000000000000000000000000000000000000
       }
-      OnClick = DeleteTimeSliceClick
       ShowCaption = False
     end
-    object ClearTimeSlices: TSpeedButton
+    object ResetForm: TSpeedButton
       Tag = 3
       Left = 141
       Height = 20
-      Hint = 'از نو'
       Top = 0
       Width = 20
+      Action = ResetFormAct
       Align = alLeft
       BorderSpacing.Left = 16
       BorderSpacing.Right = 16
-      Caption = 'از نو'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -496,18 +486,16 @@ object SBMain: TSBMain
         000000000000101010BA101010FF101010FF101010FF101010FF101010FF0F0F
         0FA6000000000000000000000000000000000000000000000000
       }
-      OnClick = ClearTimeSlicesClick
       ShowCaption = False
     end
-    object SaveTimeSlices: TSpeedButton
+    object SaveTimingsFile: TSpeedButton
       Tag = 4
       Left = 84
       Height = 20
-      Hint = 'ذخیره'
       Top = 0
       Width = 20
+      Action = SaveTimingsAct
       Align = alLeft
-      Caption = 'ذخیره'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -545,18 +533,16 @@ object SBMain: TSBMain
         10FF101010FF101010FF101010FF101010FF101010FF101010FF101010FF1010
         10FF101010FF101010FF00000000000000000000000000000000
       }
-      OnClick = SaveTimeSlicesClick
       ShowCaption = False
     end
-    object LoadTimeSlices: TSpeedButton
+    object OpenTimingsFile: TSpeedButton
       Tag = 5
       Left = 105
       Height = 20
-      Hint = 'فراخوانی'
       Top = 0
       Width = 20
+      Action = OpenTimingsAct
       Align = alLeft
-      Caption = 'فراخوانی'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -594,18 +580,16 @@ object SBMain: TSBMain
         10FF101010FF101010FF101010FF101010FF101010FF101010FF101010FF1010
         10FF101010FF101010FF00000000000000000000000000000000
       }
-      OnClick = LoadTimeSlicesClick
       ShowCaption = False
     end
-    object AddOffsetToSelected: TSpeedButton
+    object AddOffsetToTimings: TSpeedButton
       Tag = 7
       Left = 63
       Height = 20
-      Hint = 'تاخیر-تعجیل گروهی'
       Top = 0
       Width = 20
+      Action = AddOffsetToTimingsAct
       Align = alLeft
-      Caption = 'تاخیر-تعجیل گروهی'
       Flat = True
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -643,14 +627,13 @@ object SBMain: TSBMain
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = AddOffsetToSelectedClick
       ShowCaption = False
     end
   end
   object StatsBar: TStatusBar
     Left = 0
     Height = 21
-    Top = 308
+    Top = 329
     Width = 500
     BorderSpacing.Top = 2
     Panels = <    
@@ -665,7 +648,7 @@ object SBMain: TSBMain
     StoredValues = <>
     OnRestoringProperties = IniPropsRestoringProperties
     OnRestoreProperties = IniPropsRestoreProperties
-    Left = 88
+    Left = 72
     Top = 160
   end
   object TopMenu: TMainMenu
@@ -700,6 +683,69 @@ object SBMain: TSBMain
       object MenuSBLangSep: TMenuItem
         Caption = '-'
       end
+    end
+  end
+  object SBActions: TActionList
+    OnUpdate = SBActionsUpdate
+    Left = 216
+    Top = 160
+    object OpenSubtitleAct: TAction
+      OnExecute = OpenSubtitleActExecute
+      ShortCut = 16463
+    end
+    object SaveSubtitleAct: TAction
+      Caption = 'ببُر'
+      Hint = 'ببُر'
+      OnExecute = SaveSubtitleActExecute
+      ShortCut = 16467
+    end
+    object OpenTimingsAct: TAction
+      Caption = 'فراخوانی'
+      Hint = 'فراخوانی'
+      OnExecute = OpenTimingsActExecute
+      ShortCut = 24655
+    end
+    object SaveTimingsAct: TAction
+      Caption = 'ذخیره'
+      Hint = 'ذخیره'
+      OnExecute = SaveTimingsActExecute
+      ShortCut = 24659
+    end
+    object NewTimingAct: TAction
+      Caption = 'اضافه'
+      Hint = 'اضافه'
+      OnExecute = NewTimingActExecute
+      ShortCut = 16462
+    end
+    object EditTimingAct: TAction
+      Caption = 'ویرایش'
+      Hint = 'ویرایش'
+      OnExecute = EditTimingActExecute
+      ShortCut = 13
+    end
+    object DeleteTimingsAct: TAction
+      Caption = 'حذف'
+      Hint = 'حذف'
+      OnExecute = DeleteTimingsActExecute
+      ShortCut = 46
+    end
+    object SelectTimingsAct: TAction
+      Caption = 'انتخاب همه'
+      Hint = 'انتخاب همه'
+      OnExecute = SelectTimingsActExecute
+      ShortCut = 16449
+    end
+    object AddOffsetToTimingsAct: TAction
+      Caption = 'تاخیر-تعجیل گروهی'
+      Hint = 'تاخیر-تعجیل گروهی'
+      OnExecute = AddOffsetToTimingsActExecute
+      ShortCut = 16452
+    end
+    object ResetFormAct: TAction
+      Caption = 'از نو'
+      Hint = 'از نو'
+      OnExecute = ResetFormActExecute
+      ShortCut = 16466
     end
   end
 end
