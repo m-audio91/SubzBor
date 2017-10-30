@@ -218,6 +218,7 @@ object SBMain: TSBMain
     ItemHeight = 0
     MultiSelect = True
     OnDblClick = TimeSlicesListDblClick
+    PopupMenu = TimingsListMenu
     ScrollWidth = 482
     TabOrder = 3
     TopIndex = -1
@@ -746,6 +747,31 @@ object SBMain: TSBMain
       Hint = 'از نو'
       OnExecute = ResetFormActExecute
       ShortCut = 16466
+    end
+  end
+  object TimingsListMenu: TPopupMenu
+    Left = 288
+    Top = 160
+    object NewTimingMI: TMenuItem
+      Action = NewTimingAct
+    end
+    object EditTimingMI: TMenuItem
+      Action = EditTimingAct
+    end
+    object DeleteTimingsMI: TMenuItem
+      Action = DeleteTimingsAct
+    end
+    object SelectTimingsMI: TMenuItem
+      Action = SelectTimingsAct
+    end
+    object AddOffsetToTimingsMI: TMenuItem
+      Action = AddOffsetToTimingsAct
+    end
+    object SaveTimingsMI: TMenuItem
+      Action = SaveTimingsAct
+    end
+    object OpenTimingsMI: TMenuItem
+      Action = OpenTimingsAct
     end
   end
 end

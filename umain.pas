@@ -37,6 +37,14 @@ type
 
   TSBMain = class(TForm)
     DoSplit: TButton;
+    NewTimingMI: TMenuItem;
+    EditTimingMI: TMenuItem;
+    DeleteTimingsMI: TMenuItem;
+    SelectTimingsMI: TMenuItem;
+    AddOffsetToTimingsMI: TMenuItem;
+    SaveTimingsMI: TMenuItem;
+    OpenTimingsMI: TMenuItem;
+    TimingsListMenu: TPopupMenu;
     ResetFormAct: TAction;
     AddOffsetToTimingsAct: TAction;
     SelectTimingsAct: TAction;
@@ -658,6 +666,7 @@ begin
   bd := Application.Direction(GetDefaultLang);
   TimeSlicesListL.BiDiMode := bd;
   SubtitleFileL.BiDiMode := bd;
+  TimingsListMenu.BiDiMode := bd;
   FStatusTextStyle.RightToLeft := bd = BdRightToLeft;
   if FStatusTextStyle.RightToLeft then
     FStatusTextStyle.Alignment := taRightJustify
