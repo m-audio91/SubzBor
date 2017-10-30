@@ -59,7 +59,7 @@ type
     SubtitleFile: TFileNameEdit;
     SubtitleFileL: TLabel;
     TimeSlicesListL: TLabel;
-    TimeSlicesList: TListBox;
+    TimingsList: TListBox;
     Logo: TImage;
     IniProps: TIniPropStorage;
     Description: TLabel;
@@ -105,7 +105,7 @@ type
     procedure ResetFormActExecute(Sender: TObject);
     procedure MenuSBPrefsClick(Sender: TObject);
     procedure SubtitleFileAcceptFileName(Sender: TObject; var Value: String);
-    procedure TimeSlicesListDblClick(Sender: TObject);
+    procedure TimingsListDblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StatsBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
@@ -253,7 +253,7 @@ begin
   MinW := Canvas.TextWidth(rsHint +': ' +rsExportingImgBased);
   StatsBar.Panels[0].Width := MinW;
   Constraints.MinWidth := MinW;
-  TimeSlicesList.ScrollWidth := 0;
+  TimingsList.ScrollWidth := 0;
 end;
 
 procedure TSBMain.FormShow(Sender: TObject);
@@ -300,7 +300,7 @@ begin
   SetInitialDirs(ExtractFilePath(Value));
 end;
 
-procedure TSBMain.TimeSlicesListDblClick(Sender: TObject);
+procedure TSBMain.TimingsListDblClick(Sender: TObject);
 begin
   EditTimingActExecute(Sender);
 end;
@@ -338,7 +338,7 @@ begin
       if not tsl.Incremental then
         raise Exception.Create(rsFatal);
     finally
-      TimeSlicesList.Items.Text := tsl.ExtendedValue;
+      TimingsList.Items.Text := tsl.ExtendedValue;
       sl.Free;
     end;
   except
@@ -356,7 +356,7 @@ begin
     MkvMerge := SBPrefs.MkvMergeAddress.Text;
     MkvExtract := SBPrefs.MkvExtractAddress.Text;
     InputFile := SubtitleFile.Text;
-    TimeSlices := TimeSlicesList.Items.Text;
+    TimeSlices := TimingsList.Items.Text;
   end;
   FProbeThread := TSubzBorProbeThread.Create(FProbeInfo);
   FProbeThread.OnProbeDone := @ProbeDone;
@@ -494,7 +494,7 @@ end;
 
 procedure TSBMain.SaveTimingsActExecute(Sender: TObject);
 begin
-  if TimeSlicesList.Items.Count < 1 then Exit;
+  if TimingsList.Items.Count < 1 then Exit;
   with SBDatas.SaveDlg do
   begin
     if SubtitleFile.Text <> EmptyStr then
@@ -503,7 +503,7 @@ begin
     if CompareFileExt(FileName, extText) <> 0 then
       FileName := FileName +extText;
     try
-      TimeSlicesList.Items.SaveToFile(FileName);
+      TimingsList.Items.SaveToFile(FileName);
     except
       on E: Exception do
         ShowError(E.Message +LineEnding +rsTimeSliceFileNotSaved, rsFatal);
@@ -527,7 +527,7 @@ begin
       ts.ValueAsStringEx := tse.Value;
       if FTimecodeHasFrameNo then
         ConvertFrameNoToMillisec(ts);
-      TimeSlicesList.Items.Add(ts.ValueAsStringEx);
+      TimingsList.Items.Add(ts.ValueAsStringEx);
     end;
   finally
     tse.Free;
@@ -538,13 +538,13 @@ procedure TSBMain.EditTimingActExecute(Sender: TObject);
 var
   tse: TTimeSliceEditEx;
 begin
-  if TimeSlicesList.ItemIndex < 0 then Exit;
+  if TimingsList.ItemIndex < 0 then Exit;
   tse := TTimeSliceEditEx.Create(Self);
   try
-    tse.Value := TimeSlicesList.Items[TimeSlicesList.ItemIndex];
+    tse.Value := TimingsList.Items[TimingsList.ItemIndex];
     tse.ShowModal;
     if tse.ModalResult = mrOk then
-      TimeSlicesList.Items[TimeSlicesList.ItemIndex] := tse.Value;
+      TimingsList.Items[TimingsList.ItemIndex] := tse.Value;
   finally
     tse.Free;
   end;
@@ -552,20 +552,24 @@ end;
 
 procedure TSBMain.SBActionsUpdate(AAction: TBasicAction; var Handled: Boolean);
 begin
-  EditTimingAct.Enabled := Self.ActiveControl = TimeSlicesList;
-  SelectTimingsAct.Enabled := Self.ActiveControl = TimeSlicesList;
-  DeleteTimingsAct.Enabled := Self.ActiveControl = TimeSlicesList;
-  AddOffsetToTimings.Enabled := Self.ActiveControl = TimeSlicesList;
+  EditTimingAct.Enabled := (Self.ActiveControl = TimingsList)
+    and (TimingsList.ItemIndex > -1);
+  SelectTimingsAct.Enabled := (Self.ActiveControl = TimingsList);
+  DeleteTimingsAct.Enabled := (Self.ActiveControl = TimingsList)
+    and (TimingsList.SelCount > 0);
+  AddOffsetToTimingsAct.Enabled := (Self.ActiveControl = TimingsList)
+    and (TimingsList.SelCount > 0);
+  SaveTimingsAct.Enabled := TimingsList.Count > 0;
 end;
 
 procedure TSBMain.SelectTimingsActExecute(Sender: TObject);
 begin
-  TimeSlicesList.SelectAll;
+  TimingsList.SelectAll;
 end;
 
 procedure TSBMain.DeleteTimingsActExecute(Sender: TObject);
 begin
-  ListBoxUtils.DeleteItems(TimeSlicesList);
+  ListBoxUtils.DeleteItems(TimingsList);
 end;
 
 procedure TSBMain.AddOffsetToTimingsActExecute(Sender: TObject);
@@ -580,13 +584,13 @@ begin
     ne.HeaderText := rsApplyGlobalOffset;
     ne.ShowModal;
     if ne.ModalResult = mrOK then
-      for i := 0 to TimeSlicesList.Count-1 do
+      for i := 0 to TimingsList.Count-1 do
       begin
-        if TimeSlicesList.Selected[i] then
+        if TimingsList.Selected[i] then
         begin
-          ts.ValueAsStringEx := TimeSlicesList.Items[i];
+          ts.ValueAsStringEx := TimingsList.Items[i];
           ts.Delay := ts.Delay+ne.Value;
-          TimeSlicesList.Items[i] := ts.ValueAsStringEx;
+          TimingsList.Items[i] := ts.ValueAsStringEx;
         end;
       end;
   finally
@@ -597,7 +601,7 @@ end;
 procedure TSBMain.ResetFormActExecute(Sender: TObject);
 begin
   SubtitleFile.Clear;
-  TimeSlicesList.Items.Clear;
+  TimingsList.Items.Clear;
   FormCreate(Self);
 end;
 

@@ -206,7 +206,7 @@ object SBMain: TSBMain
     MaxLength = 0
     TabOrder = 1
   end
-  object TimeSlicesList: TListBox
+  object TimingsList: TListBox
     Left = 8
     Height = 177
     Top = 118
@@ -217,7 +217,7 @@ object SBMain: TSBMain
     BorderSpacing.Right = 8
     ItemHeight = 0
     MultiSelect = True
-    OnDblClick = TimeSlicesListDblClick
+    OnDblClick = TimingsListDblClick
     PopupMenu = TimingsListMenu
     ScrollWidth = 482
     TabOrder = 3
