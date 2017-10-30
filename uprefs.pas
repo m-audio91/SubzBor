@@ -48,6 +48,8 @@ type
     UseInternalCodecs: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
+    procedure GlobalAddressKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   end;
 
 var
@@ -103,6 +105,15 @@ begin
   if MkvExtractAddress.Text = EmptyStr then
     MkvExtractAddress.Text := '/usr/bin/mkvextract';
   {$ENDIF}
+end;
+
+procedure TSBPrefs.GlobalAddressKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Sender is TFileNameEdit) and (Key = 13) and (Shift = []) then
+    (Sender as TFileNameEdit).RunDialog;
+  if (Sender is TDirectoryEdit) and (Key = 13) and (Shift = []) then
+    (Sender as TDirectoryEdit).RunDialog;
 end;
 
 end.

@@ -1,24 +1,23 @@
 object SBPrefs: TSBPrefs
   Left = 552
-  Height = 240
+  Height = 259
   Top = 308
-  Width = 394
+  Width = 407
   AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'تنظیمات'
-  ClientHeight = 240
-  ClientWidth = 394
+  ClientHeight = 259
+  ClientWidth = 407
   DefaultMonitor = dmMainForm
   OnCreate = FormCreate
   Position = poMainFormCenter
   SessionProperties = 'AutoSaveTSList.State;FFmpegAddress.Text;MkvExtractAddress.Text;MkvMergeAddress.Text;SaveToolsLogs.State;ToolsFolderAddress.Text;UseInternalCodecs.State;UseInternalSplitter.State'
-  LCLVersion = '1.9.0.0'
   object ToolAddresses: TGroupBox
     Left = 8
     Height = 139
     Top = 8
-    Width = 378
+    Width = 391
     Align = alTop
     AutoSize = True
     BidiMode = bdRightToLeft
@@ -34,14 +33,14 @@ object SBPrefs: TSBPrefs
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
     ClientHeight = 119
-    ClientWidth = 374
+    ClientWidth = 387
     ParentBidiMode = False
     TabOrder = 0
     object ToolsFolderAddressL: TLabel
-      Left = 201
+      Left = 207
       Height = 27
       Top = 4
-      Width = 169
+      Width = 176
       Caption = 'پوشه Tools'
       ParentColor = False
     end
@@ -49,19 +48,20 @@ object SBPrefs: TSBPrefs
       Left = 4
       Height = 27
       Top = 4
-      Width = 196
+      Width = 202
       ShowHidden = False
       ButtonWidth = 23
       NumGlyphs = 1
       MaxLength = 0
       ParentBidiMode = False
-      TabOrder = 3
+      TabOrder = 0
+      OnKeyUp = GlobalAddressKeyUp
     end
     object FFmpegAddressL: TLabel
-      Left = 201
+      Left = 207
       Height = 27
       Top = 32
-      Width = 169
+      Width = 176
       Caption = 'FFmpeg'
       ParentColor = False
     end
@@ -69,29 +69,7 @@ object SBPrefs: TSBPrefs
       Left = 4
       Height = 27
       Top = 32
-      Width = 196
-      DialogOptions = [ofFileMustExist, ofEnableSizing, ofViewDetail]
-      FilterIndex = 0
-      HideDirectories = False
-      ButtonWidth = 23
-      NumGlyphs = 1
-      MaxLength = 0
-      ParentBidiMode = False
-      TabOrder = 0
-    end
-    object MkvMergeAddressL: TLabel
-      Left = 201
-      Height = 27
-      Top = 60
-      Width = 169
-      Caption = 'MkvMerge'
-      ParentColor = False
-    end
-    object MkvMergeAddress: TFileNameEdit
-      Left = 4
-      Height = 27
-      Top = 60
-      Width = 196
+      Width = 202
       DialogOptions = [ofFileMustExist, ofEnableSizing, ofViewDetail]
       FilterIndex = 0
       HideDirectories = False
@@ -100,20 +78,21 @@ object SBPrefs: TSBPrefs
       MaxLength = 0
       ParentBidiMode = False
       TabOrder = 1
+      OnKeyUp = GlobalAddressKeyUp
     end
-    object MkvExtractAddressL: TLabel
-      Left = 201
+    object MkvMergeAddressL: TLabel
+      Left = 207
       Height = 27
-      Top = 88
-      Width = 169
-      Caption = 'MkvExtract'
+      Top = 60
+      Width = 176
+      Caption = 'MkvMerge'
       ParentColor = False
     end
-    object MkvExtractAddress: TFileNameEdit
+    object MkvMergeAddress: TFileNameEdit
       Left = 4
       Height = 27
-      Top = 88
-      Width = 196
+      Top = 60
+      Width = 202
       DialogOptions = [ofFileMustExist, ofEnableSizing, ofViewDetail]
       FilterIndex = 0
       HideDirectories = False
@@ -122,13 +101,37 @@ object SBPrefs: TSBPrefs
       MaxLength = 0
       ParentBidiMode = False
       TabOrder = 2
+      OnKeyUp = GlobalAddressKeyUp
+    end
+    object MkvExtractAddressL: TLabel
+      Left = 207
+      Height = 27
+      Top = 88
+      Width = 176
+      Caption = 'MkvExtract'
+      ParentColor = False
+    end
+    object MkvExtractAddress: TFileNameEdit
+      Left = 4
+      Height = 27
+      Top = 88
+      Width = 202
+      DialogOptions = [ofFileMustExist, ofEnableSizing, ofViewDetail]
+      FilterIndex = 0
+      HideDirectories = False
+      ButtonWidth = 23
+      NumGlyphs = 1
+      MaxLength = 0
+      ParentBidiMode = False
+      TabOrder = 3
+      OnKeyUp = GlobalAddressKeyUp
     end
   end
   object SaveToolsLogs: TCheckBox
     Left = 8
     Height = 24
     Top = 149
-    Width = 378
+    Width = 391
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -142,7 +145,7 @@ object SBPrefs: TSBPrefs
     Left = 8
     Height = 24
     Top = 175
-    Width = 378
+    Width = 391
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -159,7 +162,7 @@ object SBPrefs: TSBPrefs
     Height = 24
     Hint = 'در این سیستم زیرنویس ابتدا توسط FFmpeg دیکد شده'#13#10'و سپس به SRT تبدیل می گردد. بعد از آن'#13#10'بُرش توسط سابزبُر با دقت بیشتر انجام می گیرد.'
     Top = 201
-    Width = 378
+    Width = 391
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -177,7 +180,7 @@ object SBPrefs: TSBPrefs
     Left = 8
     Height = 24
     Top = 227
-    Width = 378
+    Width = 391
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
