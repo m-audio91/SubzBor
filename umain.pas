@@ -135,7 +135,7 @@ var
 implementation
 
 {$R *.lfm}
-{$R dummyvidres.rc}
+{$R dummyvidres.res}
 
 { TSBMain }
 

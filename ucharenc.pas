@@ -49,8 +49,8 @@ var
 implementation
 
 {$R *.lfm}
-{$R charencsiconv.rc}
-{$R charencslaz.rc}
+{$R charencsiconv.res}
+{$R charencslaz.res}
 
 const
   IconvEncsResName = 'charencsiconv';
