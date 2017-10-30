@@ -22,9 +22,9 @@ program subzbor;
 {$mode objfpc}{$H+}
 
 uses
-  {$IFDEF UNIX}
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
-  {$ENDIF}
+  {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, SysUtils, uMain, uDatas, uPrefs, ucharenc, uResourcestrings, uAbout,
   ui18nGuide;

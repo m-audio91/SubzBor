@@ -33,7 +33,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="4"/>
-      <BuildNr Value="3"/>
+      <BuildNr Value="5"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool with the help of FFmpeg and MKVToolNix" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.6.4.0"/>
     </VersionInfo>
     <BuildModes Count="4">
@@ -72,6 +72,9 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dUseCThreads"/>
+          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Release Lin32">
@@ -108,6 +111,9 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dUseCThreads"/>
+          </Other>
         </CompilerOptions>
       </Item3>
       <Item4 Name="Release Win32">
@@ -288,6 +294,8 @@
       <OtherUnitFiles Value="..\commonutils;..\codecutils"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Conditionals Value="if (TargetOS='linux') then
+  CustomOptions:=' -dUseCThreads';"/>
     <Parsing>
       <SyntaxOptions>
         <IncludeAssertionCode Value="True"/>
