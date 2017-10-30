@@ -93,43 +93,23 @@ msgstr "Now select and translate every line"
 msgid "همچنین اگر قصد بروزرسانی یا اصلاح ترجمه ای از قبل موجود را دارید مراحل یکی است و فقط کافیست با فایل ترجمه زبان موردنظر شروع کنید."
 msgstr "Additionally, if you want to update or fix an already existing translation, feel free to do it. just start with it's PO file."
 
-#: tsbmain.addoffsettoselected.caption
-msgctxt "tsbmain.addoffsettoselected.caption"
+#: tsbmain.addoffsettotimingsact.caption
+msgctxt "tsbmain.addoffsettotimingsact.caption"
 msgid "تاخیر-تعجیل گروهی"
 msgstr "Grouped Delay-Hurry"
 
-#: tsbmain.addoffsettoselected.hint
-msgctxt "tsbmain.addoffsettoselected.hint"
+#: tsbmain.addoffsettotimingsact.hint
+msgctxt "tsbmain.addoffsettotimingsact.hint"
 msgid "تاخیر-تعجیل گروهی"
 msgstr "Grouped Delay-Hurry"
 
-#: tsbmain.addtimeslice.caption
-msgctxt "tsbmain.addtimeslice.caption"
-msgid "اضافه"
-msgstr "Add"
-
-#: tsbmain.addtimeslice.hint
-msgctxt "tsbmain.addtimeslice.hint"
-msgid "اضافه"
-msgstr "Add"
-
-#: tsbmain.cleartimeslices.caption
-msgctxt "tsbmain.cleartimeslices.caption"
-msgid "از نو"
-msgstr "Reset"
-
-#: tsbmain.cleartimeslices.hint
-msgctxt "tsbmain.cleartimeslices.hint"
-msgid "از نو"
-msgstr "Reset"
-
-#: tsbmain.deletetimeslice.caption
-msgctxt "tsbmain.deletetimeslice.caption"
+#: tsbmain.deletetimingsact.caption
+msgctxt "tsbmain.deletetimingsact.caption"
 msgid "حذف"
 msgstr "Delete"
 
-#: tsbmain.deletetimeslice.hint
-msgctxt "tsbmain.deletetimeslice.hint"
+#: tsbmain.deletetimingsact.hint
+msgctxt "tsbmain.deletetimingsact.hint"
 msgid "حذف"
 msgstr "Delete"
 
@@ -137,29 +117,15 @@ msgstr "Delete"
 msgid "نرم افزار رایگان برش و سانسور زیرنویس"
 msgstr "Free subtitle cutting tool"
 
-#: tsbmain.dosplit.caption
-msgid "ببُر"
-msgstr "Split"
-
-#: tsbmain.edittimeslice.caption
-msgctxt "tsbmain.edittimeslice.caption"
+#: tsbmain.edittimingact.caption
+msgctxt "tsbmain.edittimingact.caption"
 msgid "ویرایش"
 msgstr "Edit"
 
-#: tsbmain.edittimeslice.hint
-msgctxt "tsbmain.edittimeslice.hint"
+#: tsbmain.edittimingact.hint
+msgctxt "tsbmain.edittimingact.hint"
 msgid "ویرایش"
 msgstr "Edit"
-
-#: tsbmain.loadtimeslices.caption
-msgctxt "tsbmain.loadtimeslices.caption"
-msgid "فراخوانی"
-msgstr "Load from file"
-
-#: tsbmain.loadtimeslices.hint
-msgctxt "tsbmain.loadtimeslices.hint"
-msgid "فراخوانی"
-msgstr "Load from file"
 
 #: tsbmain.menusbabout.caption
 msgid "درباره"
@@ -182,21 +148,72 @@ msgctxt "tsbmain.menusbprefs.caption"
 msgid "تنظیمات"
 msgstr "Preferences"
 
-#: tsbmain.savetimeslices.caption
-msgctxt "tsbmain.savetimeslices.caption"
+#: tsbmain.newtimingact.caption
+msgctxt "tsbmain.newtimingact.caption"
+msgid "اضافه"
+msgstr "Add"
+
+#: tsbmain.newtimingact.hint
+msgctxt "tsbmain.newtimingact.hint"
+msgid "اضافه"
+msgstr "Add"
+
+#: tsbmain.opentimingsact.caption
+msgctxt "tsbmain.opentimingsact.caption"
+msgid "فراخوانی"
+msgstr "Load from file"
+
+#: tsbmain.opentimingsact.hint
+msgctxt "tsbmain.opentimingsact.hint"
+msgid "فراخوانی"
+msgstr "Load from file"
+
+#: tsbmain.resetformact.caption
+msgctxt "tsbmain.resetformact.caption"
+msgid "از نو"
+msgstr "Reset"
+
+#: tsbmain.resetformact.hint
+msgctxt "tsbmain.resetformact.hint"
+msgid "از نو"
+msgstr "Reset"
+
+#: tsbmain.savesubtitleact.caption
+msgctxt "tsbmain.savesubtitleact.caption"
+msgid "ببُر"
+msgstr "Split"
+
+#: tsbmain.savesubtitleact.hint
+msgctxt "tsbmain.savesubtitleact.hint"
+msgid "ببُر"
+msgstr "Split"
+
+#: tsbmain.savetimingsact.caption
+msgctxt "tsbmain.savetimingsact.caption"
 msgid "ذخیره"
 msgstr "Save to file"
 
-#: tsbmain.savetimeslices.hint
-msgctxt "tsbmain.savetimeslices.hint"
+#: tsbmain.savetimingsact.hint
+msgctxt "tsbmain.savetimingsact.hint"
 msgid "ذخیره"
 msgstr "Save to file"
+
+#: tsbmain.selecttimingsact.caption
+msgctxt "tsbmain.selecttimingsact.caption"
+msgid "انتخاب همه"
+msgstr "Select All"
+
+#: tsbmain.selecttimingsact.hint
+msgctxt "tsbmain.selecttimingsact.hint"
+msgid "انتخاب همه"
+msgstr "Select All"
 
 #: tsbmain.subtitlefilel.caption
 msgid "زیرنویس:"
 msgstr "Subtitle:"
 
-#: tsbmain.timesliceslistl.caption
+#: tsbmain.timingslistl.caption
+msgctxt "tsbmain.timingslistl.caption"
 msgid "لیست بازه های زمانی که قرار است \"نگه داشته\" بشوند:"
 msgstr "Timings of the parts you want to \"keep\":"
 
