@@ -58,7 +58,7 @@ type
     SBActions: TActionList;
     SubtitleFile: TFileNameEdit;
     SubtitleFileL: TLabel;
-    TimeSlicesListL: TLabel;
+    TimingsListL: TLabel;
     TimingsList: TListBox;
     Logo: TImage;
     IniProps: TIniPropStorage;
@@ -668,7 +668,7 @@ begin
     rsUseInternalCodecsHint +LineEnding +FormatsWithInternalCodecs;
 
   bd := Application.Direction(GetDefaultLang);
-  TimeSlicesListL.BiDiMode := bd;
+  TimingsListL.BiDiMode := bd;
   SubtitleFileL.BiDiMode := bd;
   TimingsListMenu.BiDiMode := bd;
   FStatusTextStyle.RightToLeft := bd = BdRightToLeft;
