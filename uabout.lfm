@@ -2,7 +2,7 @@ object SBAbout: TSBAbout
   Left = 607
   Height = 390
   Top = 219
-  Width = 548
+  Width = 571
   HorzScrollBar.Page = 400
   HorzScrollBar.Range = 400
   VertScrollBar.Page = 310
@@ -12,7 +12,7 @@ object SBAbout: TSBAbout
   BorderStyle = bsSingle
   Caption = 'About SubzBor'
   ClientHeight = 390
-  ClientWidth = 548
+  ClientWidth = 571
   Constraints.MinHeight = 350
   Constraints.MinWidth = 400
   DefaultMonitor = dmMainForm
@@ -22,7 +22,7 @@ object SBAbout: TSBAbout
     Left = 0
     Height = 64
     Top = 0
-    Width = 548
+    Width = 571
     Align = alTop
     AutoSize = True
     BorderSpacing.Bottom = 12
@@ -159,7 +159,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 170
     Top = 76
-    Width = 532
+    Width = 555
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -173,7 +173,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 1
     Top = 381
-    Width = 532
+    Width = 555
     Align = alTop
     AutoSize = True
     BorderSpacing.Left = 8
@@ -189,7 +189,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 1
     Top = 353
-    Width = 532
+    Width = 555
     Align = alTop
     AutoSize = True
     BorderSpacing.Left = 8
@@ -205,7 +205,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 17
     Top = 334
-    Width = 532
+    Width = 555
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -219,7 +219,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 17
     Top = 362
-    Width = 532
+    Width = 555
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
@@ -234,7 +234,7 @@ object SBAbout: TSBAbout
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 508
+    Left = 531
     Height = 17
     Top = 24
     Width = 32
@@ -242,14 +242,14 @@ object SBAbout: TSBAbout
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
     BorderSpacing.Right = 8
-    Caption = '1.6.5'
+    Caption = '1.6.6'
     ParentColor = False
   end
   object Logo1: TImage
     Left = 0
     Height = 51
     Top = 271
-    Width = 548
+    Width = 571
     Align = alTop
     AutoSize = True
     BorderSpacing.Bottom = 12
@@ -371,7 +371,7 @@ object SBAbout: TSBAbout
     Left = 8
     Height = 17
     Top = 254
-    Width = 532
+    Width = 555
     Align = alTop
     BidiMode = bdRightToLeft
     BorderSpacing.Left = 8
