@@ -554,7 +554,7 @@ procedure TSBMain.SBActionsUpdate(AAction: TBasicAction; var Handled: Boolean);
 begin
   EditTimingAct.Enabled := (Self.ActiveControl = TimingsList)
     and (TimingsList.ItemIndex > -1);
-  SelectTimingsAct.Enabled := (Self.ActiveControl = TimingsList);
+  SelectTimingsAct.Enabled := TimingsList.Count > 0;
   DeleteTimingsAct.Enabled := (Self.ActiveControl = TimingsList)
     and (TimingsList.SelCount > 0);
   AddOffsetToTimingsAct.Enabled := (Self.ActiveControl = TimingsList)
