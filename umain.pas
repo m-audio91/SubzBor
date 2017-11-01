@@ -29,7 +29,8 @@ uses
   Buttons, uDatas, uPrefs, uAbout, uProbe, uProc, uTimeSlice, ui18nGuide,
   CommonFileUtils, CommonGUIUtils, uTimeCode, uCharEnc, uResourcestrings,
   uSBConst, uTimeSliceEditEx, uListBoxUtils, uTimeCodeFormatDialogEx,
-  CommonNumeralUtils, uNumEditFloat, LCLTranslator, ActnList, CommonStrUtils;
+  CommonNumeralUtils, uNumEditFloat, LCLTranslator, ActnList, PopupNotifier,
+  CommonStrUtils;
 
 type
 
@@ -40,6 +41,7 @@ type
     NewTimingMI: TMenuItem;
     EditTimingMI: TMenuItem;
     DeleteTimingsMI: TMenuItem;
+    HelpNotifier: TPopupNotifier;
     SelectTimingsMI: TMenuItem;
     AddOffsetToTimingsMI: TMenuItem;
     SaveTimingsMI: TMenuItem;
@@ -83,6 +85,7 @@ type
     MenuSBGuide: TMenuItem;
     AddOffsetToTimings: TSpeedButton;
     StatsBar: TStatusBar;
+    procedure HelpNotifierClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure IniPropsRestoringProperties(Sender: TObject);
     procedure IniPropsRestoreProperties(Sender: TObject);
     procedure MenuSBLangDownloadMoreClick(Sender: TObject);
@@ -124,6 +127,7 @@ type
     FProcInfo: TSubzBorProcInfo;
     FProcResult: TSubzBorProcResult;
     FProcThread: TSubzBorProcThread;
+    FUserNotified: Boolean;
     procedure CorrectFormSize;
     procedure Status(const MsgType, Msg: String; Bar: boolean = False;
       BarPos: Word = 0; HideBarAfter: Word = 0);
@@ -147,6 +151,7 @@ type
     procedure HideProgress(Sender: TObject);
   published
     property LangID: String read FLangID write FLangID;
+    property UserNotified: Boolean read FUserNotified write FUserNotified;
   end;
 
 var
@@ -161,6 +166,7 @@ implementation
 
 procedure TSBMain.FormCreate(Sender: TObject);
 begin
+  FUserNotified := False;
   FStatusMsg := EmptyStr;
   FStatusTextStyle := Default(TTextStyle);
   FStatusTextStyle.Layout := tlCenter;
@@ -180,6 +186,7 @@ begin
   SBDatas.ChangeGlyph(OpenTimingsFile);
   SBDatas.ChangeGlyph(SubtitleFile);
   SBDatas.ChangeGlyph(AddOffsetToTimings);
+  SBDatas.ChangeGlyph(HelpNotifier);
 end;
 
 procedure TSBMain.DefineUserInputsFormat;
@@ -262,6 +269,8 @@ begin
   CorrectFormSize;
   ListTranslations;
   HandleTranslation(LangID);
+  if not UserNotified then
+    HelpNotifier.ShowAtPos(Left+Width-(Width div 4),Top+Header.Top+Header.Height);
 end;
 
 procedure TSBMain.FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -274,7 +283,13 @@ end;
 
 procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
 begin
-  SessionProperties := SessionProperties+';LangID';
+  SessionProperties := SessionProperties+';LangID;UserNotified';
+end;
+
+procedure TSBMain.HelpNotifierClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  FUserNotified := True;
 end;
 
 procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);

@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Buttons, EditBtn,
-  Dialogs, ExtCtrls, CommonGUIUtils;
+  Dialogs, ExtCtrls, PopupNotifier, CommonGUIUtils;
 
 type
 
@@ -43,6 +43,7 @@ type
     procedure PrepareGlyphs(DPI: Word);
     procedure ChangeGlyph(SBtn: TSpeedButton); overload;
     procedure ChangeGlyph(EdtBtn: TFileNameEdit); overload;
+    procedure ChangeGlyph(PN: TPopupNotifier); overload;
     procedure HandleTranslation;
   end;
 
@@ -87,6 +88,12 @@ procedure TSBDatas.ChangeGlyph(EdtBtn: TFileNameEdit);
 begin
   EdtBtn.Glyph.Assign(nil);
   GlyphImages.GetBitmap(EdtBtn.Tag, EdtBtn.Glyph);
+end;
+
+procedure TSBDatas.ChangeGlyph(PN: TPopupNotifier);
+begin
+  PN.Icon.Bitmap.Assign(nil);
+  GlyphImages.GetBitmap(PN.Tag, PN.Icon.Bitmap);
 end;
 
 procedure TSBDatas.HandleTranslation;
