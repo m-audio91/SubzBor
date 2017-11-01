@@ -785,6 +785,6 @@ object SBMain: TSBMain
     Visible = False
     OnClose = HelpNotifierClose
     Left = 72
-    Top = 224
+    Top = 232
   end
 end

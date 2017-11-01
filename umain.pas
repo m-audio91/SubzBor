@@ -189,6 +189,73 @@ begin
   SBDatas.ChangeGlyph(HelpNotifier);
 end;
 
+procedure TSBMain.CorrectFormSize;
+var
+  MinW: Integer;
+begin
+  MinW := Canvas.TextWidth(rsHint +': ' +rsExportingImgBased);
+  StatsBar.Panels[0].Width := MinW;
+  Constraints.MinWidth := MinW;
+  TimingsList.ScrollWidth := 0;
+end;
+
+procedure TSBMain.FormShow(Sender: TObject);
+begin
+  SetGlyphs;
+  CorrectFormSize;
+  ListTranslations;
+  HandleTranslation(LangID);
+  if not UserNotified then
+    HelpNotifier.ShowAtPos(Left+Width-(Width div 4),Top+Header.Top+Header.Height);
+end; 
+
+procedure TSBMain.FormDropFiles(Sender: TObject;
+  const FileNames: array of String);
+begin
+  SubtitleFile.Text := FileNames[0];
+  SetInitialDirs(ExtractFilePath(FileNames[0]));
+end;
+
+procedure TSBMain.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  if not SaveSubtitleAct.Enabled then
+    CanClose := ShowWarnYN(rsCloseWhileProcWarn, rsWarn)
+  else
+    CanClose := True;
+end;
+
+procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
+begin
+  SessionProperties := SessionProperties+';LangID;UserNotified';
+end; 
+
+procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);
+begin
+  SetDefaultLangID;
+end;
+
+procedure TSBMain.HelpNotifierClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  FUserNotified := True;
+end;
+
+procedure TSBMain.MenuSBLangDownloadMoreClick(Sender: TObject);
+begin
+  OpenUrl(urlSBLanguages);
+end;
+
+procedure TSBMain.SubtitleFileAcceptFileName(Sender: TObject;
+  var Value: String);
+begin
+  SetInitialDirs(ExtractFilePath(Value));
+end;
+
+procedure TSBMain.TimingsListDblClick(Sender: TObject);
+begin
+  EditTimingActExecute(Sender);
+end;
+
 procedure TSBMain.DefineUserInputsFormat;
 var
   fd: TTimeCodeFormatDialogEx;
@@ -251,73 +318,6 @@ begin
   finally
     pic.Free;
   end;
-end;
-
-procedure TSBMain.CorrectFormSize;
-var
-  MinW: Integer;
-begin
-  MinW := Canvas.TextWidth(rsHint +': ' +rsExportingImgBased);
-  StatsBar.Panels[0].Width := MinW;
-  Constraints.MinWidth := MinW;
-  TimingsList.ScrollWidth := 0;
-end;
-
-procedure TSBMain.FormShow(Sender: TObject);
-begin
-  SetGlyphs;
-  CorrectFormSize;
-  ListTranslations;
-  HandleTranslation(LangID);
-  if not UserNotified then
-    HelpNotifier.ShowAtPos(Left+Width-(Width div 4),Top+Header.Top+Header.Height);
-end;
-
-procedure TSBMain.FormCloseQuery(Sender: TObject; var CanClose: boolean);
-begin
-  if not SaveSubtitleAct.Enabled then
-    CanClose := ShowWarnYN(rsCloseWhileProcWarn, rsWarn)
-  else
-    CanClose := True;
-end;
-
-procedure TSBMain.IniPropsRestoringProperties(Sender: TObject);
-begin
-  SessionProperties := SessionProperties+';LangID;UserNotified';
-end;
-
-procedure TSBMain.HelpNotifierClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
-  FUserNotified := True;
-end;
-
-procedure TSBMain.IniPropsRestoreProperties(Sender: TObject);
-begin
-  SetDefaultLangID;
-end; 
-
-procedure TSBMain.MenuSBLangDownloadMoreClick(Sender: TObject);
-begin
-  OpenUrl(urlSBLanguages);
-end;
-
-procedure TSBMain.FormDropFiles(Sender: TObject;
-  const FileNames: array of String);
-begin
-  SubtitleFile.Text := FileNames[0];
-  SetInitialDirs(ExtractFilePath(FileNames[0]));
-end;
-
-procedure TSBMain.SubtitleFileAcceptFileName(Sender: TObject;
-  var Value: String);
-begin
-  SetInitialDirs(ExtractFilePath(Value));
-end;
-
-procedure TSBMain.TimingsListDblClick(Sender: TObject);
-begin
-  EditTimingActExecute(Sender);
 end;
 
 procedure TSBMain.LoadTimeSlicesFromFile(const F: String);
