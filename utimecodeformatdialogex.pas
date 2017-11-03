@@ -24,7 +24,7 @@ unit uTimeCodeFormatDialogEx;
 interface
 
 uses
-  Classes, SysUtils, Graphics, StdCtrls, Spin,
+  Classes, SysUtils, Graphics, StdCtrls, Spin, uTimeCode,
   uTimeCodeFormatDialog, uResourcestrings;
 
 type
@@ -33,36 +33,69 @@ type
 
   TTimeCodeFormatDialogEx = class(TTimeCodeFormatDialog)
   private
-    FIsMillisecondAFrameNo: TCheckBox;
-    FFrameNoToMillisecFormula: TLabel;
+    FIsNormalTimeCode: TRadioButton;
+    FIsFramePos: TRadioButton;
+    FFramePosToSecondsHint: TLabel;
+    FHasFramePart: TCheckBox;
+    FFramerateL: TLabel;
     FFramerate: TFloatSpinEdit;
     procedure LoadExControls(Sender: TObject);
-    function GetFrameNoToMillisecState: Boolean;
-    function GetFramerate: Double;
+    procedure UpdateValue(Sender: TObject; var CanClose: Boolean);
   public
-    property IsMillisecondAFrameNo: Boolean read GetFrameNoToMillisecState;
-    property Framerate: Double read GetFramerate;
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
   end;
 
 implementation
 
 const
-  FrameNoToFPSFormula = '(1000/FPS)*FrameNo = Millisecond';
+  FramePartToMillisecFormula = 'HH:MM:SS:FF >> HH:MM:SS:MS';
+  FramePosToSecondsHint = '11111-22222' +LineEnding +'33333-44444';
 
 { TTimeCodeFormatDialogEx }
 
 procedure TTimeCodeFormatDialogEx.LoadExControls(Sender: TObject);
 begin
-  //FIsMillisecondAFrameNo
- FIsMillisecondAFrameNo := TCheckBox.Create(Self);
-  with FIsMillisecondAFrameNo do
+  //FHasFramePart
+ FHasFramePart := TCheckBox.Create(Self);
+  with FHasFramePart do
+  begin
+    Parent := Self;
+    Caption := FramePartToMillisecFormula;
+    ShowHint := True;
+    Hint := rsIsMillisecondAFrameNoDesc;
+  end;
+
+  //FIsFramePos
+  FIsFramePos := TRadioButton.Create(Self);
+  with FIsFramePos do
   begin
     Parent := Self;
     BiDiMode := bdRightToLeft;
-    Caption := rsIsMillisecondAFrameNo;
+    Caption := rsIsFramePos;
     ShowHint := True;
-    Hint := rsIsMillisecondAFrameNoDesc;
+    Hint := rsIsFramePosHint;
+  end;
+
+  //FFramePosToSecondsHint
+  FFramePosToSecondsHint := TLabel.Create(Self);
+  with FFramePosToSecondsHint do
+  begin
+    Parent := Self;
+    Alignment := taLeftJustify;
+    Caption := FramePosToSecondsHint;
+    ParentFont := False;
+  end;
+
+  //FFramerateL
+  FFramerateL := TLabel.Create(Self);
+  with FFramerateL do
+  begin
+    Parent := Self;
+    BiDiMode := bdRightToLeft;
+    Caption := rsFramerate;
+    ParentFont := False;
+    ShowHint := True;
+    Hint := rsFramerateHint;
   end;
 
   //FFramerate
@@ -70,42 +103,47 @@ begin
   with FFramerate do
   begin
     Parent := Self;
-    MinValue := 1;
+    MinValue := 0.0001;
     MaxValue := 1000;
     DecimalPlaces := 3;
     Alignment := taCenter;
     Increment := 1;
-    Hint := rsFramerate;
     ShowHint := True;
     Value := 25;
   end;
 
-  //FFrameNoToMillisecFormula
-  FFrameNoToMillisecFormula := TLabel.Create(Self);
-  with FFrameNoToMillisecFormula do
-  begin
-    Parent := Self;
-    Alignment := taLeftJustify;
-    Caption := FrameNoToFPSFormula;
-    ParentFont := False;
-    Font.Color := clGrayText;
-  end;
+  FIsNormalTimeCode.State := cbChecked;
+  FIsNormalTimeCode.Invalidate;
 end;
 
-function TTimeCodeFormatDialogEx.GetFrameNoToMillisecState: Boolean;
+procedure TTimeCodeFormatDialogEx.UpdateValue(Sender: TObject;
+  var CanClose: Boolean);
+var
+  f: TTimeCodeFormatSettings;
 begin
-  Result := FIsMillisecondAFrameNo.State = cbChecked;
-end;
-
-function TTimeCodeFormatDialogEx.GetFramerate: Double;
-begin
-  Result := FFramerate.Value;
+  CanClose := True;
+  f := FValue.TimeCodeFormat;
+  f.SourceFPS := FFramerate.Value;
+  f.HasFrame := FHasFramePart.State = cbChecked;
+  f.IsFrame := FIsFramePos.State = cbChecked;
+  FValue.TimeCodeFormat := f;
 end;
 
 constructor TTimeCodeFormatDialogEx.CreateNew(AOwner: TComponent; Num: Integer);
 begin
   inherited CreateNew(AOwner, Num);
   OnShow2 := @LoadExControls;
+  OnCloseQuery := @UpdateValue;
+
+  //FIsNormalTimeCode
+  FIsNormalTimeCode := TRadioButton.Create(Self);
+  with FIsNormalTimeCode do
+  begin
+    Parent := Self;
+    BiDiMode := bdRightToLeft;
+    Caption := rsIsNormalTimeCode;
+    ShowHint := True;
+  end;
 end;
 
 end.

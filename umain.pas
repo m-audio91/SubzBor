@@ -119,8 +119,6 @@ type
     FLangsDir: String;
     FFormatSettings: TTimeCodeFormatSettings;
     FInputsFormatDefined: Boolean;
-    FTimecodeHasFrameNo: Boolean;
-    FInputFramerate: Double;
     FProbeInfo: TSubzBorProbeInfo;
     FProbeResult: TSubzBorProbeResult;
     FProbeThread: TSubzBorProbeThread;
@@ -133,7 +131,6 @@ type
       BarPos: Word = 0; HideBarAfter: Word = 0);
     procedure SetGlyphs;
     procedure DefineUserInputsFormat;
-    procedure ConvertFrameNoToMillisec(var TS: TTimeSlice);
     function HasInternalCodec(const Fmt: String): Boolean;
     procedure SaveDummyVidResToFile(const Dir: String);
     procedure LoadTimeSlicesFromFile(const F: String);
@@ -173,7 +170,6 @@ begin
   FStatusTextStyle.EndEllipsis := True;
   FInputsFormatDefined := False;
   FFormatSettings := DefaultTimeCodeFormatSettings;
-  FTimecodeHasFrameNo := False;
 end;
 
 procedure TSBMain.SetGlyphs;
@@ -266,35 +262,11 @@ begin
     fd.Value.TimeCodeFormat := FFormatSettings;
     fd.ShowModal;
     if fd.ModalResult = mrOK then
-    begin
       FFormatSettings := fd.Value.TimeCodeFormat;
-      FTimecodeHasFrameNo := fd.IsMillisecondAFrameNo;
-      FInputFramerate := fd.Framerate;
-    end;
   finally
     fd.Free;
   end;
   FInputsFormatDefined := True;
-end;
-
-procedure TSBMain.ConvertFrameNoToMillisec(var TS: TTimeSlice);
-  function ApplyConversion(const fps,val: Double): Double;
-  begin
-    Result := val;
-    ForceInRange(Result,0,fps);
-    Result := FloatRound((1000/fps)*Result, 3);
-    ForceInRange(Result,0,999);
-  end;
-
-var
-  a: TBasicTimeCodeArray;
-begin
-  a := TS.Value.StartPos.ValueAsArray;
-  a[3] := Trunc(ApplyConversion(FInputFramerate,a[3]));
-  TS.Value.StartPos.ValueAsArray := a;
-  a := TS.Value.EndPos.ValueAsArray;
-  a[3] := Trunc(ApplyConversion(FInputFramerate,a[3]));
-  TS.Value.EndPos.ValueAsArray := a;
 end;
 
 function TSBMain.HasInternalCodec(const Fmt: String): Boolean;
@@ -340,14 +312,11 @@ begin
       for i := sl.Count-1 downto 0 do
         if IsEmptyStr(sl[i]) then
           sl.Delete(i);
-      ts.Initialize(FFormatSettings.MillisecondPrecision, FFormatSettings.MajorSep,
-        FFormatSettings.MinorSep, DefaultTimeSliceSep);
+      ts.Initialize(FFormatSettings, DefaultTimeSliceSep);
       tsl.Count := sl.Count;
       for i := 0 to sl.Count-1 do
       begin
         ts.ValueAsString := sl[i];
-        if FTimecodeHasFrameNo then
-          ConvertFrameNoToMillisec(ts);
         tsl.Values[i] := ts;
       end;
       if not tsl.Incremental then
@@ -540,8 +509,6 @@ begin
     if tse.ModalResult = mrOk then
     begin
       ts.ValueAsStringEx := tse.Value;
-      if FTimecodeHasFrameNo then
-        ConvertFrameNoToMillisec(ts);
       TimingsList.Items.Add(ts.ValueAsStringEx);
     end;
   finally
@@ -618,6 +585,7 @@ begin
   SubtitleFile.Clear;
   TimingsList.Items.Clear;
   FormCreate(Self);
+  Status(rsHint, rsReady);
 end;
 
 procedure TSBMain.SetInitialDirs(const Dir: String);
