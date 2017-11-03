@@ -4,7 +4,7 @@ object SBMain: TSBMain
   Top = 201
   Width = 500
   AllowDropFiles = True
-  Caption = 'SubzBor v1.6.6'
+  Caption = 'SubzBor v1.7.6'
   ClientHeight = 350
   ClientWidth = 500
   Constraints.MinHeight = 350
