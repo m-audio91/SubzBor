@@ -586,6 +586,7 @@ begin
   TimingsList.Items.Clear;
   FormCreate(Self);
   Status(rsHint, rsReady);
+  HandleTranslation(FLangID);
 end;
 
 procedure TSBMain.SetInitialDirs(const Dir: String);
