@@ -458,6 +458,10 @@ msgstr ""
 msgid "ساخت پوشه گزارش ها با خطا مواجه شد"
 msgstr "Failed to create folder for reports"
 
+#: uresourcestrings.rsnote
+msgid "توجه:"
+msgstr "Note:"
+
 #: uresourcestrings.rsnotempsdir
 msgid "ساخت پوشه فایل های موقتی با خطا مواجه شد"
 msgstr "Failed to create folder for temporary files"
@@ -501,6 +505,10 @@ msgstr "Welcome to SubzBor!"
 #: uresourcestrings.rsseemsnofilesaved
 msgid "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
 msgstr "Apparently the subtitle file is not saved. consider enabling reports in preferences and checking again"
+
+#: uresourcestrings.rsseetutorialsfirstplz
+msgid "لطفا قبل از شروع به استفاده از راهنما و فیلم های آموزشی سابزبر دیدن نمایید"
+msgstr "Before you start using SubzBor, please take a look at its helps and tutorials"
 
 #: uresourcestrings.rstimeslicefilenotread
 msgid "فایل زمان بندی ها معتبر تشخیص داده نشد"

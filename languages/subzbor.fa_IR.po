@@ -497,6 +497,10 @@ msgstr ""
 msgid "ساخت پوشه گزارش ها با خطا مواجه شد"
 msgstr "ساخت پوشه گزارش ها با خطا مواجه شد"
 
+#: uresourcestrings.rsnote
+msgid "توجه:"
+msgstr "توجه:"
+
 #: uresourcestrings.rsnotempsdir
 msgid "ساخت پوشه فایل های موقتی با خطا مواجه شد"
 msgstr "ساخت پوشه فایل های موقتی با خطا مواجه شد"
@@ -537,6 +541,10 @@ msgstr "به سابزبُر خوشامدید!"
 #: uresourcestrings.rsseemsnofilesaved
 msgid "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
 msgstr "ظاهرا فایلی ذخیره نشده. از تنظیمات سابزبُر گزارش ابزارها را فعال کنید و بررسی کنید"
+
+#: uresourcestrings.rsseetutorialsfirstplz
+msgid "لطفا قبل از شروع به استفاده از راهنما و فیلم های آموزشی سابزبر دیدن نمایید"
+msgstr "لطفا قبل از شروع به استفاده از راهنما و فیلم های آموزشی سابزبر دیدن نمایید"
 
 #: uresourcestrings.rstimeslicefilenotread
 msgid "فایل زمان بندی ها معتبر تشخیص داده نشد"
