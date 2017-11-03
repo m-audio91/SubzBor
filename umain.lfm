@@ -780,8 +780,6 @@ object SBMain: TSBMain
     Icon.Data = {
       07544269746D617000000000
     }
-    Text = 'قبل از شروع به استفاده از راهنما و فیلم های آموزشی سابزبر دیدن نمایید'
-    Title = 'توجه:'
     Visible = False
     OnClose = HelpNotifierClose
     Left = 72

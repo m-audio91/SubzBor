@@ -648,6 +648,8 @@ begin
 
   SubtitleFile.Filter :=
     rsCommonFormats +CommonFilesMask +'|' +rsAllFiles +AllFilesMask;
+  HelpNotifier.Title := rsNote;
+  HelpNotifier.Text := rsSeeTutorialsFirstPlz;
   SBPrefs.UseInternalCodecs.Hint :=
     rsUseInternalCodecsHint +LineEnding +FormatsWithInternalCodecs;
 
