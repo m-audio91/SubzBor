@@ -524,6 +524,7 @@ begin
   tse := TTimeSliceEditEx.Create(Self);
   try
     tse.Value := TimingsList.Items[TimingsList.ItemIndex];
+    tse.PasteFormat := FFormatSettings;
     tse.ShowModal;
     if tse.ModalResult = mrOk then
       TimingsList.Items[TimingsList.ItemIndex] := tse.Value;
