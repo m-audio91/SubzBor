@@ -297,8 +297,8 @@ msgid "فایل متنی"
 msgstr "Text files"
 
 #: udatas.rsthissettingswillremainuntilprogramclose
-msgid "این تنظیمات تا زمان بستن نرم افزار یا کلیک روی دکمه \"از نو (ریست)\" باقی می ماند"
-msgstr "These settings will remain until program close or clicking the Reset button"
+msgid "این تنظیمات تا زمان بستن نرم افزار یا کلیک روی دکمه \"از نو (ریست CTRL+R)\" باقی می ماند"
+msgstr "These settings will remain until program close or by clicking the Reset(CTRL+R) button"
 
 #: uresourcestrings.rsallfiles
 msgctxt "uresourcestrings.rsallfiles"
@@ -359,17 +359,17 @@ msgid "خطا"
 msgstr "Error"
 
 #: uresourcestrings.rsframerate
-msgid "نرخ فریم مرجع:"
+msgid "نرخ تصویر مرجع:"
 msgstr "Source Framerate:"
 
 #: uresourcestrings.rsframeratehint
 msgid ""
-"کدزمان ها و زمانبندی ها دارای نرخ فریم نیستند\n"
-"اما برای انجام تبدیل شماره فریم به کدزمان و همچنین تبدیل\n"
+"کدزمان ها و زمانبندی ها دارای نرخ تصویر یا همان نرخ فریم نیستند\n"
+"اما برای انجام تبدیل شماره تصویر به کدزمان و همچنین تبدیل\n"
 "HH:MM:SS:FF\n"
 "به\n"
 "HH:MM:SS:MS\n"
-"وارد کردن نرخ فریم دقیق مرجع ضروری است\n"
+"وارد کردن نرخ تصویر دقیق مرجع ضروری است\n"
 msgstr ""
 "Timecodes and Timings do not have a Framerate\n"
 "But for converting a frame position to a timecode and also\n"
@@ -387,42 +387,19 @@ msgid "زمان بندی ها معتبر نیستند. یا چیزی وارد ن
 msgstr "Timings are invalid. either you didn't entered anything or they are not incremental in sequence or overlapping each other"
 
 #: uresourcestrings.rsisframepos
-msgid "شماره فریم"
+msgid "شماره تصویر"
 msgstr "Frame Position"
 
 #: uresourcestrings.rsisframeposhint
 msgid ""
-"شماره فریم یک عدد صحیح است که موقعیت فریم را از ابتدای فایل مشخص می کند\n"
-"مثلا فریم هزار و دویست و پنجاه و ششم\n"
-"قبل از انتخاب این گزینه توجه کنید که حتما اعداد ورودیتان شماره فریم هستند\n"
+"شماره تصویر یا شماره فریم یک عدد صحیح است که موقعیت تصویر را از ابتدای فایل مشخص می کند\n"
+"مثلا تصویر هزار و دویست و پنجاه و ششم\n"
+"قبل از انتخاب این گزینه توجه کنید که حتما اعداد ورودیتان شماره تصویر هستند\n"
 msgstr ""
 "Frame position is an integer number that determines\n"
 "the position of the frame from begining of the file\n"
 "like frame number one thousand, two hundred fifty-six\n"
 "before choosing this option make sure that your input numbers are really frame positions\n"
-
-#: uresourcestrings.rsismillisecondaframenodesc
-msgid ""
-"برخی نرم افزارهای ویرایش خطی ویدئو، عدد دقیق هزارم ثانیه را\n"
-"نشان نمی دهند و بجای آن شماره تصویر (شماره فریم) را نشان می دهند مانند:\n"
-"hh:mm:ss:ff\n"
-"که در اینصورت برای گرفتن برش های دقیق باید به سابزبُر اعلام کنید قسمت\n"
-":ff\n"
-"را به\n"
-":ms\n"
-"(هزارم ثانیه) تبدیل کند و نرخ تصویر دقیق پروژه\n"
-"خود را در پایین وارد نمایید.\n"
-msgstr ""
-"some non linear video editors won't show the millisecond part of their timecodes\n"
-"but they divide each second by the framerate and show you\n"
-"the frame number within that second: hh:mm:ss:ff\n"
-"to have accurate and in sync subtitle cuts you need to tell SubzBor to\n"
-"convert the\n"
-":ff\n"
-"part to\n"
-":ms\n"
-"by activating this option and specifying the framerate (fps) of your\n"
-"your video below.\n"
 
 #: uresourcestrings.rsisnormaltimecode
 msgid "کدزمان"
@@ -509,6 +486,29 @@ msgstr "Apparently the subtitle file is not saved. consider enabling reports in 
 #: uresourcestrings.rsseetutorialsfirstplz
 msgid "لطفا قبل از شروع به استفاده از راهنما و فیلم های آموزشی سابزبر دیدن نمایید"
 msgstr "Before you start using SubzBor, please take a look at its helps and tutorials"
+
+#: uresourcestrings.rstimecodehasframepartdesc
+msgid ""
+"برخی نرم افزارهای ویرایش خطی ویدئو، عدد دقیق هزارم ثانیه را\n"
+"نشان نمی دهند و بجای آن هر ثانیه را تقسیم بر نرخ تصویر می کنند و\n"
+"شماره تصویر (شماره فریم) در آن ثانیه را نشان می دهند مانند:\n"
+"hh:mm:ss:ff\n"
+"که در اینصورت برای گرفتن برش های دقیق باید به سابزبُر اعلام کنید قسمت\n"
+":ff\n"
+"را به\n"
+":ms\n"
+"یعنی هزارم ثانیه تبدیل کند و نرخ تصویر دقیق ویدئوی خود را در پایین وارد نمایید.\n"
+msgstr ""
+"some non linear video editors won't show the millisecond part of their timecodes\n"
+"but they divide each second by the framerate and show you\n"
+"the frame number within that second: hh:mm:ss:ff\n"
+"to have accurate and in sync subtitle cuts you need to tell SubzBor to\n"
+"convert the\n"
+":ff\n"
+"part to\n"
+":ms\n"
+"by activating this option and specifying the framerate (fps) of your\n"
+"your video below.\n"
 
 #: uresourcestrings.rstimeslicefilenotread
 msgid "فایل زمان بندی ها معتبر تشخیص داده نشد"

@@ -48,7 +48,7 @@ type
 implementation
 
 const
-  FramePartToMillisecFormula = 'HH:MM:SS:FF >> HH:MM:SS:MS';
+  FramePartToMillisecCap = 'HH:MM:SS:FF >> HH:MM:SS:MS';
   FramePosToSecondsHint = '11111-22222' +LineEnding +'33333-44444';
 
 { TTimeCodeFormatDialogEx }
@@ -60,9 +60,9 @@ begin
   with FHasFramePart do
   begin
     Parent := Self;
-    Caption := FramePartToMillisecFormula;
+    Caption := FramePartToMillisecCap;
     ShowHint := True;
-    Hint := rsIsMillisecondAFrameNoDesc;
+    Hint := rsTimecodeHasFramePartdesc;
   end;
 
   //FIsFramePos

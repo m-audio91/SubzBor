@@ -54,7 +54,7 @@ resourcestring
   rsSBDCancel = 'صرف نظر';
   rsInputTimingsFormat = 'ساختار کدزمان های ورودی';
   rsChooseCorrectInputTimingsFormatWarn = 'ساختار کدزمان های مدنظر برای ورودی را به درستی مشخص نمایید. این ساختار در زمان چسباندن از حافظه و همچنین در زمان خواندن از فایل استفاده می شود. یعنی اگر کدزمان های خود را از نرم افزار خاصی به داخل سابزبر کپی می کنید این ساختار را باید مطابق آن تعیین کنید.';
-  rsThisSettingsWillRemainUntilProgramClose = 'این تنظیمات تا زمان بستن نرم افزار یا کلیک روی دکمه "از نو (ریست)" باقی می ماند';
+  rsThisSettingsWillRemainUntilProgramClose = 'این تنظیمات تا زمان بستن نرم افزار یا کلیک روی دکمه "از نو (ریست CTRL+R)" باقی می ماند';
 
 var
   SBDatas: TSBDatas;
