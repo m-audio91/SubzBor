@@ -5,7 +5,7 @@ object SBMain: TSBMain
   Width = 500
   AllowDropFiles = True
   Caption = 'SubzBor v1.7.6'
-  ClientHeight = 350
+  ClientHeight = 326
   ClientWidth = 500
   Constraints.MinHeight = 350
   Constraints.MinWidth = 500
@@ -16,6 +16,7 @@ object SBMain: TSBMain
   OnDropFiles = FormDropFiles
   OnShow = FormShow
   SessionProperties = 'Left;SubtitleFile.InitialDir;Top'
+  LCLVersion = '1.9.0.0'
   object Header: TPanel
     Left = 0
     Height = 48
@@ -572,7 +573,7 @@ object SBMain: TSBMain
   end
   object TimingsList: TListBox
     Left = 8
-    Height = 177
+    Height = 153
     Top = 118
     Width = 484
     Align = alClient
@@ -590,7 +591,7 @@ object SBMain: TSBMain
   object DoSplitPanel: TPanel
     Left = 8
     Height = 30
-    Top = 297
+    Top = 273
     Width = 484
     Align = alBottom
     AutoSize = True
@@ -634,7 +635,7 @@ object SBMain: TSBMain
   object StatsBar: TStatusBar
     Left = 0
     Height = 21
-    Top = 329
+    Top = 305
     Width = 500
     BorderSpacing.Top = 2
     Panels = <    
@@ -780,6 +781,8 @@ object SBMain: TSBMain
     Icon.Data = {
       07544269746D617000000000
     }
+    Text = 'Text'
+    Title = 'Caption'
     Visible = False
     OnClose = HelpNotifierClose
     Left = 72
