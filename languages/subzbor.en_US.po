@@ -560,6 +560,10 @@ msgstr "Timecode format chooser"
 msgid "جدا کننده ساعت، دقیقه و ثانیه"
 msgstr "Time separator"
 
+#: utimesliceeditex.rsconvertfftoms
+msgid "تبدیل به هزارم ثانیه"
+msgstr "Convert to Millisecond"
+
 #: utimesliceeditex.rstimesliceeditorex
 msgid "ویرایشگر زمانبندی"
 msgstr "Timings editor"

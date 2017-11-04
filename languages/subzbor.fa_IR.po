@@ -606,6 +606,10 @@ msgstr "انتخابگر ساختار کدزمان ها"
 msgid "جدا کننده ساعت، دقیقه و ثانیه"
 msgstr "جدا کننده ساعت، دقیقه و ثانیه"
 
+#: utimesliceeditex.rsconvertfftoms
+msgid "تبدیل به هزارم ثانیه"
+msgstr "تبدیل به هزارم ثانیه"
+
 #: utimesliceeditex.rstimesliceeditorex
 msgid "ویرایشگر زمانبندی"
 msgstr "ویرایشگر زمانبندی"
