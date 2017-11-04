@@ -399,7 +399,7 @@ msgstr ""
 "Global Frame Number is an integer number that determines\n"
 "the position of the frame from the begining of the file\n"
 "like frame number one thousand, two hundred fifty-six\n"
-"before choosing this option make sure that your input numbers are really frame positions\n"
+"before choosing this option make sure that your input numbers are really global frame numbers\n"
 
 #: uresourcestrings.rsisnormaltimecode
 msgid "کدزمان"
