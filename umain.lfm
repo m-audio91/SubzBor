@@ -765,8 +765,14 @@ object SBMain: TSBMain
     object SelectTimingsMI: TMenuItem
       Action = SelectTimingsAct
     end
+    object MenuItemSep1: TMenuItem
+      Caption = '-'
+    end
     object AddOffsetToTimingsMI: TMenuItem
       Action = AddOffsetToTimingsAct
+    end
+    object MenuItemSep2: TMenuItem
+      Caption = '-'
     end
     object SaveTimingsMI: TMenuItem
       Action = SaveTimingsAct

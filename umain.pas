@@ -38,6 +38,8 @@ type
 
   TSBMain = class(TForm)
     DoSplit: TButton;
+    MenuItemSep2: TMenuItem;
+    MenuItemSep1: TMenuItem;
     NewTimingMI: TMenuItem;
     EditTimingMI: TMenuItem;
     DeleteTimingsMI: TMenuItem;
