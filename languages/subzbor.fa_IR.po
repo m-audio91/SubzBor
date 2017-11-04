@@ -645,3 +645,4 @@ msgstr "ثانیه"
 #: utimesliceeditex.rstsexstart
 msgid "شروع"
 msgstr "شروع"
+
