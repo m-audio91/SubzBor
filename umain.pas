@@ -439,7 +439,8 @@ end;
 
 procedure TSBMain.MenuSBPrefsClick(Sender: TObject);
 begin
-  SBPrefs.ShowModal;
+  if SaveSubtitleAct.Enabled then
+    SBPrefs.ShowModal;
 end;
 
 procedure TSBMain.MenuSBAboutClick(Sender: TObject);
@@ -543,6 +544,7 @@ begin
   AddOffsetToTimingsAct.Enabled := (Self.ActiveControl = TimingsList)
     and (TimingsList.SelCount > 0);
   SaveTimingsAct.Enabled := TimingsList.Count > 0;
+  ResetFormAct.Enabled := SaveSubtitleAct.Enabled;
 end;
 
 procedure TSBMain.SelectTimingsActExecute(Sender: TObject);
