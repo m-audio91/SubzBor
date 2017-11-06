@@ -32,6 +32,8 @@ type
   { TTimeCodeFormatDialogEx }
 
   TTimeCodeFormatDialogEx = class(TTimeCodeFormatDialog)
+  protected
+    procedure OnFormatChange(Sender: TObject); override;
   private
     FIsNormalTimeCode: TRadioButton;
     FIsFramePos: TRadioButton;
@@ -64,6 +66,7 @@ begin
     ShowHint := True;
     Hint := rsTimecodeHasFramePartdesc;
   end;
+  OnFormatChange(Sender);
 
   //FIsFramePos
   FIsFramePos := TRadioButton.Create(Self);
@@ -114,6 +117,17 @@ begin
 
   FIsNormalTimeCode.State := cbChecked;
   FIsNormalTimeCode.Invalidate;
+end;
+
+procedure TTimeCodeFormatDialogEx.OnFormatChange(Sender: TObject);
+var
+  s: String;
+begin
+  inherited OnFormatChange(Sender);
+  s := FramePartToMillisecCap.Replace(':',FValue.TimeCodeFormat.MajorSep);
+  s := s.Replace(FValue.TimeCodeFormat.MajorSep+'F',FValue.TimeCodeFormat.MinorSep+'F');
+  s := s.Replace('S'+FValue.TimeCodeFormat.MajorSep,'S'+FValue.TimeCodeFormat.MinorSep);
+  FHasFramePart.Caption := s;
 end;
 
 procedure TTimeCodeFormatDialogEx.UpdateValue(Sender: TObject;
