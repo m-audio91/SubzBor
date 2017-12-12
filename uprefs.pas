@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  EditBtn, IniPropStorage;
+  EditBtn, IniPropStorage, CommonStrUtils;
 
 type
 
@@ -79,19 +79,23 @@ procedure TSBPrefs.IniPropsRestoreProperties(Sender: TObject);
 begin
   with ToolsFolderAddress do
   begin
-    if Text = EmptyStr then
+    if IsEmptyStr(Text) or not DirectoryExists(Text) then
       Text := ProgramDirectory +'tools' +PathDelim;
   end;
   {$IFDEF WINDOWS}
-  if FFmpegAddress.Text = EmptyStr then
+  if IsEmptyStr(FFmpegAddress.Text)
+  or not FileExists(FFmpegAddress.Text) then
     FFmpegAddress.Text := ToolsFolderAddress.Text +'win\ffmpeg.exe';
-  if MkvMergeAddress.Text = EmptyStr then
+  if IsEmptyStr(MkvMergeAddress.Text)
+  or not FileExists(MkvMergeAddress.Text) then
     MkvMergeAddress.Text := ToolsFolderAddress.Text +'win\mkvmerge.exe';
-  if MkvExtractAddress.Text = EmptyStr then
+  if IsEmptyStr(MkvExtractAddress.Text)
+  or not FileExists(MkvExtractAddress.Text) then
     MkvExtractAddress.Text := ToolsFolderAddress.Text +'win\mkvextract.exe';
   {$ENDIF}
   {$IFDEF UNIX}
-  if FFmpegAddress.Text = EmptyStr then
+  if IsEmptyStr(FFmpegAddress.Text)
+  or not FileExists(FFmpegAddress.Text) then
     FFmpegAddress.Text := ToolsFolderAddress.Text +'lin' +
     {$IFDEF CPU32}
     '32'
@@ -100,9 +104,11 @@ begin
     '64'
     {$ENDIF}
     +PathDelim +'ffmpeg';
-  if MkvMergeAddress.Text = EmptyStr then
+  if IsEmptyStr(MkvMergeAddress.Text)
+  or not FileExists(MkvMergeAddress.Text) then
     MkvMergeAddress.Text := '/usr/bin/mkvmerge';
-  if MkvExtractAddress.Text = EmptyStr then
+  if IsEmptyStr(MkvExtractAddress.Text)
+  or not FileExists(MkvExtractAddress.Text) then
     MkvExtractAddress.Text := '/usr/bin/mkvextract';
   {$ENDIF}
 end;
