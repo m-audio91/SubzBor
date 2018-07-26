@@ -131,7 +131,6 @@ type
     procedure CorrectFormSize;
     procedure Status(const MsgType, Msg: String; Bar: boolean = False;
       BarPos: Word = 0; HideBarAfter: Word = 0);
-    procedure SetGlyphs;
     procedure DefineUserInputsFormat;
     function HasInternalCodec(const Fmt: String): Boolean;
     procedure SaveDummyVidResToFile(const Dir: String);
@@ -174,19 +173,6 @@ begin
   FFormatSettings := DefaultTimeCodeFormatSettings;
 end;
 
-procedure TSBMain.SetGlyphs;
-begin
-  SBDatas.ChangeGlyph(NewTiming);
-  SBDatas.ChangeGlyph(EditTiming);
-  SBDatas.ChangeGlyph(DeleteTimings);
-  SBDatas.ChangeGlyph(ResetForm);
-  SBDatas.ChangeGlyph(SaveTimingsFile);
-  SBDatas.ChangeGlyph(OpenTimingsFile);
-  SBDatas.ChangeGlyph(SubtitleFile);
-  SBDatas.ChangeGlyph(AddOffsetToTimings);
-  SBDatas.ChangeGlyph(HelpNotifier);
-end;
-
 procedure TSBMain.CorrectFormSize;
 var
   MinW: Integer;
@@ -199,7 +185,8 @@ end;
 
 procedure TSBMain.FormShow(Sender: TObject);
 begin
-  SetGlyphs;
+  HelpNotifier.Icon.Bitmap.Assign(nil);
+  SBDatas.GlyphImages.GetBitmap(8, HelpNotifier.Icon.Bitmap);
   CorrectFormSize;
   ListTranslations;
   HandleTranslation(LangID);

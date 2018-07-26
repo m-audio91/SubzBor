@@ -25,25 +25,22 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Buttons, EditBtn,
-  Dialogs, ExtCtrls, PopupNotifier, CommonGUIUtils;
+  Dialogs, ExtCtrls, ImgList;
 
 type
 
   { TSBDatas }
 
   TSBDatas = class(TDataModule)
-    GlyphImages192: TImageList;
     GlyphImages: TImageList;
     OpenDlg: TOpenDialog;
     SaveDlg: TSaveDialog;
     TheTimer: TTimer;
     TaskDlg: TTaskDialog;
     procedure DataModuleCreate(Sender: TObject);
+    procedure GlyphImagesGetWidthForPPI(Sender: TCustomImageList; AImageWidth,
+      APPI: Integer; var AResultWidth: Integer);
   public
-    procedure PrepareGlyphs(DPI: Word);
-    procedure ChangeGlyph(SBtn: TSpeedButton); overload;
-    procedure ChangeGlyph(EdtBtn: TFileNameEdit); overload;
-    procedure ChangeGlyph(PN: TPopupNotifier); overload;
     procedure HandleTranslation;
   end;
 
@@ -67,33 +64,16 @@ implementation
 
 procedure TSBDatas.DataModuleCreate(Sender: TObject);
 begin
-  PrepareGlyphs(Screen.PixelsPerInch);
   with TaskDlg.Buttons.Add do
     ModalResult := mrOK;
   HandleTranslation;
 end;
 
-procedure TSBDatas.PrepareGlyphs(DPI: Word);
+procedure TSBDatas.GlyphImagesGetWidthForPPI(Sender: TCustomImageList;
+  AImageWidth, APPI: Integer; var AResultWidth: Integer);
 begin
-  CopyImageList(GlyphImages, GlyphImages192, DPI, 192, clBtnFace);
-end;
-
-procedure TSBDatas.ChangeGlyph(SBtn: TSpeedButton);
-begin
-  SBtn.Glyph.Assign(nil);
-  GlyphImages.GetBitmap(SBtn.Tag, SBtn.Glyph);
-end;
-
-procedure TSBDatas.ChangeGlyph(EdtBtn: TFileNameEdit);
-begin
-  EdtBtn.Glyph.Assign(nil);
-  GlyphImages.GetBitmap(EdtBtn.Tag, EdtBtn.Glyph);
-end;
-
-procedure TSBDatas.ChangeGlyph(PN: TPopupNotifier);
-begin
-  PN.Icon.Bitmap.Assign(nil);
-  GlyphImages.GetBitmap(PN.Tag, PN.Icon.Bitmap);
+  if APPI in [115..125] then
+    AResultWidth := (AImageWidth*120) div Screen.Forms[0].DesignTimePPI;
 end;
 
 procedure TSBDatas.HandleTranslation;
