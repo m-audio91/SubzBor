@@ -3,7 +3,7 @@ unit uTimeCodeFormatDialogEx;
   SubzBor is a Free subtitle cutting tool with the help of FFmpeg, MKVToolNix
   and it's own set of internal codecs.
 
-  Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com
+  Copyright (C) 2018 Mohammadreza Bahrami m.audio91@gmail.com
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
