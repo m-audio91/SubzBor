@@ -24,7 +24,7 @@ unit uProc;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Process, UTF8Process, LazUTF8, LConvEncoding,
+  Classes, SysUtils, FileUtil, Process, LazUTF8, LConvEncoding,
   CommonStrUtils, CommonFileUtils, {$IFDEF WINDOWS}windirs,{$ENDIF} uTimeSlice,
   uResourcestrings, uSBConst, uSubripFile, uSubStationAlphaFile;
 
@@ -117,10 +117,10 @@ end;
 
 procedure TSubzBorProcThread.RunCmd(const Exec, Cmd: String);
 var
-  Proc: TProcessUTF8;
+  Proc: TProcess;
   i: Integer;
 begin
-  Proc := TProcessUTF8.Create(nil);
+  Proc := TProcess.Create(nil);
   try
     with Proc do
     begin

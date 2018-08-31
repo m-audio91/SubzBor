@@ -32,7 +32,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="8"/>
-      <BuildNr Value="4"/>
+      <BuildNr Value="7"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free subtitle cutting tool" InternalName="SubzBor" LegalCopyright="MohammadReza Bahrami" OriginalFilename="subzbor" ProductName="SubzBor" ProductVersion="1.8.0.0"/>
     </VersionInfo>
     <BuildModes Count="4">

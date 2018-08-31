@@ -24,7 +24,7 @@ unit uProbe;
 interface
 
 uses
-  Classes, SysUtils, Process, UTF8Process, uTimeSlice, CommonStrUtils,
+  Classes, SysUtils, Process, uTimeSlice, CommonStrUtils,
   CommonFileUtils, uSBConst;
 
 type
@@ -106,14 +106,14 @@ function TSubzBorProbeThread.RunCaptureCmd(const Exec, Cmd: String): String;
 const
   BUF_SIZE = 1024;
 var
-  Proc: TProcessUTF8;
+  Proc: TProcess;
   Mem: TBytesStream;
   BytesRead: LongInt;
   Buffer: array[1..BUF_SIZE] of Byte;
   i: Integer;
 begin
   Result := EmptyStr;
-  Proc := TProcessUTF8.Create(nil);
+  Proc := TProcess.Create(nil);
   Mem := TBytesStream.Create;
   try
     with Proc do
